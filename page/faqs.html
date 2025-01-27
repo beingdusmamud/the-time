@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>FAQs | TimeIt</title>
+
+    <style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap");
+
+      :root {
+        --primary-bg: #ffffff;
+        --secondary-bg: #f8f9fa;
+        --accent-bg: #e9ecef;
+        --primary-text: #2c3e50;
+        --secondary-text: #495057;
+        --accent-color: #b8860b;
+        --gold: #daa520;
+        --silver: #c0c0c0;
+        --success: #2e7d32;
+        --error: #c62828;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --footer-divider: rgba(0, 0, 0, 0.1);
+        --border-color: #e0e0e0;
+        --transition-normal: 0.3s;
+      }
+
+      [data-theme="dark"] {
+        --primary-bg: #121212;
+        --secondary-bg: #1e1e1e;
+        --accent-bg: #282828;
+        --primary-text: #ffffff;
+        --secondary-text: #e0e0e0;
+        --accent-color: #ffd700;
+        --gold: #ffb300;
+        --silver: #9e9e9e;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --border-color: #333333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--primary-text);
+        line-height: 1.6;
+      }
+
+      /* Header Styles Start*/
+      .header {
+        background: var(--secondary-bg);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem;
+        margin-bottom: 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--card-shadow);
+      }
+
+      .header__content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+      }
+
+      .header__title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        color: var(--accent-color);
+      }
+
+      .header__title a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .header__title i {
+        transition: transform var(--transition-normal);
+      }
+
+      .header__title:hover i {
+        transform: rotate(15deg);
+      }
+
+      /* Navigation Styles */
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav__links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav__link {
+        text-decoration: none;
+        color: var(--primary-text);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all var(--transition-normal);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav__link i {
+        font-size: 0.9em;
+        opacity: 0.8;
+      }
+
+      .nav__link:hover {
+        color: var(--accent-color);
+        background-color: rgba(184, 134, 11, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--primary-text);
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        transition: all var(--transition-normal);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .theme-toggle:hover {
+        color: var(--accent-color);
+        background-color: rgba(184, 134, 11, 0.1);
+      }
+
+      /* Mobile Menu Button */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        margin-left: 1rem;
+        padding: 0;
+      }
+
+      .hamburger-line {
+        width: 30px;
+        height: 2px;
+        background-color: var(--primary-text);
+        display: block;
+        position: absolute;
+        right: 0;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger-line:nth-child(1) {
+        top: 0;
+      }
+
+      .hamburger-line:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .hamburger-line:nth-child(3) {
+        bottom: 0;
+      }
+
+      /* Hamburger Animation */
+      .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+        width: 0;
+      }
+
+      .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav {
+          position: fixed;
+          top: 4.5rem;
+          left: 0;
+          right: 0;
+          height: auto;
+          background: var(--secondary-bg);
+          padding: 2rem 1rem;
+          flex-direction: column;
+          transform: translateX(-100%);
+          transition: transform var(--transition-normal);
+          border-bottom: 1px solid var(--border-color);
+          box-shadow: var(--card-shadow);
+        }
+
+        .nav.active {
+          transform: translateX(0);
+        }
+
+        .nav__links {
+          flex-direction: column;
+          width: 100%;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .nav__link {
+          width: 100%;
+          justify-content: center;
+          padding: 1rem;
+          font-size: 1.1rem;
+          text-align: center;
+        }
+
+        .nav__link i {
+          margin-right: 0.5rem;
+        }
+
+        .theme-toggle {
+          margin-top: 1.5rem;
+          width: 100%;
+          max-width: 200px;
+          border-radius: 4px;
+          height: 45px;
+        }
+      }
+      /* Header Styles end*/
+
+      .faq-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+      }
+
+      /* FAQ Header Styles */
+      .faq-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .faq-header h1 {
+        color: var(--primary-text);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .faq-description {
+        color: var(--secondary-text);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Search Bar Styles */
+      .faq-search {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      .faq-search i {
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--secondary-text);
+      }
+
+      .faq-search input {
+        width: 100%;
+        padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 50px;
+        font-size: 1rem;
+        transition: all var(--transition-normal);
+      }
+
+      .faq-search input:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.1);
+      }
+
+      /* Category Buttons */
+      .faq-categories {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .category-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 25px;
+        background: var(--primary-bg);
+        color: var(--primary-text);
+        cursor: pointer;
+        transition: all var(--transition-normal);
+      }
+
+      .category-btn.active {
+        background: var(--accent-color);
+        color: var(--primary-bg);
+        border-color: var(--accent-color);
+      }
+
+      .category-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--card-shadow);
+      }
+
+      /* FAQ Content Styles */
+      .faq-content {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+      }
+
+      .faq-group {
+        background: var(--primary-bg);
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        padding: 2rem;
+      }
+
+      .faq-group h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+      }
+
+      /* FAQ Item Styles */
+      .faq-item {
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+      }
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        cursor: pointer;
+      }
+
+      .faq-question span {
+        font-weight: 500;
+        color: var(--primary-text);
+      }
+
+      .toggle-btn {
+        background: none;
+        border: none;
+        color: var(--secondary-text);
+        cursor: pointer;
+        transition: transform var(--transition-normal);
+      }
+
+      .faq-item.active .toggle-btn {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        display: none;
+        padding: 1rem 0;
+        color: var(--secondary-text);
+        line-height: 1.6;
+      }
+
+      .faq-item.active .faq-answer {
+        display: block;
+      }
+
+      /* Helpful Section Styles */
+      .faq-helpful {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .helpful-btns {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .helpful-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        background: var(--primary-bg);
+        color: var(--secondary-text);
+        cursor: pointer;
+        transition: all var(--transition-normal);
+      }
+
+      .helpful-btn:hover {
+        background: var(--accent-bg);
+        color: var(--accent-color);
+      }
+
+      /* Quick Help Styles */
+      .quick-help {
+        background: var(--primary-bg);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--card-shadow);
+      }
+
+      .help-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .help-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 8px;
+        background: var(--accent-bg);
+        color: var(--primary-text);
+        text-decoration: none;
+        transition: all var(--transition-normal);
+      }
+
+      .help-card:hover {
+        transform: translateY(-3px);
+        background: var(--accent-color);
+        color: var(--primary-bg);
+      }
+
+      .help-card i {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .help-card h4 {
+        margin-bottom: 0.5rem;
+      }
+
+      .help-card p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 968px) {
+        .faq-content {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-help {
+          order: -1;
+        }
+
+        .help-options {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+        .help-card {
+          flex: 1;
+          min-width: 200px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .faq-header h1 {
+          font-size: 2rem;
+        }
+
+        .category-btn {
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        .help-options {
+          flex-direction: column;
+        }
+      }
+      /* footer start*/
+      .footer {
+        background: var(--secondary-bg);
+        padding: 4rem 0 1.5rem;
+        position: relative;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .footer__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer__info {
+        max-width: 350px;
+      }
+
+      .footer__logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer__logo-icon {
+        font-size: 2rem;
+        color: var(--accent-color);
+      }
+
+      .footer__logo-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .footer__description {
+        color: var(--primary-text);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer__section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer__heading {
+        color: var(--accent-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .footer__heading::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.5rem;
+        width: 30px;
+        height: 2px;
+        background: var(--accent-color);
+      }
+
+      .footer__links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer__link-item {
+        margin-bottom: 1rem;
+      }
+
+      .footer__link {
+        color: var(--secondary-text);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .footer__link i {
+        font-size: 0.9rem;
+        transition: transform 0.3s ease;
+      }
+
+      .footer__link:hover {
+        color: var(--accent-color);
+        transform: translateX(5px);
+      }
+
+      .footer__link:hover i {
+        transform: translateX(3px);
+      }
+
+      .footer__social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .footer__social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: var(--footer-divider);
+        color: var(--primary-text);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .footer__social-link:hover {
+        background: var(--accent-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer__bottom {
+        padding-top: 2rem;
+        border-top: 1px solid var(--footer-divider);
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 4rem;
+        text-align: center;
+      }
+
+      .footer__copyright {
+        color: var(--primary-text);
+        font-size: 0.9rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .footer__copyright a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .footer__heart {
+        display: inline-block;
+        animation: heartbeat 1.5s ease infinite;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 1024px) {
+        .footer__grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+
+        .footer__info {
+          grid-column: 1 / -1;
+          max-width: none;
+          text-align: center;
+        }
+
+        .footer__logo {
+          justify-content: center;
+        }
+
+        .footer__heading::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .footer {
+          padding: 3rem 0 1rem;
+        }
+
+        .footer__grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .footer__section {
+          text-align: center;
+        }
+
+        .footer__social {
+          justify-content: center;
+        }
+
+        .footer__link:hover {
+          transform: translateY(-3px);
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .footer__container {
+          padding: 0 1rem;
+        }
+
+        .footer__logo-text {
+          font-size: 1.3rem;
+        }
+
+        .footer__description {
+          font-size: 0.9rem;
+        }
+      }
+
+      /*footer end*/
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="../index.html">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="../index.html" class="nav__link"
+                ><i class="fas fa-home"></i>Home</a
+              >
+            </li>
+            <li>
+              <a href="../page/notes.html" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../page/faculty.html" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../page/notice.html" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../page/contact.html" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+    <main class="faq-container">
+      <!-- FAQ Header Section -->
+      <section class="faq-header">
+        <h1>Frequently Asked Questions</h1>
+        <p class="faq-description">
+          Find answers to common questions about our academic portal and
+          services.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="faq-search">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="faqSearch"
+            placeholder="Search frequently asked questions..."
+          />
+        </div>
+
+        <!-- Quick Categories -->
+        <div class="faq-categories">
+          <button class="category-btn active" data-category="all">
+            <i class="fas fa-th-large"></i>
+            <span>All</span>
+          </button>
+          <button class="category-btn" data-category="general">
+            <i class="fas fa-info-circle"></i>
+            <span>General</span>
+          </button>
+          <button class="category-btn" data-category="academic">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Academic</span>
+          </button>
+          <button class="category-btn" data-category="technical">
+            <i class="fas fa-laptop-code"></i>
+            <span>Technical</span>
+          </button>
+          <button class="category-btn" data-category="support">
+            <i class="fas fa-headset"></i>
+            <span>Support</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- FAQ Content Section -->
+      <section class="faq-content">
+        <!-- General FAQs -->
+        <!-- Inside the faq-group div -->
+        <div class="faq-group" data-category="general">
+          <h2><i class="fas fa-info-circle"></i> General Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I create an account?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To create an account:</p>
+              <ol>
+                <li>Click on the "Sign Up" button in the top right corner</li>
+                <li>Fill in your academic email address</li>
+                <li>Complete the registration form</li>
+                <li>Verify your email address</li>
+                <li>Log in to access all features</li>
+              </ol>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I reset my password?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To reset your password:</p>
+              <ol>
+                <li>Click on "Forgot Password" on the login page</li>
+                <li>Enter your registered email address</li>
+                <li>Check your email for reset instructions</li>
+                <li>Click the reset link and create a new password</li>
+              </ol>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What are the system requirements?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Minimum system requirements:</p>
+              <ul>
+                <li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+                <li>JavaScript enabled</li>
+                <li>Stable internet connection</li>
+                <li>Screen resolution: 1280x720 or higher</li>
+                <li>PDF viewer for documents</li>
+              </ul>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic FAQs -->
+        <div class="faq-group" data-category="academic">
+          <h2><i class="fas fa-graduation-cap"></i> Academic Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I access course materials?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To access course materials:</p>
+              <ol>
+                <li>Log in to your account</li>
+                <li>Navigate to "My Courses"</li>
+                <li>Select the desired course</li>
+                <li>Click on "Course Materials" tab</li>
+                <li>Download or view materials online</li>
+              </ol>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical FAQs -->
+        <div class="faq-group" data-category="technical">
+          <h2><i class="fas fa-laptop-code"></i> Technical Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Why won't my files upload?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Common upload issues and solutions:</p>
+              <ul>
+                <li>Check file size (max 50MB)</li>
+                <li>Ensure supported file format</li>
+                <li>Check internet connection</li>
+                <li>Clear browser cache</li>
+                <li>Try a different browser</li>
+              </ul>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Support FAQs -->
+        <div class="faq-group" data-category="support">
+          <h2><i class="fas fa-headset"></i> Support Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I contact support?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>You can contact support through:</p>
+              <ul>
+                <li>Live Chat: Available 24/7</li>
+                <li>Email: support@example.com</li>
+                <li>Phone: 1-800-123-4567</li>
+                <li>Help Desk: Submit a ticket</li>
+              </ul>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Help Section -->
+        <aside class="quick-help">
+          <h3>Need More Help?</h3>
+          <div class="help-options">
+            <a href="https://www.instagram.com/dvmx_19/" class="help-card">
+              <i class="fas fa-comments"></i>
+              <h4>Live Chat</h4>
+              <p>Chat with our support team</p>
+            </a>
+            <a href="mailto:dusinfinity@gmail.com" class="help-card">
+              <i class="fas fa-envelope"></i>
+              <h4>Email Support</h4>
+              <p>Get help via email</p>
+            </a>
+            <a href="mailto:dusinfinity@gmail.com" class="help-card">
+              <i class="fas fa-phone"></i>
+              <h4>Phone Support</h4>
+              <p>Call our helpline</p>
+            </a>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../index.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/notes.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/faculty.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/notice.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/contact.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../page/schedule.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/pyqs.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/tool.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/under-construction.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../page/faq.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/faqs.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/privacy-policy.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/terms-of-use.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="../index.html">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <script>
+      //theme togle start
+      // Theme Manager
+      class ThemeManager {
+        constructor() {
+          this.themeToggle = document.getElementById("themeToggle");
+          this.init();
+        }
+
+        init() {
+          this.themeToggle.addEventListener("click", () => this.toggleTheme());
+          this.setInitialTheme();
+        }
+
+        setInitialTheme() {
+          const savedTheme = localStorage.getItem("theme") || "light";
+          document.documentElement.setAttribute("data-theme", savedTheme);
+          this.updateToggleIcon(savedTheme);
+        }
+
+        toggleTheme() {
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+          const newTheme = currentTheme === "light" ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          this.updateToggleIcon(newTheme);
+        }
+
+        updateToggleIcon(theme) {
+          const icon = this.themeToggle.querySelector("i");
+          icon.className = theme === "light" ? "fas fa-moon" : "fas fa-sun";
+        }
+      }
+      //theme togle end
+      //header start
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const nav = document.getElementById("nav");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        mobileMenuBtn.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          nav.classList.remove("active");
+          mobileMenuBtn.classList.remove("active");
+        }
+      });
+
+      // Close mobile menu when window is resized
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          nav.classList.remove("active");
+          mobileMenuBtn.classList.remove("active");
+        }
+      });
+      //Header navbar end
+      // Initialize Application
+      document.addEventListener("DOMContentLoaded", () => {
+        new ThemeManager();
+      });
+      //header end
+
+      //faq st
+      document.addEventListener("DOMContentLoaded", () => {
+        // FAQ Item Toggle
+        document.querySelectorAll(".faq-question").forEach((question) => {
+          question.addEventListener("click", () => {
+            const item = question.parentElement;
+            const isActive = item.classList.contains("active");
+
+            // Close all other items
+            document.querySelectorAll(".faq-item").forEach((otherItem) => {
+              otherItem.classList.remove("active");
+            });
+
+            // Toggle current item
+            if (!isActive) {
+              item.classList.add("active");
+            }
+          });
+        });
+
+        // Category Filter
+        document.querySelectorAll(".category-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            // Remove active class from all buttons
+            document.querySelectorAll(".category-btn").forEach((b) => {
+              b.classList.remove("active");
+            });
+
+            // Add active class to clicked button
+            btn.classList.add("active");
+
+            const category = btn.dataset.category;
+
+            // Filter FAQ groups
+            document.querySelectorAll(".faq-group").forEach((group) => {
+              if (category === "all" || group.dataset.category === category) {
+                group.style.display = "block";
+              } else {
+                group.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // Search Functionality
+        const searchFAQs = (searchTerm) => {
+          document.querySelectorAll(".faq-item").forEach((item) => {
+            const question = item
+              .querySelector(".faq-question span")
+              .textContent.toLowerCase();
+            const answer = item
+              .querySelector(".faq-answer")
+              .textContent.toLowerCase();
+
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        };
+
+        document.getElementById("faqSearch").addEventListener("input", (e) => {
+          searchFAQs(e.target.value.toLowerCase());
+        });
+
+        // Helpful Buttons
+        document.querySelectorAll(".helpful-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const helpfulSection = btn.closest(".faq-helpful");
+            helpfulSection.innerHTML =
+              '<p class="text-success">Thank you for your feedback!</p>';
+          });
+        });
+      });
+      //faq end
+    </script>
+  </body>
+</html>

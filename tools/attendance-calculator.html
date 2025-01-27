@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Attendance Calculator | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>A</text></svg>"
+    />
+    <style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap");
+
+      :root {
+        --primary-bg: #ffffff;
+        --secondary-bg: #f8f9fa;
+        --accent-bg: #e9ecef;
+        --primary-text: #2c3e50;
+        --secondary-text: #495057;
+        --accent-color: #b8860b;
+        --gold: #daa520;
+        --silver: #c0c0c0;
+        --success: #2e7d32;
+        --error: #c62828;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --footer-divider: rgba(0, 0, 0, 0.1);
+        --border-color: #e0e0e0;
+        --transition-normal: 0.3s;
+      }
+
+      [data-theme="dark"] {
+        --primary-bg: #121212;
+        --secondary-bg: #1e1e1e;
+        --accent-bg: #282828;
+        --primary-text: #ffffff;
+        --secondary-text: #e0e0e0;
+        --accent-color: #ffd700;
+        --gold: #ffb300;
+        --silver: #9e9e9e;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --border-color: #333333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--primary-text);
+        line-height: 1.6;
+      }
+
+      /* Header Styles Start*/
+      .header {
+        background: var(--secondary-bg);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem;
+        margin-bottom: 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--card-shadow);
+      }
+
+      .header__content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+      }
+
+      .header__title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        color: var(--accent-color);
+      }
+
+      .header__title a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .header__title i {
+        transition: transform var(--transition-normal);
+      }
+
+      .header__title:hover i {
+        transform: rotate(15deg);
+      }
+
+      /* Navigation Styles */
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav__links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav__link {
+        text-decoration: none;
+        color: var(--primary-text);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all var(--transition-normal);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav__link i {
+        font-size: 0.9em;
+        opacity: 0.8;
+      }
+
+      .nav__link:hover {
+        color: var(--accent-color);
+        background-color: rgba(184, 134, 11, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--primary-text);
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        transition: all var(--transition-normal);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .theme-toggle:hover {
+        color: var(--accent-color);
+        background-color: rgba(184, 134, 11, 0.1);
+      }
+
+      /* Mobile Menu Button */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        margin-left: 1rem;
+        padding: 0;
+      }
+
+      .hamburger-line {
+        width: 30px;
+        height: 2px;
+        background-color: var(--primary-text);
+        display: block;
+        position: absolute;
+        right: 0;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger-line:nth-child(1) {
+        top: 0;
+      }
+
+      .hamburger-line:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .hamburger-line:nth-child(3) {
+        bottom: 0;
+      }
+
+      /* Hamburger Animation */
+      .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+        width: 0;
+      }
+
+      .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav {
+          position: fixed;
+          top: 4.5rem;
+          left: 0;
+          right: 0;
+          height: auto;
+          background: var(--secondary-bg);
+          padding: 2rem 1rem;
+          flex-direction: column;
+          transform: translateX(-100%);
+          transition: transform var(--transition-normal);
+          border-bottom: 1px solid var(--border-color);
+          box-shadow: var(--card-shadow);
+        }
+
+        .nav.active {
+          transform: translateX(0);
+        }
+
+        .nav__links {
+          flex-direction: column;
+          width: 100%;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .nav__link {
+          width: 100%;
+          justify-content: center;
+          padding: 1rem;
+          font-size: 1.1rem;
+          text-align: center;
+        }
+
+        .nav__link i {
+          margin-right: 0.5rem;
+        }
+
+        .theme-toggle {
+          margin-top: 1.5rem;
+          width: 100%;
+          max-width: 200px;
+          border-radius: 4px;
+          height: 45px;
+        }
+      }
+      /* Header Styles end*/
+
+      /* Scroll to Top Button Styles */
+      .scroll-top {
+        position: fixed;
+        bottom: 80px; /* Increased bottom spacing to appear above footer */
+        right: 2rem;
+        width: 45px;
+        height: 45px;
+        background-color: var(--accent-color);
+        color: var(--primary-bg);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: all var(--transition-normal);
+        z-index: 9999; /* Increased z-index to ensure visibility */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .calculator-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+      }
+
+      .calculator-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        animation: fadeInDown 0.5s ease;
+      }
+
+      .calculator-header h1 {
+        color: var(--accent-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .calculator-header i {
+        margin-right: 0.5rem;
+      }
+
+      /* Calculator Form Styles */
+      .calculator-form {
+        background: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        animation: fadeInUp 0.5s ease;
+      }
+
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--secondary-text);
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: var(--transition-normal);
+      }
+
+      .input-group input:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.1);
+      }
+
+      .error-message {
+        color: var(--error);
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        display: none;
+      }
+
+      /* Percentage Buttons */
+      .target-percentage {
+        margin-bottom: 1.5rem;
+      }
+
+      .percentage-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .percentage-btn {
+        padding: 0.8rem 1.5rem;
+        border: 2px solid var(--border-color);
+        border-radius: 25px;
+        background: var(--primary-bg);
+        color: var(--primary-text);
+        cursor: pointer;
+        transition: var(--transition-normal);
+      }
+
+      .percentage-btn.active {
+        background: var(--accent-color);
+        color: var(--primary-bg);
+        border-color: var(--accent-color);
+      }
+
+      /* Calculate Button */
+      .calculate-btn {
+        width: 100%;
+        padding: 1rem;
+        background: var(--accent-color);
+        color: var(--primary-bg);
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: var(--transition-normal);
+      }
+
+      .calculate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(184, 134, 11, 0.2);
+      }
+
+      /* Results Section */
+      .results-section {
+        margin-top: 2rem;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .result-card {
+        background: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+      }
+
+      .percentage-circle {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 1rem auto;
+      }
+
+      .percentage-circle svg {
+        width: 120px;
+        height: 120px;
+        transform: rotate(-90deg);
+      }
+
+      .percentage-circle circle {
+        fill: none;
+        stroke-width: 8;
+        stroke-linecap: round;
+      }
+
+      .percentage-circle .bg {
+        stroke: var(--border-color);
+      }
+
+      .percentage-circle .progress {
+        stroke: var(--accent-color);
+        stroke-dasharray: 339.292;
+        stroke-dashoffset: 339.292;
+        transition: stroke-dashoffset 1s ease;
+      }
+
+      .percentage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--accent-color);
+      }
+
+      /* Result Details */
+      .result-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .detail-card {
+        background: var(--secondary-bg);
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+      }
+
+      .detail-card i {
+        font-size: 2rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+      }
+
+      /* Explore Tools */
+      .explore-tools {
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .tool-card {
+        background: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--primary-text);
+        transition: var(--transition-normal);
+      }
+
+      .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--card-shadow);
+      }
+
+      .tool-card i {
+        font-size: 2rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+      }
+
+      /* Scroll to Top Button */
+      .scroll-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        color: var(--primary-bg);
+        border: none;
+        cursor: pointer;
+        opacity: 0;
+        transition: var(--transition-normal);
+      }
+
+      .scroll-top.visible {
+        opacity: 1;
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .calculator-form {
+          padding: 1.5rem;
+        }
+
+        .percentage-buttons {
+          justify-content: center;
+        }
+      }
+
+      .calculator-faqs {
+        margin-top: 4rem;
+        padding: 2rem 0;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .calculator-faqs h2 {
+        text-align: center;
+        color: var(--primary-text);
+        margin-bottom: 0.5rem;
+      }
+
+      .faq-subtitle {
+        text-align: center;
+        color: var(--secondary-text);
+        margin-bottom: 2rem;
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: var(--secondary-bg);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+        transition: var(--transition-normal);
+      }
+
+      .faq-item:hover {
+        transform: translateY(-2px);
+      }
+
+      .faq-question {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+      }
+
+      .faq-question span {
+        font-weight: 500;
+        color: var(--primary-text);
+      }
+
+      .toggle-btn {
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        cursor: pointer;
+        transition: transform var(--transition-normal);
+      }
+
+      .faq-item.active .toggle-btn {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all var(--transition-normal);
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 1.5rem;
+        max-height: 500px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .faq-answer p {
+        color: var(--secondary-text);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .faq-answer ul,
+      .faq-answer ol {
+        padding-left: 1.5rem;
+        color: var(--secondary-text);
+        line-height: 1.6;
+      }
+
+      .faq-answer li {
+        margin-bottom: 0.5rem;
+      }
+
+      .faq-answer pre {
+        background: var(--accent-bg);
+        padding: 1rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        color: var(--accent-color);
+        margin: 1rem 0;
+      }
+
+      @media (max-width: 768px) {
+        .calculator-faqs {
+          padding: 2rem 1rem;
+        }
+
+        .faq-question {
+          padding: 1.2rem;
+        }
+
+        .faq-item.active .faq-answer {
+          padding: 1.2rem;
+        }
+      }
+
+      /* footer start*/
+      .footer {
+        background: var(--secondary-bg);
+        padding: 4rem 0 1.5rem;
+        position: relative;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .footer__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer__info {
+        max-width: 350px;
+      }
+
+      .footer__logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer__logo-icon {
+        font-size: 2rem;
+        color: var(--accent-color);
+      }
+
+      .footer__logo-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .footer__description {
+        color: var(--primary-text);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer__section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer__heading {
+        color: var(--accent-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .footer__heading::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.5rem;
+        width: 30px;
+        height: 2px;
+        background: var(--accent-color);
+      }
+
+      .footer__links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer__link-item {
+        margin-bottom: 1rem;
+      }
+
+      .footer__link {
+        color: var(--secondary-text);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .footer__link i {
+        font-size: 0.9rem;
+        transition: transform 0.3s ease;
+      }
+
+      .footer__link:hover {
+        color: var(--accent-color);
+        transform: translateX(5px);
+      }
+
+      .footer__link:hover i {
+        transform: translateX(3px);
+      }
+
+      .footer__social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .footer__social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: var(--footer-divider);
+        color: var(--primary-text);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .footer__social-link:hover {
+        background: var(--accent-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer__bottom {
+        padding-top: 2rem;
+        border-top: 1px solid var(--footer-divider);
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 4rem;
+        text-align: center;
+      }
+
+      .footer__copyright {
+        color: var(--primary-text);
+        font-size: 0.9rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .footer__copyright a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .footer__heart {
+        display: inline-block;
+        animation: heartbeat 1.5s ease infinite;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 1024px) {
+        .footer__grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+
+        .footer__info {
+          grid-column: 1 / -1;
+          max-width: none;
+          text-align: center;
+        }
+
+        .footer__logo {
+          justify-content: center;
+        }
+
+        .footer__heading::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .footer {
+          padding: 3rem 0 1rem;
+        }
+
+        .footer__grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .footer__section {
+          text-align: center;
+        }
+
+        .footer__social {
+          justify-content: center;
+        }
+
+        .footer__link:hover {
+          transform: translateY(-3px);
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .footer__container {
+          padding: 0 1rem;
+        }
+
+        .footer__logo-text {
+          font-size: 1.3rem;
+        }
+
+        .footer__description {
+          font-size: 0.9rem;
+        }
+      }
+
+      /*footer end*/
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="../index.html">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="../index.html" class="nav__link"
+                ><i class="fas fa-home"></i>Home</a
+              >
+            </li>
+            <li>
+              <a href="../page/notes.html" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../page/faculty.html" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../page/notice.html" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../page/contact.html" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+
+    <main class="calculator-container">
+      <!-- Calculator Header -->
+      <div class="calculator-header">
+        <h1><i class="fas fa-calculator"></i> Attendance Calculator</h1>
+        <p>Calculate your attendance percentage and required classes</p>
+      </div>
+
+      <!-- Calculator Form -->
+      <div class="calculator-form">
+        <div class="input-group">
+          <label for="totalClasses">
+            <i class="fas fa-calendar-alt"></i> Total Classes
+          </label>
+          <input
+            type="number"
+            id="totalClasses"
+            placeholder="Enter total classes"
+          />
+          <span class="error-message" id="totalError"></span>
+        </div>
+
+        <div class="input-group">
+          <label for="attendedClasses">
+            <i class="fas fa-user-check"></i> Classes Attended
+          </label>
+          <input
+            type="number"
+            id="attendedClasses"
+            placeholder="Enter attended classes"
+          />
+          <span class="error-message" id="attendedError"></span>
+        </div>
+
+        <div class="target-percentage">
+          <label>Target Percentage</label>
+          <div class="percentage-buttons">
+            <button class="percentage-btn active" data-percentage="75">
+              75%
+            </button>
+            <button class="percentage-btn" data-percentage="80">80%</button>
+            <button class="percentage-btn" data-percentage="85">85%</button>
+            <button class="percentage-btn" data-percentage="90">90%</button>
+          </div>
+        </div>
+
+        <button id="calculateBtn" class="calculate-btn">
+          <i class="fas fa-calculator"></i> Calculate
+        </button>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-section" style="display: none">
+        <div class="result-card current">
+          <h3>Current Attendance</h3>
+          <div class="percentage-circle">
+            <svg>
+              <circle class="bg" cx="60" cy="60" r="54"></circle>
+              <circle class="progress" cx="60" cy="60" r="54"></circle>
+            </svg>
+            <div class="percentage"><span id="currentPercentage">0</span>%</div>
+          </div>
+        </div>
+
+        <div class="result-details">
+          <div class="detail-card">
+            <i class="fas fa-check-circle"></i>
+            <h4>Classes Needed</h4>
+            <p id="classesNeeded">0</p>
+          </div>
+          <div class="detail-card">
+            <i class="fas fa-times-circle"></i>
+            <h4>Classes You Can Miss</h4>
+            <p id="classesMiss">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explore Tools Section -->
+      <section class="explore-tools">
+        <h2>Explore More Tools</h2>
+        <div class="tools-grid">
+          <a href="../tools/cgpa-calculator.html" class="tool-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>CGPA Calculator</h3>
+            <p>Calculate your CGPA easily</p>
+          </a>
+          <a href="../tools/percentage-calculator.html" class="tool-card">
+            <i class="fas fa-percentage"></i>
+            <h3>Percentage Calculator</h3>
+            <p>Convert marks to percentage</p>
+          </a>
+          <a href="../tools/grade-calculator.html" class="tool-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Grade Calculator</h3>
+            <p>Calculate your grades</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Add this after the Explore Tools Section -->
+      <section class="calculator-faqs">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-subtitle">
+          Common questions about the Attendance Calculator
+        </p>
+
+        <div class="faq-container">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How does the attendance calculator work?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The attendance calculator works in three simple steps:</p>
+              <ol>
+                <li>Enter the total number of classes conducted</li>
+                <li>Enter the number of classes you've attended</li>
+                <li>
+                  Select your target attendance percentage (75%, 80%, 85%, or
+                  90%)
+                </li>
+              </ol>
+              <p>
+                The calculator then shows your current attendance percentage and
+                tells you how many more classes you need to attend or can afford
+                to miss.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Why is 75% attendance important?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>
+                75% attendance is typically the minimum requirement in most
+                educational institutions because:
+              </p>
+              <ul>
+                <li>
+                  It's often mandated by educational boards and universities
+                </li>
+                <li>Ensures regular participation in academic activities</li>
+                <li>Required to be eligible for examinations</li>
+                <li>
+                  Helps maintain academic discipline and learning continuity
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How are the number of classes needed calculated?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The formula used to calculate required classes is:</p>
+              <pre>
+Classes Needed = [(Target% × Total Classes) - (100 × Attended Classes)] ÷ (100 - Target%)</pre
+              >
+              <p>
+                This calculation ensures you know exactly how many more classes
+                you need to attend to reach your target percentage.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What does "Classes You Can Miss" mean?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>
+                This number indicates how many upcoming classes you can afford
+                to miss while still maintaining your target attendance
+                percentage. It's calculated using:
+              </p>
+              <pre>
+Classes You Can Miss = (Attended × 100 ÷ Target%) - Total Classes</pre
+              >
+              <p>
+                A negative number means you need to attend more classes to reach
+                your target.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I calculate attendance for any target percentage?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The calculator provides preset target percentages of:</p>
+              <ul>
+                <li>75% - Minimum requirement in most institutions</li>
+                <li>80% - Higher safety margin</li>
+                <li>85% - Excellent attendance level</li>
+                <li>90% - Outstanding attendance record</li>
+              </ul>
+              <p>
+                These cover most common scenarios in educational institutions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../index.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/notes.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/faculty.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/notice.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/contact.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../page/schedule.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/pyqs.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/tool.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/404.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../page/faq.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/faqs.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/privacy-policy.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../page/terms-of-use.html" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="../index.html">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+      //theme togle start
+      // Theme Manager
+      class ThemeManager {
+        constructor() {
+          this.themeToggle = document.getElementById("themeToggle");
+          this.init();
+        }
+
+        init() {
+          this.themeToggle.addEventListener("click", () => this.toggleTheme());
+          this.setInitialTheme();
+        }
+
+        setInitialTheme() {
+          const savedTheme = localStorage.getItem("theme") || "light";
+          document.documentElement.setAttribute("data-theme", savedTheme);
+          this.updateToggleIcon(savedTheme);
+        }
+
+        toggleTheme() {
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+          const newTheme = currentTheme === "light" ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          this.updateToggleIcon(newTheme);
+        }
+
+        updateToggleIcon(theme) {
+          const icon = this.themeToggle.querySelector("i");
+          icon.className = theme === "light" ? "fas fa-moon" : "fas fa-sun";
+        }
+      }
+      //theme togle end
+      //header start
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const nav = document.getElementById("nav");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        mobileMenuBtn.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          nav.classList.remove("active");
+          mobileMenuBtn.classList.remove("active");
+        }
+      });
+
+      // Close mobile menu when window is resized
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          nav.classList.remove("active");
+          mobileMenuBtn.classList.remove("active");
+        }
+      });
+      //Header navbar end
+      // Initialize Application
+      document.addEventListener("DOMContentLoaded", () => {
+        new ThemeManager();
+      });
+      //header end
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const totalInput = document.getElementById("totalClasses");
+        const attendedInput = document.getElementById("attendedClasses");
+        const calculateBtn = document.getElementById("calculateBtn");
+        const resultsSection = document.querySelector(".results-section");
+        const currentPercentage = document.getElementById("currentPercentage");
+        const classesNeeded = document.getElementById("classesNeeded");
+        const classesMiss = document.getElementById("classesMiss");
+
+        // Percentage Button Selection
+        document.querySelectorAll(".percentage-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document
+              .querySelectorAll(".percentage-btn")
+              .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+          });
+        });
+
+        // Calculate Function
+        calculateBtn.addEventListener("click", () => {
+          const total = parseInt(totalInput.value);
+          const attended = parseInt(attendedInput.value);
+          const targetPercentage = parseInt(
+            document.querySelector(".percentage-btn.active").dataset.percentage
+          );
+
+          // Validation
+          if (isNaN(total) || total <= 0) {
+            showError(
+              totalInput,
+              "Please enter a valid number of total classes"
+            );
+            return;
+          }
+          if (isNaN(attended) || attended < 0) {
+            showError(
+              attendedInput,
+              "Please enter a valid number of attended classes"
+            );
+            return;
+          }
+          if (attended > total) {
+            showError(
+              attendedInput,
+              "Attended classes cannot be more than total classes"
+            );
+            return;
+          }
+
+          // Clear errors
+          clearErrors();
+
+          // Calculate results
+          const percentage = (attended / total) * 100;
+          const classesRequired = Math.ceil(
+            (targetPercentage * total - 100 * attended) /
+              (100 - targetPercentage)
+          );
+          const canMiss = Math.floor(
+            (attended * 100) / targetPercentage - total
+          );
+
+          // Update UI
+          resultsSection.style.display = "block";
+          currentPercentage.textContent = percentage.toFixed(2);
+          classesNeeded.textContent = classesRequired > 0 ? classesRequired : 0;
+          classesMiss.textContent = canMiss > 0 ? canMiss : 0;
+
+          // Animate percentage circle
+          const circle = document.querySelector(".percentage-circle .progress");
+          const circumference = 339.292;
+          const offset = circumference - (percentage / 100) * circumference;
+          circle.style.strokeDashoffset = offset;
+
+          // Scroll to results
+          resultsSection.scrollIntoView({ behavior: "smooth" });
+        });
+
+        // Error handling functions
+        function showError(input, message) {
+          const errorElement = input.nextElementSibling;
+          errorElement.textContent = message;
+          errorElement.style.display = "block";
+          input.style.borderColor = "var(--error)";
+        }
+
+        function clearErrors() {
+          document.querySelectorAll(".error-message").forEach((error) => {
+            error.style.display = "none";
+          });
+          document.querySelectorAll("input").forEach((input) => {
+            input.style.borderColor = "var(--border-color)";
+          });
+        }
+      });
+
+      // Scroll to Top start
+      document.addEventListener("DOMContentLoaded", function () {
+        const scrollTopButton = document.getElementById("scrollTop");
+        const footer = document.querySelector("footer");
+
+        function updateButtonPosition() {
+          const footerRect = footer.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+
+          // Check if footer is in viewport
+          if (footerRect.top < viewportHeight) {
+            const newBottom = viewportHeight - footerRect.top + 20; // 20px additional spacing
+            scrollTopButton.style.bottom = `${newBottom}px`;
+          } else {
+            scrollTopButton.style.bottom = "80px"; // Default position
+          }
+        }
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 300) {
+            scrollTopButton.classList.add("visible");
+            scrollTopButton.style.display = "flex";
+            updateButtonPosition(); // Update position when visible
+          } else {
+            scrollTopButton.classList.remove("visible");
+            setTimeout(() => {
+              if (!scrollTopButton.classList.contains("visible")) {
+                scrollTopButton.style.display = "none";
+              }
+            }, 300);
+          }
+        });
+
+        // Update position on resize
+        window.addEventListener("resize", function () {
+          if (scrollTopButton.classList.contains("visible")) {
+            updateButtonPosition();
+          }
+        });
+
+        scrollTopButton.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Scroll to Top end
+
+      // FAQ Toggle Functionality
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          const faqItem = question.parentElement;
+          const isActive = faqItem.classList.contains("active");
+
+          // Close all other FAQs
+          document.querySelectorAll(".faq-item").forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          // Toggle current FAQ
+          if (!isActive) {
+            faqItem.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

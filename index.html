@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Academic Calendar with Class Schedule for 4th Semester 2025 Chirang Polytechnic Electrical Engineering Department"
+    />
+    <!-- Primary Meta Tags -->
+    <meta name="author" content="Dus Mamud" />
+    <title>TimeIt - Academic Calendar</title>
+    <meta
+      name="title"
+      content="Development Team | DUS College Web Development & Design"
+    />
+    <meta name="keywords" content="TimeIt, Time it, timeit.site, Academic
+    Calendar, Chirang Polytechnic Academic Calendar, Chirang Polytechnic, Dus
+    Mamud, Chirang Polytechnic Workingday Calendar, Age calculator, Attendence
+    Calculator, Dus Mamud Chirang Polytechnic, Time it tools, timeit tools,
+    productivity, polytechnic, />
+    <meta name="author" content="DUS Mamud Development Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>A</text></svg>"
+    />
+
+    <!-- Additional Meta Tags for SEO -->
+    <meta name="category" content="Web Development" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    <meta name="target" content="all" />
+    <meta name="HandheldFriendly" content="True" />
+
+    <!-- Cache Control -->
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Preconnect to External Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+
+    <!-- Mobile Meta Tags -->
+    <meta name="theme-color" content="#2E3192" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="DUS Development Team" />
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Dus Mamud Development Team",
+        "description": "Expert web development and design team offering full-stack development and UI/UX design services",
+        "url": "https://timeit.site/",
+        "email": "dusinfinity@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "India"
+        },
+        "employee": [
+          {
+            "@type": "Person",
+            "name": "Dus Mamud",
+            "jobTitle": "Full Stack Developer",
+            "sameAs": ["https://www.instagram.com/dvmx_19/"]
+          },
+          {
+            "@type": "Person",
+            "name": "KumKum Gupta",
+            "jobTitle": "UI/UX Designer",
+            "sameAs": ["https://www.instagram.com/__kumkum_gupta_/"]
+          }
+        ],
+        "sameAs": ["https://www.instagram.com/dus.infinity/"]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Add this at the start of your body tag -->
+    <div class="cookie-consent" id="cookieConsent">
+      <div class="cookie-content">
+        <div class="cookie-header">
+          <i class="fas fa-cookie-bite"></i>
+          <h3>Cookie Consent</h3>
+        </div>
+        <p>
+          We use cookies to enhance your browsing experience, serve personalized
+          content, and analyze our traffic. By clicking "Accept All", you
+          consent to our use of cookies.
+        </p>
+        <div class="cookie-settings-toggle" onclick="toggleCookieSettings()">
+          <i class="fas fa-cog"></i>
+          Cookie Settings
+        </div>
+      </div>
+      <div class="cookie-buttons">
+        <button class="cookie-btn accept-all" onclick="acceptAllCookies()">
+          Accept All
+        </button>
+        <button
+          class="cookie-btn accept-necessary"
+          onclick="acceptNecessaryCookies()"
+        >
+          Accept Necessary Only
+        </button>
+      </div>
+    </div>
+
+    <!-- Cookie Settings Panel -->
+    <div class="cookie-settings-panel" id="cookieSettings">
+      <div class="settings-header">
+        <h3>Cookie Settings</h3>
+        <button class="close-settings" onclick="toggleCookieSettings()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="settings-content">
+        <div class="cookie-option">
+          <div class="cookie-option-header">
+            <h4>Necessary Cookies</h4>
+            <label class="switch">
+              <input type="checkbox" checked disabled />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <p>
+            These cookies are essential for the website to function properly.
+          </p>
+        </div>
+        <div class="cookie-option">
+          <div class="cookie-option-header">
+            <h4>Analytics Cookies</h4>
+            <label class="switch">
+              <input type="checkbox" id="analyticsCookies" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <p>Help us understand how visitors interact with our website.</p>
+        </div>
+        <div class="cookie-option">
+          <div class="cookie-option-header">
+            <h4>Functional Cookies</h4>
+            <label class="switch">
+              <input type="checkbox" id="functionalCookies" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <p>Enable personalized features and save your preferences.</p>
+        </div>
+      </div>
+      <div class="settings-footer">
+        <button
+          class="cookie-btn save-preferences"
+          onclick="saveCookiePreferences()"
+        >
+          Save Preferences
+        </button>
+      </div>
+    </div>
+    <!-- Header Start -->
+    <header class="header">
+      <div class="container">
+        <div class="header__content">
+          <div class="header__logo">
+            <h1 class="header__title">
+              <i class="fas fa-graduation-cap"></i>
+              TimeIt
+              <span class="header__status" id="statusIndicator"></span>
+            </h1>
+          </div>
+
+          <nav class="header__nav" id="mainNav">
+            <ul class="nav__list">
+              <li><a href="../page/tool.html" class="nav__link">Tools</a></li>
+              <li>
+                <a href="../page/notes.html" class="nav__link">Notes</a>
+              </li>
+              <li>
+                <a href="../page/pyqs.html" class="nav__link">PYQs</a>
+              </li>
+              <li>
+                <a href="../page/schedule.html" class="nav__link">Working Day</a>
+              </li>
+              <li>
+                <a href="../page/disclaimer.html" class="nav__link">Disclaimer</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="header__actions">
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              aria-label="Toggle theme"
+            >
+              <i class="fas fa-moon"></i>
+            </button>
+            <button
+              class="mobile-menu"
+              id="mobileMenu"
+              aria-label="Toggle menu"
+            >
+              <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Header HTML END -->
+
+    <main class="container">
+      <div class="main-grid">
+        <!-- Date Section Structure -->
+        <section class="date-section">
+          <div class="date-display">
+            <div>
+              <h2 class="date-primary" id="currentDate">January 20, 2025</h2>
+              <p class="date-secondary" id="currentDay">Monday</p>
+            </div>
+            <div class="working-day" id="workingDayBadge">
+              <i class="fas fa-calendar-day"></i>
+              <span>Working Day 1</span>
+            </div>
+          </div>
+        </section>
+        <!-- Date Section Structure End-->
+
+        <!-- Schedule Grid Start-->
+        <div class="schedule-grid" id="scheduleGrid">
+          <!-- Example of a schedule card -->
+          <div class="schedule-card">
+            <div class="schedule-time">
+              <i class="far fa-clock"></i>
+              <span>9:00 AM - 10:00 AM</span>
+            </div>
+            <h3 class="schedule-subject">Subject</h3>
+            <p class="schedule-details">Electrical Engineering</p>
+            <div class="schedule-instructor">
+              <div class="instructor-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <span>Prof. </span>
+            </div>
+          </div>
+
+          <!-- Example of No Classes Display -->
+          <div class="no-classes" style="display: none">
+            <i class="fas fa-coffee"></i>
+            <h3>No Classes Today</h3>
+            <p>Enjoy your holiday!</p>
+          </div>
+        </div>
+      </div>
+      <!-- Schedule Grid Start End-->
+
+      <!-- Daily Fact Start-->
+      <section class="fact-section">
+        <div class="fact-container">
+          <div class="fact-header">
+            <div class="fact-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h2 class="fact-title">Daily Fact</h2>
+          </div>
+          <div class="fact-content">
+            <i class="fas fa-quote-right fact-quote"></i>
+            <p class="fact-text" id="dailyFact">
+              The first electric motor was invented by Michael Faraday in 1821.
+              This groundbreaking invention laid the foundation for modern
+              electrical engineering.
+            </p>
+          </div>
+          <div class="fact-footer">
+            <span class="fact-category">
+              <i class="fas fa-tag"></i>
+              Electrical Engineering
+            </span>
+            <button
+              class="fact-refresh"
+              id="refreshFact"
+              aria-label="Refresh fact"
+            >
+              <i class="fas fa-sync-alt"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Daily Fact End-->
+
+      <!-- Disclaimer Section Start-->
+      <section class="disclaimer-section">
+        <div class="disclaimer-container">
+          <div class="disclaimer-header">
+            <div class="disclaimer-icon">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="disclaimer-title">Important Notice</h2>
+          </div>
+          <div class="disclaimer-content">
+            <ul class="disclaimer-points">
+              <li>
+                <i class="fas fa-info-circle"></i>
+                <span
+                  >This is not an official organization website. The schedule is
+                  based on working day calendar and may contain errors.</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-calendar-check"></i>
+                <span
+                  >For local holidays and schedule updates, please refer to the
+                  official WhatsApp group.</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-user-graduate"></i>
+                <span
+                  >Regular class attendance is recommended for accurate schedule
+                  information.</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-calendar-alt"></i>
+                <span
+                  >Class schedules are displayed only for the 4th Semester
+                  Electrical Engineering Dept. 2025.</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="disclaimer-footer">
+            <i class="fas fa-clock"></i>
+            <span
+              >Last updated:
+              <time id="lastUpdated">January 20, 2025</time></span
+            >
+          </div>
+        </div>
+      </section>
+      <!-- Disclaimer Section End-->
+
+      <!-- Gallery Start -->
+      <section class="gallery-section">
+        <div class="gallery-container">
+          <div class="gallery-header">
+            <h2 class="gallery-title">Academic Moments</h2>
+            <p class="gallery-subtitle">Capturing excellence in education</p>
+          </div>
+
+          <div class="gallery-slider" id="gallerySlider">
+            <div class="gallery-track" id="galleryTrack">
+              <!-- Slides will be inserted here by JavaScript -->
+            </div>
+
+            <div class="gallery-nav">
+              <button class="gallery-button prev" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="gallery-button next" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <div class="gallery-dots" id="galleryDots">
+              <!-- Dots will be inserted here by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Gallery End -->
+
+    <!-- Footer Start -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <i class="fas fa-graduation-cap"></i>
+              TimeIt
+            </div>
+            <p class="footer-description">
+              Elegantly designed academic schedule management system for modern
+              educational needs.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://github.com/beingdusmamud"
+                target="_blank"
+                class="social-link"
+                aria-label="GitHub"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://codepen.io/Dus-Mamud"
+                target="_blank"
+                class="social-link"
+                aria-label="CodePen"
+              >
+                <i class="fab fa-codepen"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/dvmx_19/"
+                target="_blank"
+                class="social-link"
+                aria-label="Instagram"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-nav">
+              <li>
+                <a href="../page/schedule.html"
+                  ><i class="fas fa-calendar-alt"></i> Schedule</a
+                >
+              </li>
+              <li>
+                <a href="../page/notes.html"><i class="fas fa-book"></i> Notes</a>
+              </li>
+              <li>
+                <a href="../page/faculty.html"
+                  ><i class="fas fa-user-tie"></i> Faculty</a
+                >
+              </li>
+              <li>
+                <a href="../page/notice.html"
+                  ><i class="fas fa-bell"></i> Notices</a
+                >
+              </li>
+              <li>
+                <a href="../page/contact.html"
+                  ><i class="fas fa-envelope"></i> Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-version">
+            <h3 class="footer-title">Version Info</h3>
+            <div class="version-info">
+              <div class="version-number">
+                <i class="fas fa-code-branch"></i>
+                Version 2.0.1
+              </div>
+              <div class="developer-info">
+                <div class="developer-avatar">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <span>Made with love by Dus Mamud</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="copyright">© 2025 TimeIt. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

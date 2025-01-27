@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Help Center | TimeIt</title>
+    <!-- Favicon -->
+    <style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap");
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+
+      :root {
+        --primary-bg: #ffffff;
+        --secondary-bg: #f8f9fa;
+        --accent-bg: #e9ecef;
+        --primary-text: #2c3e50;
+        --secondary-text: #495057;
+        --accent-color: #b8860b;
+        --gold: #daa520;
+        --silver: #c0c0c0;
+        --success: #2e7d32;
+        --error: #c62828;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --footer-divider: rgba(0, 0, 0, 0.1);
+        --border-color: #e0e0e0;
+        --transition-normal: 0.3s;
+      }
+
+      [data-theme="dark"] {
+        --primary-bg: #121212;
+        --secondary-bg: #1e1e1e;
+        --accent-bg: #282828;
+        --primary-text: #ffffff;
+        --secondary-text: #e0e0e0;
+        --accent-color: #ffd700;
+        --gold: #ffb300;
+        --silver: #9e9e9e;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --border-color: #333333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--primary-text);
+        line-height: 1.6;
+      }
+
+      /* Header Styles Start*/
+      .header {
+        background: var(--secondary-bg);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem;
+        margin-bottom: 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--card-shadow);
+      }
+
+      .header__content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+      }
+
+      .header__title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        color: var(--accent-color);
+      }
+
+      .header__title a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .header__title i {
+        transition: transform var(--transition-normal);
+      }
+
+      .header__title:hover i {
+        transform: rotate(15deg);
+      }
+
+      /* Navigation Styles */
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav__links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav__link {
+        text-decoration: none;
+        color: var(--primary-text);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all var(--transition-normal);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav__link i {
+        font-size: 0.9em;
+        opacity: 0.8;
+      }
+
+      .nav__link:hover {
+        color: var(--accent-color);
+        background-color: rgba(184, 134, 11, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--primary-text);
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        transition: all var(--transition-normal);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .theme-toggle:hover {
+        color: var(--accent-color);
+        background-color: rgba(184, 134, 11, 0.1);
+      }
+
+      /* Mobile Menu Button */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        margin-left: 1rem;
+        padding: 0;
+      }
+
+      .hamburger-line {
+        width: 30px;
+        height: 2px;
+        background-color: var(--primary-text);
+        display: block;
+        position: absolute;
+        right: 0;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger-line:nth-child(1) {
+        top: 0;
+      }
+
+      .hamburger-line:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .hamburger-line:nth-child(3) {
+        bottom: 0;
+      }
+
+      /* Hamburger Animation */
+      .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+        width: 0;
+      }
+
+      .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav {
+          position: fixed;
+          top: 4.5rem;
+          left: 0;
+          right: 0;
+          height: auto;
+          background: var(--secondary-bg);
+          padding: 2rem 1rem;
+          flex-direction: column;
+          transform: translateX(-100%);
+          transition: transform var(--transition-normal);
+          border-bottom: 1px solid var(--border-color);
+          box-shadow: var(--card-shadow);
+        }
+
+        .nav.active {
+          transform: translateX(0);
+        }
+
+        .nav__links {
+          flex-direction: column;
+          width: 100%;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .nav__link {
+          width: 100%;
+          justify-content: center;
+          padding: 1rem;
+          font-size: 1.1rem;
+          text-align: center;
+        }
+
+        .nav__link i {
+          margin-right: 0.5rem;
+        }
+
+        .theme-toggle {
+          margin-top: 1.5rem;
+          width: 100%;
+          max-width: 200px;
+          border-radius: 4px;
+          height: 45px;
+        }
+      }
+      /* Header Styles end*/
+      /* Scroll start*/
+      /* Scroll to Top Button Styles */
+      .scroll-top {
+        position: fixed;
+        bottom: 80px; /* Increased bottom spacing to appear above footer */
+        right: 2rem;
+        width: 45px;
+        height: 45px;
+        background-color: var(--accent-color);
+        color: var(--primary-bg);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: all var(--transition-normal);
+        z-index: 9999; /* Increased z-index to ensure visibility */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Add margin to main container to prevent button overlap with content */
+      .calculator-container {
+        margin-bottom: 100px; /* Adds space at bottom of content */
+      }
+
+      /* Updated visibility check in JavaScript */
+      .scroll-top.visible {
+        opacity: 1;
+        animation: fadeInButton 0.3s ease-in-out;
+        display: flex !important; /* Forces display when visible */
+      }
+
+      /* Button Animation */
+      @keyframes fadeInButton {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .scroll-top:hover {
+        transform: translateY(-3px);
+        background-color: var(--gold);
+        box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+      }
+
+      /* Media Query for Mobile Devices */
+      @media (max-width: 768px) {
+        .scroll-top {
+          bottom: 90px; /* Increased for mobile to account for larger footer */
+          right: 1.5rem;
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Adjust for footer presence */
+      @media screen and (max-height: 700px) {
+        .scroll-top {
+          bottom: 100px; /* Even more space for shorter screens */
+        }
+      }
+      /* Scroll end*/
+
+      /* footer start*/
+      .footer {
+        background: var(--secondary-bg);
+        padding: 4rem 0 1.5rem;
+        position: relative;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .footer__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer__info {
+        max-width: 350px;
+      }
+
+      .footer__logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer__logo-icon {
+        font-size: 2rem;
+        color: var(--accent-color);
+      }
+
+      .footer__logo-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .footer__description {
+        color: var(--primary-text);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer__section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer__heading {
+        color: var(--accent-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .footer__heading::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.5rem;
+        width: 30px;
+        height: 2px;
+        background: var(--accent-color);
+      }
+
+      .footer__links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer__link-item {
+        margin-bottom: 1rem;
+      }
+
+      .footer__link {
+        color: var(--secondary-text);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .footer__link i {
+        font-size: 0.9rem;
+        transition: transform 0.3s ease;
+      }
+
+      .footer__link:hover {
+        color: var(--accent-color);
+        transform: translateX(5px);
+      }
+
+      .footer__link:hover i {
+        transform: translateX(3px);
+      }
+
+      .footer__social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .footer__social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: var(--footer-divider);
+        color: var(--primary-text);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .footer__social-link:hover {
+        background: var(--accent-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer__bottom {
+        padding-top: 2rem;
+        border-top: 1px solid var(--footer-divider);
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 4rem;
+        text-align: center;
+      }
+
+      .footer__copyright {
+        color: var(--primary-text);
+        font-size: 0.9rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .footer__copyright a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .footer__heart {
+        display: inline-block;
+        animation: heartbeat 1.5s ease infinite;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 1024px) {
+        .footer__grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+
+        .footer__info {
+          grid-column: 1 / -1;
+          max-width: none;
+          text-align: center;
+        }
+
+        .footer__logo {
+          justify-content: center;
+        }
+
+        .footer__heading::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .footer {
+          padding: 3rem 0 1rem;
+        }
+
+        .footer__grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .footer__section {
+          text-align: center;
+        }
+
+        .footer__social {
+          justify-content: center;
+        }
+
+        .footer__link:hover {
+          transform: translateY(-3px);
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .footer__container {
+          padding: 0 1rem;
+        }
+
+        .footer__logo-text {
+          font-size: 1.3rem;
+        }
+
+        .footer__description {
+          font-size: 0.9rem;
+        }
+      }
+
+      /*footer end*/
+
+      :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8f9fa;
+            --accent-bg: #e9ecef;
+            --primary-text: #2c3e50;
+            --secondary-text: #495057;
+            --accent-color: #b8860b;
+            --gold: #daa520;
+            --silver: #c0c0c0;
+            --success: #2e7d32;
+            --error: #c62828;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --border-color: #e0e0e0;
+            --transition-normal: 0.3s;
+            --gradient-primary: linear-gradient(135deg, var(--accent-color), var(--gold));
+            --gradient-secondary: linear-gradient(135deg, #2c3e50, #3498db);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .faq-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Enhanced Hero Section */
+        .faq-hero {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--gradient-primary);
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--primary-bg);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* Enhanced Search Section */
+        .search-section {
+            position: relative;
+            margin: -2rem auto 4rem;
+            max-width: 700px;
+            z-index: 2;
+        }
+
+        .search-container {
+            background: var(--primary-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .search-input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 3rem;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            background: var(--secondary-bg);
+            font-size: 1.1rem;
+            transition: all var(--transition-normal);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: var(--primary-bg);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+        }
+
+        .popular-searches {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .popular-tag {
+            padding: 0.5rem 1rem;
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+
+        .popular-tag:hover {
+            background: var(--accent-color);
+            color: var(--primary-bg);
+        }
+
+        /* Enhanced Categories Section */
+        .categories-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: var(--primary-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: var(--transition-normal);
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .category-card.active {
+            background: var(--gradient-primary);
+            color: var(--primary-bg);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .category-card.active .category-icon {
+            color: var(--primary-bg);
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Enhanced FAQ List */
+        .faq-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .faq-item {
+            background: var(--primary-bg);
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-normal);
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--primary-text);
+            transition: var(--transition-normal);
+        }
+
+        .question-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .question-icon {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .toggle-icon {
+            transition: transform var(--transition-normal);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 2rem;
+            color: var(--secondary-text);
+            line-height: 1.8;
+        }
+
+        .faq-item.active {
+            box-shadow: var(--card-shadow), 0 0 0 2px var(--accent-color);
+        }
+
+        .faq-item.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+        }
+
+        /* Enhanced Support Section */
+        .support-section {
+            background: var(--gradient-secondary);
+            padding: 4rem;
+            border-radius: 30px;
+            text-align: center;
+            color: var(--primary-bg);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .support-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        .support-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .support-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .support-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .support-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .support-btn {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .support-btn-primary {
+            background: var(--primary-bg);
+            color: var(--primary-text);
+        }
+
+        .support-btn-secondary {
+            background: transparent;
+            color: var(--primary-bg);
+            border: 2px solid var(--primary-bg);
+        }
+
+        .support-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Feedback Widget */
+        .feedback-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-bg);
+            border-radius: 30px;
+            padding: 1rem;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1000;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+
+        .feedback-widget:hover {
+            transform: translateY(-3px);
+        }
+
+        .feedback-icon {
+            background: var(--accent-bg);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .faq-container {
+                padding: 1rem;
+            }
+
+            .faq-hero {
+                padding: 4rem 1rem;
+            }
+
+            .search-container {
+                padding: 1.5rem;
+            }
+
+            .support-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="../index.html">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="../index.html" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../page/notes.html" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../page/faculty.html" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../page/notice.html" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../page/contact.html" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+
+    <div class="faq-container">
+      <!-- Hero Section -->
+      <section class="faq-hero">
+          <div class="hero-pattern"></div>
+          <div class="hero-content animate-float">
+              <h1 class="hero-title">How can we help you?</h1>
+              <p class="hero-subtitle">Find answers to all your questions about the Academic Calendar system</p>
+          </div>
+      </section>
+
+      <!-- Search Section -->
+      <section class="search-section">
+          <div class="search-container">
+              <div class="search-input-group">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Type your question here...">
+              </div>
+              <div class="popular-searches">
+                  <span>Popular:</span>
+                  <div class="popular-tag">Working Days</div>
+                  <div class="popular-tag">Holidays</div>
+                  <div class="popular-tag">Schedule</div>
+                  <div class="popular-tag">Updates</div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Categories Section -->
+      <section class="categories-section">
+          <div class="category-grid">
+              <!-- Category cards will be added dynamically -->
+          </div>
+      </section>
+
+      <!-- FAQ List -->
+      <section class="faq-list">
+          <!-- FAQ items will be added dynamically -->
+      </section>
+
+      <!-- Support Section -->
+      <section class="support-section">
+          <div class="support-pattern"></div>
+          <div class="support-content">
+              <h2 class="support-title">Still need help?</h2>
+              <p class="support-description">Our support team is always ready to assist you with any questions or concerns</p>
+              <div class="support-buttons">
+                  <a href="../page/contact.html" class="support-btn support-btn-primary">
+                      <i class="fas fa-headset"></i>
+                      Contact Support
+                  </a>
+                  <a href="#" class="support-btn support-btn-secondary">
+                      <i class="fas fa-video"></i>
+                      Schedule Demo
+                  </a>
+              </div>
+          </div>
+      </section>
+
+      <!-- Feedback Widget -->
+      <div class="feedback-widget">
+          <div class="feedback-icon">
+              <i class="fas fa-comment-dots"></i>
+          </div>
+          <span>Give Feedback</span>
+      </div>
+
+   <!-- Footer Start-->
+   <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__grid">
+        <div class="footer__info">
+          <div class="footer__logo">
+            <i class="fas fa-graduation-cap footer__logo-icon"></i>
+            <span class="footer__logo-text">TimeIt</span>
+          </div>
+          <p class="footer__description">
+            Your comprehensive academic planning solution. Stay organized with
+            class schedules, important dates, and educational resources.
+          </p>
+          <div class="footer__social">
+            <a href="https://github.com/dusxinfinity" class="footer__social-link"
+              ><i class="fab fa-github"></i
+            ></a>
+
+            <a
+              href="https://codepen.io/Dus-Infinity"
+              class="footer__social-link"
+              ><i class="fab fa-codepen"></i
+            ></a>
+
+            <a href="https://github.com/dusxinfinity" class="footer__social-link"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="footer__section">
+          <h3 class="footer__heading">Quick Links</h3>
+          <ul class="footer__links">
+            <li class="footer__link-item">
+              <a href="../index.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Home</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/notes.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Notes</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/faculty.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Faculty</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/notice.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Notices</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/contact.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__section">
+          <h3 class="footer__heading">Resources</h3>
+          <ul class="footer__links">
+            <li class="footer__link-item">
+              <a href="../page/schedule.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Schedule</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/pyqs.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>PYQs</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/tool.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Tools</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/under-construction.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Projects</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__section">
+          <h3 class="footer__heading">Support</h3>
+          <ul class="footer__links">
+            <li class="footer__link-item">
+              <a href="../page/faq.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Help Center</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/faqs.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>FAQs</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/privacy-policy.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+              >
+            </li>
+            <li class="footer__link-item">
+              <a href="../page/terms-of-use.html" class="footer__link"
+                ><i class="fas fa-chevron-right"></i>Terms of Use</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          © 2025 <a href="../index.html">TimeIt</a>. Made with
+          <span class="footer__heart"
+            ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+          ></span>
+          by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End-->
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+      //theme togle start
+      // Theme Manager
+      class ThemeManager {
+        constructor() {
+          this.themeToggle = document.getElementById("themeToggle");
+          this.init();
+        }
+
+        init() {
+          this.themeToggle.addEventListener("click", () => this.toggleTheme());
+          this.setInitialTheme();
+        }
+
+        setInitialTheme() {
+          const savedTheme = localStorage.getItem("theme") || "light";
+          document.documentElement.setAttribute("data-theme", savedTheme);
+          this.updateToggleIcon(savedTheme);
+        }
+
+        toggleTheme() {
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+          const newTheme = currentTheme === "light" ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          this.updateToggleIcon(newTheme);
+        }
+
+        updateToggleIcon(theme) {
+          const icon = this.themeToggle.querySelector("i");
+          icon.className = theme === "light" ? "fas fa-moon" : "fas fa-sun";
+        }
+      }
+      //theme togle end
+      //header start
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const nav = document.getElementById("nav");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        mobileMenuBtn.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          nav.classList.remove("active");
+          mobileMenuBtn.classList.remove("active");
+        }
+      });
+
+      // Close mobile menu when window is resized
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          nav.classList.remove("active");
+          mobileMenuBtn.classList.remove("active");
+        }
+      });
+      //Header navbar end
+      // Initialize Application
+      document.addEventListener("DOMContentLoaded", () => {
+        new ThemeManager();
+      });
+      //header end
+      // Scroll to Top start
+      // Scroll to Top start
+      document.addEventListener("DOMContentLoaded", function () {
+        const scrollTopButton = document.getElementById("scrollTop");
+        const footer = document.querySelector("footer");
+
+        function updateButtonPosition() {
+          const footerRect = footer.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+
+          // Check if footer is in viewport
+          if (footerRect.top < viewportHeight) {
+            const newBottom = viewportHeight - footerRect.top + 20; // 20px additional spacing
+            scrollTopButton.style.bottom = `${newBottom}px`;
+          } else {
+            scrollTopButton.style.bottom = "80px"; // Default position
+          }
+        }
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 300) {
+            scrollTopButton.classList.add("visible");
+            scrollTopButton.style.display = "flex";
+            updateButtonPosition(); // Update position when visible
+          } else {
+            scrollTopButton.classList.remove("visible");
+            setTimeout(() => {
+              if (!scrollTopButton.classList.contains("visible")) {
+                scrollTopButton.style.display = "none";
+              }
+            }, 300);
+          }
+        });
+
+        // Update position on resize
+        window.addEventListener("resize", function () {
+          if (scrollTopButton.classList.contains("visible")) {
+            updateButtonPosition();
+          }
+        });
+
+        scrollTopButton.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Scroll to Top end
+      // Scroll to Top end
+
+      // Category Data
+      const categories = [
+        { id: "general", icon: "fa-circle-info", title: "General", count: 5 },
+        {
+          id: "schedule",
+          icon: "fa-calendar-days",
+          title: "Schedule",
+          count: 8,
+        },
+        { id: "features", icon: "fa-star", title: "Features", count: 6 },
+        { id: "technical", icon: "fa-gear", title: "Technical", count: 4 },
+      ];
+
+      // FAQ Data
+      const faqs = [
+        {
+          category: "general",
+          icon: "fa-circle-info",
+          question: "What is the Academic Calendar System?",
+          answer:
+            "The Academic Calendar System is a comprehensive digital platform designed to streamline educational scheduling. It combines smart algorithms with user-friendly interfaces to provide efficient time management solutions for academic institutions.",
+        },
+        {
+    category: "general",
+    icon: "fa-circle-info",
+    question: "What is the Academic Calendar System?",
+    answer: "The Academic Calendar System is a comprehensive digital platform designed to streamline educational scheduling. It combines smart algorithms with user-friendly interfaces to provide efficient time management solutions for academic institutions. The system automatically handles class schedules, holidays, events, and academic term planning.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "What happens during system maintenance?",
+    answer: "During scheduled system maintenance, which typically occurs during off-peak hours (2 AM - 4 AM), the system remains accessible in read-only mode. Real-time updates and modifications are temporarily paused, but all existing schedules and information remain visible. Users receive maintenance notifications 48 hours in advance through the dashboard and email alerts.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "How often is the academic calendar updated?",
+    answer: "The academic calendar is updated in real-time with immediate synchronization across all devices. Major schedule changes are processed instantly, while routine updates (like holiday declarations or event schedules) are synchronized at midnight. The system maintains a comprehensive audit trail of all updates for administrative reference.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "Can I access the calendar from multiple devices?",
+    answer: "Yes, the Academic Calendar System supports seamless multi-device access through responsive web interfaces and dedicated mobile applications. Your schedule and preferences automatically sync across all devices through secure cloud storage. The system supports iOS, Android, and all major web browsers with real-time synchronization.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "What happens if there's an unexpected holiday declaration?",
+    answer: "In case of unexpected holiday declarations, the system automatically updates the calendar and sends immediate notifications to all users through multiple channels (app notifications, email, and SMS). The system reschedules affected classes and events according to predefined institutional policies while maintaining academic hour requirements.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "How does the working day calculation work?",
+    answer: "Working days are calculated using an advanced algorithm that considers multiple factors: official academic calendar, national and regional holidays, institutional events, and semester requirements. The system automatically excludes weekends, public holidays, and institution-specific non-working days while ensuring the required number of academic hours is met.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "What happens at the end of an academic term?",
+    answer: "At the end of an academic term, the system automatically archives current schedules, generates comprehensive term reports, and prepares the calendar for the next term. Users receive notifications about important end-term dates, and administrators get detailed analytics about term completion, attendance patterns, and schedule efficiency.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "How are different time zones handled?",
+    answer: "The Academic Calendar System automatically adjusts schedules based on user time zones. For institutions with multiple campuses across different time zones, the system maintains a master schedule while displaying locally adjusted times for each user. Calendar entries include time zone indicators to prevent confusion in scheduling.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "What backup systems are in place?",
+    answer: "The system employs a robust three-tier backup strategy: real-time cloud backups, daily incremental backups, and weekly full system backups. All data is encrypted and stored in geographically distributed servers. Users can also export their schedules and calendar data in various formats (PDF, iCal, CSV) for personal backup.",
+},
+{
+    category: "general",
+    icon: "fa-circle-info",
+    question: "How does the system handle special events and functions?",
+    answer: "Special events and functions are integrated into the calendar with dynamic scheduling capabilities. The system automatically adjusts regular schedules to accommodate special events while ensuring minimal disruption to academic activities. Event conflicts are automatically detected and resolved based on predefined priority rules and institutional policies.",
+},
+        {
+          category: "schedule",
+          icon: "fa-calendar-days",
+          question: "How are working days calculated?",
+          answer:
+            "Working days are calculated using our proprietary algorithm that considers official academic calendars, national holidays, and institution-specific events. The system automatically adjusts for different time zones and regional variations.",
+        },
+        {
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How are daily class schedules organized?",
+    answer: "Daily class schedules are organized using an intelligent time-block system. Each day is divided into standardized periods (typically 45-60 minutes) with designated break times. The system automatically accounts for subject priority, teacher availability, and classroom resources while maintaining optimal learning intervals and avoiding subject clashes.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "What happens when a teacher is absent?",
+    answer: "When a teacher's absence is reported, the system automatically initiates the substitution protocol. It identifies qualified substitute teachers based on expertise and availability, sends immediate notifications to all affected parties, and updates the schedule in real-time. The system also maintains a record of substitutions for administrative purposes.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How are practical/laboratory sessions scheduled?",
+    answer: "Practical and laboratory sessions are scheduled considering multiple factors: lab availability, equipment requirements, batch sizes, and instructor availability. The system ensures that theory classes are appropriately spaced with practical sessions for optimal learning. Multiple batches are automatically rotated to maximize resource utilization.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How does the schedule handle exam periods?",
+    answer: "During exam periods, the system automatically switches to exam mode, suspending regular classes. It generates optimized exam schedules considering factors like subject complexity, student numbers, and room availability. The system also ensures adequate gaps between exams and maintains conflict-free scheduling for all students.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "Can the schedule accommodate special time requirements?",
+    answer: "Yes, the system supports flexible scheduling for special time requirements. Whether it's early morning sports practices, afternoon clubs, or evening special classes, the scheduler incorporates these requirements while maintaining balance with regular academic activities. Custom time slots can be defined with specific recurrence patterns.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How are schedule conflicts resolved?",
+    answer: "Schedule conflicts are resolved through a multi-tier priority system. The algorithm considers factors like subject importance, teacher preferences, room availability, and student group needs. When conflicts arise, the system suggests multiple resolution options and automatically implements the most optimal solution while notifying all affected parties.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "What is the process for scheduling make-up classes?",
+    answer: "Make-up classes are scheduled using available time slots that don't conflict with existing schedules. The system identifies optimal slots based on teacher and student availability, room availability, and academic load distribution. Automated notifications are sent to all participants, and attendance tracking is maintained separately.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How does the system handle lunch breaks and short breaks?",
+    answer: "Breaks are strategically scheduled to ensure optimal learning periods. Lunch breaks are typically 30-60 minutes, while short breaks between classes are 5-15 minutes. The system considers factors like cafeteria capacity, student movement time between classrooms, and energy levels throughout the day when scheduling breaks.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "Can the schedule be exported to other calendar applications?",
+    answer: "Yes, the schedule can be exported in multiple formats including iCal, Google Calendar, Outlook, and PDF. The system provides both complete calendar exports and filtered exports (by department, class, or individual). Real-time synchronization is available for supported platforms through API integration.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How are recurring events handled in the schedule?",
+    answer: "Recurring events are managed through a sophisticated pattern recognition system. Users can set up daily, weekly, monthly, or custom recurrence patterns. The system automatically handles exceptions like holidays and special events, adjusting recurring schedules accordingly while maintaining consistency.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "What happens when the schedule needs last-minute changes?",
+    answer: "Last-minute changes are processed through an urgent update protocol. The system immediately notifies all affected parties through multiple channels (push notifications, SMS, email). Changes are highlighted in the schedule with clear visual indicators, and the system maintains a log of all emergency modifications.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How does the schedule adapt to different semester patterns?",
+    answer: "The system supports various semester patterns including traditional semesters, trimesters, and quarter systems. Each academic period can be configured with custom start/end dates, vacation periods, and examination schedules. The system automatically adjusts teaching hours and course distribution accordingly.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "Can the schedule accommodate different course lengths?",
+    answer: "Yes, the system handles courses of varying durations, from single-session workshops to full-semester courses. It can schedule modular courses, intensive programs, and regular semester-length courses simultaneously while maintaining appropriate distribution of teaching hours and academic credits.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "How are room assignments managed in the schedule?",
+    answer: "Room assignments are managed through an intelligent resource allocation system. The algorithm considers factors like class size, equipment requirements, proximity to departments, and accessibility needs. The system prevents double-booking and optimizes room utilization across all departments.",
+},
+{
+    category: "schedule",
+    icon: "fa-calendar-days",
+    question: "What options are available for viewing the schedule?",
+    answer: "The schedule can be viewed in multiple formats including daily, weekly, monthly, and custom date ranges. Users can filter views by department, course, teacher, or room. The system provides both list and calendar views, with options for detailed or summary views, and supports custom view configurations for different user roles.",
+},
+
+        {
+          category: "features",
+          icon: "fa-star",
+          question: "What are the premium features available?",
+          answer:
+            "Premium features include advanced analytics, custom report generation, API access, priority support, and integration capabilities with other educational management systems.",
+        },
+        {
+    category: "features",
+    icon: "fa-star",
+    question: "What analytical tools are available in the dashboard?",
+    answer: "The dashboard features comprehensive analytics including attendance patterns, schedule efficiency metrics, resource utilization graphs, and academic progress indicators. Users can access real-time statistics, generate custom reports, and visualize data through interactive charts. The analytics engine supports drill-down capabilities and can export data in multiple formats (Excel, PDF, CSV).",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "How does the notification system work?",
+    answer: "The notification system operates on a multi-channel platform supporting push notifications, email alerts, SMS, and in-app messages. Users can customize notification preferences for different event types (schedule changes, deadlines, announcements). The system uses AI to prioritize notifications and prevents notification fatigue through smart bundling.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "What customization options are available for different user roles?",
+    answer: "The system offers role-based customization for administrators, teachers, students, and staff. Each role has configurable access levels, custom dashboard layouts, and personalized features. Users can customize their view preferences, notification settings, and quick access tools. Administrators can create and modify roles with granular permission controls.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "How does the mobile app complement the web version?",
+    answer: "The mobile app provides seamless integration with the web platform, offering features like offline access, quick schedule checks, real-time notifications, and location-based services. It includes unique mobile features such as QR code scanning for room information, augmented reality campus navigation, and biometric authentication for secure access.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "What reporting capabilities does the system offer?",
+    answer: "The reporting system includes pre-built templates for common reports (attendance, schedule distribution, resource utilization) and a custom report builder. Users can generate dynamic reports with interactive elements, schedule automated report generation, and share reports with stakeholders. Advanced features include data visualization tools and predictive analytics.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "How does the resource booking feature work?",
+    answer: "The resource booking system allows users to reserve rooms, equipment, and facilities through an intuitive interface. It features real-time availability checking, conflict prevention, recurring booking options, and automated approval workflows. The system includes a resource calendar, usage analytics, and maintenance scheduling capabilities.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "What integration options are available with other systems?",
+    answer: "The system offers extensive integration capabilities through RESTful APIs, webhooks, and direct connectors. It supports integration with Learning Management Systems (LMS), Student Information Systems (SIS), HR systems, and popular calendar platforms. Custom integrations can be developed using the API documentation and developer tools.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "How does the automatic scheduling feature work?",
+    answer: "The automatic scheduling feature uses advanced algorithms to create optimal schedules based on multiple parameters including teacher availability, room capacity, subject requirements, and institutional policies. It can generate conflict-free schedules for entire departments, handle constraints, and suggest alternatives when conflicts arise.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "What accessibility features are included?",
+    answer: "The system includes comprehensive accessibility features following WCAG 2.1 guidelines. Features include screen reader compatibility, keyboard navigation, high contrast modes, text-to-speech functionality, and customizable font sizes. The mobile app includes additional accessibility features like voice commands and haptic feedback.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "How does the event management system work?",
+    answer: "The event management system handles both academic and non-academic events with features like event registration, attendance tracking, and feedback collection. It includes tools for managing event resources, sending invitations, tracking RSVPs, and generating event reports. The system can handle multiple concurrent events with different access levels.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "What collaboration tools are available?",
+    answer: "The system includes built-in collaboration tools such as shared calendars, discussion boards, and document sharing. Users can create working groups, schedule meetings, share resources, and coordinate activities. Real-time collaboration features include instant messaging, comment threads, and collaborative schedule planning.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "How does the system handle data backup and recovery?",
+    answer: "The system implements automated backup procedures with real-time data replication, incremental backups, and disaster recovery protocols. Users can access version history, restore previous versions, and export personal data. The system maintains encrypted backups across multiple geographic locations with instant failover capabilities.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "What customization options are available for the calendar view?",
+    answer: "Users can customize their calendar view with options for different layouts (day, week, month, agenda), color coding, filtered views, and custom tags. The system supports multiple time zone displays, different calendar formats, and personalized working hours. Custom views can be saved and shared across user groups.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "How does the attendance tracking feature work?",
+    answer: "The attendance tracking system supports multiple methods including QR codes, biometric verification, and manual entry. It provides real-time attendance reports, automated notifications for absences, and integration with the grading system. The feature includes analytics for attendance patterns and automated compliance reporting.",
+},
+{
+    category: "features",
+    icon: "fa-star",
+    question: "What security features are implemented in the system?",
+    answer: "The system implements comprehensive security measures including two-factor authentication, role-based access control, encrypted data transmission, and audit logging. Additional features include IP-based access restrictions, session management, automated security updates, and compliance with data protection regulations like GDPR and FERPA.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What are the system requirements for optimal performance?",
+    answer: "The system requires modern browsers (Chrome 70+, Firefox 65+, Safari 12+, Edge 80+) with JavaScript enabled. For optimal performance, recommended specifications include 4GB RAM, stable internet connection (minimum 10Mbps), and 1280x800 minimum screen resolution. Mobile apps require iOS 13+ or Android 8.0+. Server deployments recommend quad-core processors, 16GB RAM, and SSD storage for database operations.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "How does the API integration system work?",
+    answer: "The system provides RESTful APIs with OAuth 2.0 authentication. APIs support JSON and XML formats, with rate limiting of 1000 requests per hour for standard accounts. Documentation includes Swagger/OpenAPI specifications, sample code in multiple languages (Python, JavaScript, PHP, Java), and webhooks for real-time data synchronization. Custom API endpoints can be created for specific integration needs.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What database architecture is used for data storage?",
+    answer: "The system employs a hybrid database architecture with PostgreSQL for relational data and MongoDB for document storage. Real-time data is cached using Redis, while Elasticsearch handles search functionality. The architecture includes database sharding for scalability, master-slave replication for reliability, and automated backup systems with point-in-time recovery capabilities.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "How does the system handle peak load times?",
+    answer: "Load balancing is managed through AWS Elastic Load Balancer with auto-scaling configurations. The system implements lazy loading, request queuing, and caching strategies. During peak times (registration periods, result announcements), additional server resources are automatically allocated. CDN integration ensures fast content delivery across different geographical locations.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What encryption methods are used for data security?",
+    answer: "The system uses AES-256 encryption for data at rest and TLS 1.3 for data in transit. Sensitive information is hashed using bcrypt with salt. Key management is handled through AWS KMS. Additional security measures include end-to-end encryption for messages, encrypted backups, and hardware security module (HSM) integration for cryptographic operations.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "How does the offline synchronization work?",
+    answer: "Offline functionality is implemented using Service Workers and IndexedDB for local storage. The system uses a queue-based synchronization mechanism with conflict resolution protocols. When connectivity is restored, changes are synchronized using differential updates to minimize data transfer. Progressive Web App (PWA) capabilities ensure seamless offline-online transitions.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What monitoring and logging systems are in place?",
+    answer: "The system uses ELK Stack (Elasticsearch, Logstash, Kibana) for log management and monitoring. New Relic provides application performance monitoring, while Prometheus with Grafana handles metrics visualization. Automated alerts are configured for system anomalies, performance issues, and security incidents. Log retention policies comply with regulatory requirements.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "How is data backup and disaster recovery handled?",
+    answer: "Multi-tier backup strategy includes hourly incremental backups, daily full backups, and weekly archival backups. Disaster recovery uses multi-region replication with automated failover capabilities. Recovery Point Objective (RPO) is 15 minutes, and Recovery Time Objective (RTO) is 1 hour. Regular disaster recovery drills ensure system reliability.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What authentication methods are supported?",
+    answer: "The system supports multiple authentication methods including JWT-based authentication, SAML 2.0, and OAuth 2.0. Single Sign-On (SSO) integration is available for major providers (Google, Microsoft, Okta). Two-factor authentication is available through SMS, email, or authenticator apps. Biometric authentication is supported on compatible mobile devices.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "How does the system handle data migration?",
+    answer: "Data migration tools support imports from various formats (CSV, XML, JSON) with validation and error handling. The system includes ETL pipelines for automated data transformation, mapping tools for field customization, and rollback capabilities. Migration processes are monitored through detailed logs and progress tracking dashboards.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What is the system's scalability architecture?",
+    answer: "The microservices architecture enables horizontal scaling with containerization using Docker and orchestration through Kubernetes. Auto-scaling policies adjust resources based on demand. The system supports multi-tenant architecture with isolated data storage. Database sharding and caching strategies ensure performance at scale.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "How are system updates and maintenance managed?",
+    answer: "Updates follow a blue-green deployment strategy with zero-downtime updates. Maintenance windows are scheduled during low-usage periods with automated failover systems. The system uses feature flags for gradual rollouts and A/B testing. Automated testing and staging environments ensure update reliability.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What development tools and SDKs are available?",
+    answer: "Developer tools include RESTful API SDKs for major programming languages, WebSocket libraries for real-time features, and mobile SDKs for iOS/Android development. The developer portal provides API documentation, code samples, testing tools, and sandbox environments. CI/CD pipelines support automated testing and deployment.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "How does the reporting engine work?",
+    answer: "The reporting engine uses a combination of real-time data processing and pre-aggregated data marts. Reports can be generated in multiple formats (PDF, Excel, CSV) with customizable templates. The system supports scheduled report generation, parameterized reports, and dynamic data visualization through integration with tools like Power BI and Tableau.",
+},
+{
+    category: "technical",
+    icon: "fa-gear",
+    question: "What compliance and audit features are implemented?",
+    answer: "The system maintains comprehensive audit logs tracking all data modifications, access attempts, and system changes. Compliance features include GDPR tools for data privacy, FERPA compliance for educational records, and customizable retention policies. Regular security audits and penetration testing ensure ongoing compliance with industry standards.",
+},
+        // Add more FAQs as needed
+      ];
+
+      // Populate Categories
+      const categoryGrid = document.querySelector(".category-grid");
+      categories.forEach((category) => {
+        const card = document.createElement("div");
+        card.className = "category-card";
+        card.dataset.category = category.id;
+        card.innerHTML = `
+                <i class="category-icon fas ${category.icon}"></i>
+                <h3 class="category-title">${category.title}</h3>
+                <span class="category-count">${category.count} articles</span>
+            `;
+        categoryGrid.appendChild(card);
+      });
+
+      // Populate FAQs
+      const faqList = document.querySelector(".faq-list");
+      faqs.forEach((faq) => {
+        const faqItem = document.createElement("div");
+        faqItem.className = "faq-item";
+        faqItem.dataset.category = faq.category;
+        faqItem.innerHTML = `
+                <div class="faq-question">
+                    <div class="question-content">
+                        <i class="question-icon fas ${faq.icon}"></i>
+                        <span>${faq.question}</span>
+                    </div>
+                    <i class="toggle-icon fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">${faq.answer}</div>
+                </div>
+            `;
+        faqList.appendChild(faqItem);
+      });
+
+      // Event Listeners
+      document.querySelectorAll(".category-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          document
+            .querySelectorAll(".category-card")
+            .forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+          filterFAQs(card.dataset.category);
+        });
+      });
+
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.querySelector(".faq-question").addEventListener("click", () => {
+          const currentlyActive = document.querySelector(".faq-item.active");
+          if (currentlyActive && currentlyActive !== item) {
+            currentlyActive.classList.remove("active");
+          }
+          item.classList.toggle("active");
+        });
+      });
+
+      // Search Functionality
+      const searchInput = document.querySelector(".search-input");
+      searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(searchTerm) ? "block" : "none";
+        });
+      });
+
+      // Filter FAQs by Category
+      function filterFAQs(category) {
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          if (category === "all" || item.dataset.category === category) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      }
+
+      // Popular Tags Click Handler
+      document.querySelectorAll(".popular-tag").forEach((tag) => {
+        tag.addEventListener("click", () => {
+          searchInput.value = tag.textContent;
+          searchInput.dispatchEvent(new Event("input"));
+        });
+      });
+
+      // Feedback Widget Handler
+      document
+        .querySelector(".feedback-widget")
+        .addEventListener("click", () => {
+          // Add your feedback form logic here
+          alert("Feedback feature coming soon!");
+        });
+    </script>
+  </body>
+</html>
