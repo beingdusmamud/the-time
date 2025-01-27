@@ -1208,11 +1208,7 @@ class GallerySlider {
         title: "Internship",
         description: "At N.B NRF Railway.",
       },
-      {
-        image: "hhhh",
-        title: "gggg",
-        description: "yyyy",
-      },
+     
     ];
 
     this.track = document.getElementById("galleryTrack");
