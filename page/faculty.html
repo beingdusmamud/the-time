@@ -1362,7 +1362,9 @@
         <nav class="nav" id="nav">
           <ul class="nav__links">
             <li>
-              <a href="../index.html" class="nav__link"><i class="fas fa-home"></i>Home</a>
+              <a href="../index.html" class="nav__link"
+                ><i class="fas fa-home"></i>Home</a
+              >
             </li>
             <li>
               <a href="../page/notes.html" class="nav__link"
@@ -3024,41 +3026,60 @@
 
       // Check working day status
       function checkWorkingDay() {
-        const today = new Date().toISOString().split("T")[0];
+        // For testing, log the current date
+        const currentDate = new Date();
+
+        // Format date to match CALENDAR_DATA format (YYYY-MM-DD)
+        const formattedDate = `${currentDate.getFullYear()}-${String(
+          currentDate.getMonth() + 1
+        ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
+
+        console.log("Current formatted date:", formattedDate); // Debug log
+
+        // Find matching calendar entry
         const calendarEntry = CALENDAR_DATA.find(
-          (entry) => entry.date === today
+          (entry) => entry.date === formattedDate
         );
 
+        console.log("Found calendar entry:", calendarEntry); // Debug log
+
+        // Get elements
+        const workdayElement = document.getElementById("workdayNumber");
+        const holidayNoticeElement = document.getElementById("holidayNotice");
+
         if (calendarEntry) {
+          console.log("Status:", calendarEntry.status); // Debug log
+
           if (calendarEntry.status === "Holiday") {
             showHolidayNotice(calendarEntry.remarks);
-            document.getElementById("workdayNumber").textContent = "-";
+            workdayElement.textContent = "-";
           } else {
-            document.getElementById("workdayNumber").textContent =
-              calendarEntry.workingDay;
-            document.getElementById("holidayNotice").innerHTML = "";
+            workdayElement.textContent = calendarEntry.workingDay;
+            holidayNoticeElement.innerHTML = "";
           }
+        } else {
+          // No matching entry found
+          workdayElement.textContent = "-";
+          holidayNoticeElement.innerHTML = "";
+          console.log("No calendar entry found for date:", formattedDate); // Debug log
         }
       }
 
       // Show holiday notice
       function showHolidayNotice(reason) {
         document.getElementById("holidayNotice").innerHTML = `
-                <div class="holiday-notice" data-aos="fade-up">
-                    <i class="fas fa-calendar-xmark"></i>
-                    <h3>Holiday Today</h3>
-                    <p>${reason}</p>
-                </div>
-            `;
+        <div class="holiday-notice" data-aos="fade-up">
+            <i class="fas fa-calendar-xmark"></i>
+            <h3>Holiday Today</h3>
+            <p>${reason}</p>
+        </div>
+    `;
       }
 
       // Initialize dashboard
       function initializeDashboard() {
-        updateDateTime();
-        setInterval(updateDateTime, 60000); // Update every minute
-        checkWorkingDay();
-
-        // Additional initialization code will be added in Part 2
+        checkWorkingDay(); // Check working day first
+        setInterval(checkWorkingDay, 60000); // Update every minute
       }
 
       // Start when DOM is loaded
@@ -3107,16 +3128,23 @@
         return "past";
       }
 
-      // Find current or next class for a teacher
       function findCurrentOrNextClass(teacher) {
         const now = new Date();
-        const currentWorkingDay = CALENDAR_DATA.find(
-          (entry) =>
-            entry.date === now.toISOString().split("T")[0] &&
-            entry.status === "Working"
-        )?.workingDay;
+        const formattedDate = `${now.getFullYear()}-${String(
+          now.getMonth() + 1
+        ).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 
-        if (!currentWorkingDay) return null;
+        // Check if today is a holiday
+        const todayCalendar = CALENDAR_DATA.find(
+          (entry) => entry.date === formattedDate
+        );
+
+        // If it's a holiday or no calendar entry found, return null
+        if (!todayCalendar || todayCalendar.status === "Holiday") {
+          return null;
+        }
+
+        const currentWorkingDay = todayCalendar.workingDay;
 
         let currentClass = null;
         let nextClass = null;
@@ -3213,9 +3241,23 @@
         return card;
       }
 
-      // Get teacher's schedule for current day
       function getTeacherScheduleForDay(teacher) {
-        const currentWorkingDay = getCurrentWorkingDay();
+        const now = new Date();
+        const formattedDate = `${now.getFullYear()}-${String(
+          now.getMonth() + 1
+        ).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+        // Check if today is a holiday
+        const todayCalendar = CALENDAR_DATA.find(
+          (entry) => entry.date === formattedDate
+        );
+
+        // If it's a holiday or no calendar entry found, return empty array
+        if (!todayCalendar || todayCalendar.status === "Holiday") {
+          return [];
+        }
+
+        const currentWorkingDay = todayCalendar.workingDay;
         if (!currentWorkingDay) return [];
 
         let schedule = [];
