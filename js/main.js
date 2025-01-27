@@ -1021,7 +1021,6 @@ class ThemeManager {
   }
 }
 
-// Main functionality
 class AcademicCalendar {
   constructor() {
     this.init();
@@ -1030,70 +1029,87 @@ class AcademicCalendar {
   init() {
     this.updateDateTime();
     this.updateSchedule();
+    this.updateStatusIndicator();
     this.setupEventListeners();
   }
 
   updateDateTime() {
     const now = new Date();
-    const currentDate = now.toISOString().split("T")[0];
+    const currentDate = this.formatDate(now);
+    const todayData = CALENDAR_DATA.find((item) => item.date === currentDate);
 
-    // Find current day in calendar data
-    const todayData = CALENDAR_DATA.find(
-      (item) => item.date === currentDate
-    ) || {
-      day: now.toLocaleDateString("en-US", { weekday: "long" }),
-      workingDay: "-",
-      status: "Working",
-      remarks: "",
-    };
+    if (todayData) {
+      document.getElementById("currentDate").textContent =
+        now.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      document.getElementById("currentDay").textContent = todayData.day;
 
-    // Update DOM
-    document.getElementById("currentDate").textContent = now.toLocaleDateString(
-      "en-US",
-      {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
+      const badge = document.getElementById("workingDayBadge");
+      if (todayData.status === "Holiday") {
+        badge.classList.add("holiday-badge");
+        badge.innerHTML = `
+          <i class="fas fa-calendar-times"></i>
+          <span>${todayData.remarks}</span>
+        `;
+      } else {
+        badge.classList.remove("holiday-badge");
+        badge.innerHTML = `
+          <i class="fas fa-calendar-day"></i>
+          <span>Working Day ${todayData.workingDay}</span>
+        `;
       }
-    );
-    document.getElementById("currentDay").textContent = todayData.day;
-
-    // Update working day badge
-    const badge = document.getElementById("workingDayBadge");
-    if (todayData.status === "Holiday") {
-      badge.classList.add("holiday-badge");
-      badge.innerHTML = `
-            <i class="fas fa-calendar-times"></i>
-            <span>${todayData.remarks || "Holiday"}</span>
-        `;
-    } else {
-      badge.classList.remove("holiday-badge");
-      badge.innerHTML = `
-            <i class="fas fa-calendar-day"></i>
-            <span>Working Day ${todayData.workingDay}</span>
-        `;
     }
+  }
 
-    // Update status indicator
-    this.updateStatusIndicator();
+  formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   }
 
   updateStatusIndicator() {
     const now = new Date();
+    const currentDate = now.toISOString().split("T")[0];
+    const todayData = CALENDAR_DATA.find((item) => item.date === currentDate);
+
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const currentTime = hours * 60 + minutes;
+    const currentTimeInMinutes = hours * 60 + minutes;
 
     const indicator = document.getElementById("statusIndicator");
-    const isWorkingHours = currentTime >= 540 && currentTime <= 945; // 9:00 AM to 3:45 PM
 
-    indicator.classList.toggle("active", isWorkingHours);
-    indicator.classList.toggle("inactive", !isWorkingHours);
+    // Working hours: 9:00 AM (540 minutes) to 4:45 PM (1005 minutes)
+    if (
+      todayData &&
+      todayData.status === "Working" &&
+      currentTimeInMinutes >= 540 &&
+      currentTimeInMinutes <= 1005
+    ) {
+      // Working hours - show green
+      indicator.style.setProperty("--success", "#28a745");
+      indicator.style.backgroundColor = "var(--success)";
+      indicator.style.boxShadow = "0 0 10px var(--success)";
+    } else {
+      // Non-working hours or holiday - show red
+      indicator.style.setProperty("#c62828", "#dc3545");
+      indicator.style.backgroundColor = "#c62828";
+      indicator.style.boxShadow = "0 0 10px #c62828";
+    }
+  }
+
+  isWithinWorkingHours(currentTimeInMinutes) {
+    const startTime = 9 * 60; // 9:00 AM in minutes
+    const endTime = 16 * 60 + 45; // 4:45 PM in minutes
+    return currentTimeInMinutes >= startTime && currentTimeInMinutes <= endTime;
   }
 
   updateSchedule() {
     const now = new Date();
-    const currentDate = now.toISOString().split("T")[0];
+    const currentDate = this.formatDate(now);
     const todayData = CALENDAR_DATA.find((item) => item.date === currentDate);
 
     const scheduleGrid = document.getElementById("scheduleGrid");
@@ -1111,32 +1127,34 @@ class AcademicCalendar {
 
   generateScheduleCardHTML(schedule) {
     return `
-        <div class="schedule-card">
-            <div class="schedule-time">
-                <i class="far fa-clock"></i>
-                <span>${schedule.time}</span>
-            </div>
-            <h3 class="schedule-subject">${schedule.subject}</h3>
-            <p class="schedule-details">${schedule.room}</p>
-            <div class="schedule-instructor">
-                <div class="instructor-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <span>${schedule.instructor}</span>
-            </div>
+      <div class="schedule-card">
+        <div class="schedule-time">
+          <i class="far fa-clock"></i>
+          <span>${schedule.time}</span>
         </div>
+        <div class="schedule-subject">${schedule.subject}</div>
+        <p class="schedule-room">${schedule.room}</p>
+        <div class="schedule-instructor">
+          <div class="instructor-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <span>${schedule.instructor}</span>
+        </div>
+      </div>
     `;
   }
 
   generateNoClassesHTML(reason) {
     return `
-        <div class="no-classes animate__animated animate__fadeIn">
+      <div class="no-classes animate__animated animate__fadeIn">
               <i class="fas fa-coffee"></i>
               <h3>No Classes Today</h3>
               <p>${reason}</p>
               <div class="no-classes-holiday"><b>Holiday</b></div>
               <p>Enjoy your break! 😉</p>
           </div>
+          
+      
     `;
   }
 
@@ -1149,7 +1167,7 @@ class AcademicCalendar {
   }
 }
 
-// Initialize the calendar when the DOM is loaded
+// Initialize the calendar when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   new AcademicCalendar();
 });
