@@ -795,22 +795,22 @@
               <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
             </li>
             <li>
-              <a href="../page/notes.html" class="nav__link"
+              <a href="../page/notes" class="nav__link"
                 ><i class="fas fa-book"></i>Notes</a
               >
             </li>
             <li>
-              <a href="../page/faculty.html" class="nav__link"
+              <a href="../page/faculty" class="nav__link"
                 ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
               >
             </li>
             <li>
-              <a href="../page/notes.html" class="nav__link"
+              <a href="../page/notes" class="nav__link"
                 ><i class="fas fa-bell"></i>Notices</a
               >
             </li>
             <li>
-              <a href="../page/contact.html" class="nav__link"
+              <a href="../page/contact" class="nav__link"
                 ><i class="fas fa-envelope"></i>Contact</a
               >
             </li>
@@ -1007,22 +1007,22 @@
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/notes.html" class="footer__link"
+                <a href="../page/notes" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Notes</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/faculty.html" class="footer__link"
+                <a href="../page/faculty" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Faculty</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/notice.html" class="footer__link"
+                <a href="../page/notice" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Notices</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/contact.html" class="footer__link"
+                <a href="../page/contact" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Contact</a
                 >
               </li>
@@ -1033,22 +1033,22 @@
             <h3 class="footer__heading">Resources</h3>
             <ul class="footer__links">
               <li class="footer__link-item">
-                <a href="../page/schedule.html" class="footer__link"
+                <a href="../page/schedule" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Schedule</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/pyqs.html" class="footer__link"
+                <a href="../page/pyqs" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>PYQs</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/tool.html" class="footer__link"
+                <a href="../page/tool" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Tools</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/404.html" class="footer__link"
+                <a href="../page/404" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Projects</a
                 >
               </li>
@@ -1059,22 +1059,22 @@
             <h3 class="footer__heading">Support</h3>
             <ul class="footer__links">
               <li class="footer__link-item">
-                <a href="../page/faq.html" class="footer__link"
+                <a href="../page/faq" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Help Center</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/faqs.html" class="footer__link"
+                <a href="../page/faqs" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>FAQs</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/privacy-policy.html" class="footer__link"
+                <a href="../page/privacy-policy" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Privacy Policy</a
                 >
               </li>
               <li class="footer__link-item">
-                <a href="../page/terms-of-use.html" class="footer__link"
+                <a href="../page/terms-of-use" class="footer__link"
                   ><i class="fas fa-chevron-right"></i>Terms of Use</a
                 >
               </li>
@@ -1190,6 +1190,63 @@
         new ThemeManager();
       });
       //header end
+
+      // Hide .html Start
+// Create this as main.js or include in your existing main.js
+
+// Function to remove .html extension and handle routing
+function removeHTMLExtension() {
+  // Don't execute if no .html in URL
+  if (!location.href.includes('.html')) return;
+
+  let path = window.location.pathname;
+  let cleanPath = path.replace(/\.html$/, '');
+  
+  // Update URL without page reload
+  window.history.replaceState(null, '', cleanPath);
+}
+
+// Function to handle clicks on internal links
+function handleLinks() {
+  document.addEventListener('click', function(e) {
+      // Find closest anchor tag
+      const link = e.target.closest('a');
+      
+      // If not a link or external link, ignore
+      if (!link || !link.href.includes(window.location.origin)) return;
+      
+      // If link ends with .html
+      if (link.href.endsWith('.html')) {
+          e.preventDefault();
+          
+          // Remove .html and navigate
+          const cleanUrl = link.href.replace(/\.html$/, '');
+          window.history.pushState(null, '', cleanUrl);
+          
+          // Handle the actual navigation
+          fetch(link.href)
+              .then(response => response.text())
+              .then(html => {
+                  document.documentElement.innerHTML = html;
+                  // Reinitialize any necessary scripts
+                  removeHTMLExtension();
+                  handleLinks();
+              });
+      }
+  });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  removeHTMLExtension();
+  handleLinks();
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function() {
+  location.reload();
+});
+// Hide .html End
     </script>
   </body>
 </html>
