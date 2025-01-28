@@ -2995,3 +2995,17 @@ if (document.readyState === "loading") {
 } else {
   birthdayAnimation.init();
 }
+
+
+// remove .html
+// Check if the URL ends with .html
+if (window.location.href.indexOf('.html') > -1) {
+    // Get the current URL
+    let currentURL = window.location.href;
+    // Remove the .html extension
+    let newURL = currentURL.replace('.html', '');
+    // Update the URL without refreshing the page
+    window.history.replaceState({}, document.title, newURL);
+}
+
+//remove .html end
