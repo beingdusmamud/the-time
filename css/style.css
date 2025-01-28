@@ -138,7 +138,7 @@ body {
   right: -2px;
   bottom: -2px;
   border-radius: 50%;
-  border: 2px solid var(--success);
+  border: 2px solid var(--gold);
   animation: pulse 2s infinite;
 }
 
