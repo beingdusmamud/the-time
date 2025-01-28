@@ -2627,3 +2627,371 @@ window.addEventListener("load", () => {
   showCookieConsent();
   loadCookiePreferences();
 });
+
+
+//DOB
+// Birthday data
+const birthdayData = [
+  { name: "Iswar Sigma", dob: "2007-02-24" },
+  { name: "Haqikul", dob: "2007-02-03" },
+  { name: "Nirban", dob: "2006-03-02" },
+  { name: "Retuka", dob: "2006-02-04" },
+  { name: "Sourabh", dob: "2005-12-22" },
+  { name: "Moinul", dob: "2005-09-25" },
+  { name: "Mrinmoy", dob: "2005-09-03" },
+  { name: "Sanjima", dob: "2005-07-27" },
+  { name: "Gautam", dob: "2005-05-29" },
+  { name: "Syed Bhai", dob: "2004-05-25" },
+  { name: "Masuma", dob: "2005-04-24" },
+  { name: "Sobikul", dob: "2005-04-23" },
+  { name: "Moon Bhai", dob: "2005-04-21" },
+  { name: "Anup", dob: "2005-03-18" },
+  { name: "Muskan", dob: "2005-03-30" },
+  { name: "Nur Alom", dob: "2004-12-22" },
+  { name: "Manjit Narzary", dob: "2004-11-04" },
+  { name: "Ripon", dob: "2004-10-15" },
+  { name: "Mahek", dob: "2004-10-03" },
+  { name: "Abhijit Bhai", dob: "2004-08-01" },
+  { name: "Padumani", dob: "2004-06-01" },
+  { name: "Kaustav", dob: "2004-04-24" },
+  { name: "Dipjyoti Bhai", dob: "2004-04-02" },
+  { name: "Karan", dob: "2004-03-29" },
+  { name: "Laxman", dob: "2004-03-21" },
+  { name: "Manob", dob: "2004-02-09" },
+  { name: "Lipika", dob: "2003-03-22" },
+  { name: "Dibyajyoti", dob: "2003-01-28" },
+  { name: "Helena", dob: "2002-07-11" },
+];
+
+const birthdayAnimation = {
+  // Store intervals globally to clear them properly
+  intervals: {},
+
+  init() {
+    this.addStyles();
+    const birthdayPerson = this.checkBirthday();
+    if (birthdayPerson) {
+      this.showCelebration(birthdayPerson);
+    }
+  },
+
+  styles: `
+  /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Dancing+Script:wght@700&family=Pacifico&family=Quicksand:wght@500;700&display=swap');
+
+        /* Font Variables */
+        :root {
+            --title-font: 'Pacifico', cursive;
+            --name-font: 'Dancing Script', cursive;
+            --message-font: 'Quicksand', sans-serif;
+            --base-font: 'Poppins', sans-serif;
+        }
+
+      .birthday-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.85);
+          backdrop-filter: blur(5px);
+          z-index: 999999;
+          opacity: 1;
+      }
+
+      .birthday-popup {
+          font-family: var(--base-font);
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: linear-gradient(145deg, #ffffff, #f3f3f3);
+          padding: 3rem;
+          border-radius: 20px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          z-index: 1000000;
+          text-align: center;
+          max-width: 90vw;
+          width: 500px;
+          animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+          margin-top: 50px;
+      }
+
+      .birthday-content {
+          position: relative;
+          z-index: 2;
+      }
+
+      .birthday-title {
+            font-family: var(--title-font);
+            color: #FF4081;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #FF4081, #FFA000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleFloat 3s ease-in-out infinite;
+            letter-spacing: 1px;
+        }
+
+      .birthday-name {
+            font-family: var(--name-font);
+            font-size: 3rem;
+            color: #333;
+            margin: 1.2rem 0;
+            font-weight: 700;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            animation: nameGlow 2s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+      .birthday-message {
+            font-family: var(--message-font);
+            font-size: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+            margin: 1.5rem 0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+      .birthday-emoji {
+          font-size: 4rem;
+          margin: 1rem 0;
+          display: inline-block;
+          animation: emojiJump 1s infinite;
+          text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .close-button {
+          font-family: var(--base-font);
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          border: none;
+          background: #FF4081;
+          color: white;
+          font-size: 20px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          z-index: 1000001;
+      }
+
+      .close-button:hover {
+          background: #f50057;
+          transform: scale(1.1);
+      }
+
+      .confetti {
+          position: fixed;
+          z-index: 999999;
+          pointer-events: none;
+      }
+
+      .sparkle {
+          position: fixed;
+          pointer-events: none;
+          z-index: 999998;
+          animation: sparkleAnimation 1s linear forwards;
+      }
+
+      @keyframes popIn {
+          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+          100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      }
+
+      @keyframes emojiJump {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+      }
+
+      @keyframes titleFloat {
+          0%, 100% { transform: translateY(0) rotate(-2deg); }
+          50% { transform: translateY(-10px) rotate(2deg); }
+      }
+
+      @keyframes nameGlow {
+          0%, 100% { text-shadow: 0 0 10px rgba(255, 64, 129, 0.5); }
+          50% { text-shadow: 0 0 20px rgba(255, 64, 129, 0.8); }
+      }
+
+      @keyframes sparkleAnimation {
+          0% { transform: scale(0) rotate(0deg); opacity: 1; }
+          100% { transform: scale(1) rotate(180deg); opacity: 0; }
+      }
+
+      @media (max-width: 768px) {
+          .birthday-popup {
+              width: 85vw;
+              padding: 2rem;
+              margin: 0;
+          }
+          .birthday-title { font-size: 2.8rem; }
+          .birthday-name { font-size: 2.5rem; }
+          .birthday-message { font-size: 1.3rem; }
+          .birthday-emoji { font-size: 3rem; }
+      }
+
+      @media (max-width: 480px) {
+          .birthday-popup {
+              padding: 1.5rem;
+          }
+          .birthday-title { font-size: 2rem; }
+          .birthday-name { font-size: 1.6rem; }
+          .birthday-message { font-size: 1rem; }
+      }
+  `,
+
+  addStyles() {
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = this.styles;
+    document.head.appendChild(styleSheet);
+
+    // Add fall animation
+    const fallAnimation = document.createElement("style");
+    fallAnimation.textContent = `
+          @keyframes fall {
+              0% {
+                  transform: translateY(0) rotate(0deg);
+                  opacity: 1;
+              }
+              100% {
+                  transform: translateY(100vh) rotate(720deg);
+                  opacity: 0;
+              }
+          }
+      `;
+    document.head.appendChild(fallAnimation);
+  },
+
+  checkBirthday() {
+    const today = new Date();
+    return birthdayData.find((person) => {
+      const dob = new Date(person.dob);
+      return (
+        dob.getDate() === today.getDate() && dob.getMonth() === today.getMonth()
+      );
+    });
+  },
+
+  createConfetti() {
+    const colors = ["#FF4081", "#FFC107", "#2196F3", "#4CAF50", "#9C27B0"];
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const size = Math.random() * 10 + 5;
+    const startPos = Math.random() * window.innerWidth;
+
+    Object.assign(confetti.style, {
+      left: startPos + "px",
+      top: "-20px",
+      width: size + "px",
+      height: size + "px",
+      background: color,
+      borderRadius: "50%",
+      position: "fixed",
+      transform: `rotate(${Math.random() * 360}deg)`,
+      animation: `fall ${Math.random() * 3 + 2}s linear forwards`,
+    });
+
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 5000);
+  },
+
+  createSparkle(x, y) {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.cssText = `
+          left: ${x}px;
+          top: ${y}px;
+          width: 4px;
+          height: 4px;
+          background: gold;
+          border-radius: 50%;
+      `;
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  },
+
+  cleanup() {
+    // Clear all intervals
+    Object.values(this.intervals).forEach((interval) =>
+      clearInterval(interval)
+    );
+    this.intervals = {};
+
+    // Remove all elements
+    const elements = document.querySelectorAll(
+      ".birthday-overlay, .birthday-popup, .confetti, .sparkle"
+    );
+    elements.forEach((element) => element.remove());
+  },
+
+  showCelebration(person) {
+    // Create container and add content
+    const container = document.createElement("div");
+    container.innerHTML = `
+          <div class="birthday-overlay"></div>
+          <div class="birthday-popup">
+              <button class="close-button" id="birthdayCloseButton">×</button>
+              <div class="birthday-content">
+                  <div class="birthday-emoji">🎉</div>
+                  <h1 class="birthday-title">Happy Birthday!</h1>
+                  <div class="birthday-name">${person.name}</div>
+                  <p class="birthday-message">
+                      Wishing you an amazing day filled with joy, 
+                      laughter, and unforgettable moments! 
+                      May all your dreams come true! 🌟
+                  </p>
+                  <div class="birthday-emoji">🎂</div>
+                  <div class="birthday-emoji">🎈</div>
+              </div>
+          </div>
+      `;
+    document.body.appendChild(container);
+
+    // Start effects
+    this.intervals.confetti = setInterval(() => {
+      for (let i = 0; i < 3; i++) {
+        this.createConfetti();
+      }
+    }, 200);
+
+    this.intervals.sparkle = setInterval(() => {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      this.createSparkle(x, y);
+    }, 300);
+
+    // Add close button functionality
+    const closeButton = document.getElementById("birthdayCloseButton");
+    if (closeButton) {
+      closeButton.addEventListener("click", () => {
+        this.cleanup();
+      });
+    }
+
+    // Auto cleanup after 30 seconds
+    setTimeout(() => {
+      this.cleanup();
+    }, 40000);
+  },
+};
+
+// Start immediately when DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => birthdayAnimation.init());
+} else {
+  birthdayAnimation.init();
+}
