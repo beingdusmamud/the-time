@@ -1,495 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="description"
-      content="Academic Calendar with Class Schedule for 4th Semester 2025 Chirang Polytechnic Electrical Engineering Department"
-    />
-    <!-- Primary Meta Tags -->
-    <meta name="author" content="Dus Mamud" />
-    <title>TimeIt - Academic Calendar</title>
-    <meta
-      name="title"
-      content="Development Team | DUS College Web Development & Design"
-    />
-    <meta name="keywords" content="TimeIt, Time it, timeit.site, Academic
-    Calendar, Chirang Polytechnic Academic Calendar, Chirang Polytechnic, Dus
-    Mamud, Chirang Polytechnic Workingday Calendar, Age calculator, Attendence
-    Calculator, Dus Mamud Chirang Polytechnic, Time it tools, timeit tools,
-    productivity, polytechnic, />
-    <meta name="author" content="DUS Mamud Development Team" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Professional Design</title>
 
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>A</text></svg>"
-    />
+    <!-- AOS CSS and JS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8f9fa;
+            --accent-bg: #e9ecef;
+            --primary-text: #2c3e50;
+            --secondary-text: #495057;
+            --accent-color: #b8860b;
+            --gold: #daa520;
+            --silver: #c0c0c0;
+            --success: #2e7d32;
+            --error: #c62828;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --footer-divider: rgba(0, 0, 0, 0.1);
+            --border-color: #e0e0e0;
+            --transition-normal: 0.3s;
+        }
 
-    <!-- Additional Meta Tags for SEO -->
-    <meta name="category" content="Web Development" />
-    <meta name="coverage" content="Worldwide" />
-    <meta name="distribution" content="Global" />
-    <meta name="rating" content="General" />
-    <meta name="target" content="all" />
-    <meta name="HandheldFriendly" content="True" />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Cache Control -->
-    <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+        body {
+            font-family: "Montserrat", sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--primary-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-    <!-- Preconnect to External Resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+        .particle {
+            position: absolute;
+            background: var(--accent-color);
+            opacity: 0.1;
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
 
-    <!-- Mobile Meta Tags -->
-    <meta name="theme-color" content="#2E3192" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
-    <meta name="apple-mobile-web-app-title" content="DUS Development Team" />
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
 
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Dus Mamud Development Team",
-        "description": "Expert web development and design team offering full-stack development and UI/UX design services",
-        "url": "https://timeit.site/",
-        "email": "dusinfinity@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "India"
-        },
-        "employee": [
-          {
-            "@type": "Person",
-            "name": "Dus Mamud",
-            "jobTitle": "Full Stack Developer",
-            "sameAs": ["https://www.instagram.com/dvmx_19/"]
-          },
-          {
-            "@type": "Person",
-            "name": "KumKum Gupta",
-            "jobTitle": "UI/UX Designer",
-            "sameAs": ["https://www.instagram.com/__kumkum_gupta_/"]
-          }
-        ],
-        "sameAs": ["https://www.instagram.com/dus.infinity/"]
-      }
-    </script>
-  </head>
-  <body>
-    <!-- Add this at the start of your body tag -->
-    <div class="cookie-consent" id="cookieConsent">
-      <div class="cookie-content">
-        <div class="cookie-header">
-          <i class="fas fa-cookie-bite"></i>
-          <h3>Cookie Consent</h3>
-        </div>
-        <p>
-          We use cookies to enhance your browsing experience, serve personalized
-          content, and analyze our traffic. By clicking "Accept All", you
-          consent to our use of cookies.
-        </p>
-        <div class="cookie-settings-toggle" onclick="toggleCookieSettings()">
-          <i class="fas fa-cog"></i>
-          Cookie Settings
-        </div>
-      </div>
-      <div class="cookie-buttons">
-        <button class="cookie-btn accept-all" onclick="acceptAllCookies()">
-          Accept All
-        </button>
-        <button
-          class="cookie-btn accept-necessary"
-          onclick="acceptNecessaryCookies()"
-        >
-          Accept Necessary Only
-        </button>
-      </div>
-    </div>
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
 
-    <!-- Cookie Settings Panel -->
-    <div class="cookie-settings-panel" id="cookieSettings">
-      <div class="settings-header">
-        <h3>Cookie Settings</h3>
-        <button class="close-settings" onclick="toggleCookieSettings()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="settings-content">
-        <div class="cookie-option">
-          <div class="cookie-option-header">
-            <h4>Necessary Cookies</h4>
-            <label class="switch">
-              <input type="checkbox" checked disabled />
-              <span class="slider"></span>
-            </label>
-          </div>
-          <p>
-            These cookies are essential for the website to function properly.
-          </p>
-        </div>
-        <div class="cookie-option">
-          <div class="cookie-option-header">
-            <h4>Analytics Cookies</h4>
-            <label class="switch">
-              <input type="checkbox" id="analyticsCookies" />
-              <span class="slider"></span>
-            </label>
-          </div>
-          <p>Help us understand how visitors interact with our website.</p>
-        </div>
-        <div class="cookie-option">
-          <div class="cookie-option-header">
-            <h4>Functional Cookies</h4>
-            <label class="switch">
-              <input type="checkbox" id="functionalCookies" />
-              <span class="slider"></span>
-            </label>
-          </div>
-          <p>Enable personalized features and save your preferences.</p>
-        </div>
-      </div>
-      <div class="settings-footer">
-        <button
-          class="cookie-btn save-preferences"
-          onclick="saveCookiePreferences()"
-        >
-          Save Preferences
-        </button>
-      </div>
-    </div>
-    <!-- Header Start -->
-    <header class="header">
-      <div class="container">
-        <div class="header__content">
-          <div class="header__logo">
-            <h1 class="header__title">
-              <i class="fas fa-graduation-cap"></i>
-              TimeIt
-              <span class="header__status" id="statusIndicator"></span>
-            </h1>
-          </div>
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
 
-          <nav class="header__nav" id="mainNav">
-            <ul class="nav__list">
-              <li><a href="page/tool" class="nav__link">Tools</a></li>
-              <li>
-                <a href="page/notes" class="nav__link">Notes</a>
-              </li>
-              <li>
-                <a href="page/pyqs" class="nav__link">PYQs</a>
-              </li>
-              <li>
-                <a href="page/schedule" class="nav__link">Working Day</a>
-              </li>
-              <li>
-                <a href="page/disclaimer" class="nav__link">Disclaimer</a>
-              </li>
-            </ul>
-          </nav>
+        .hero-content {
+            padding-right: 2rem;
+        }
 
-          <div class="header__actions">
-            <button
-              class="theme-toggle"
-              id="themeToggle"
-              aria-label="Toggle theme"
-            >
-              <i class="fas fa-moon"></i>
-            </button>
-            <button
-              class="mobile-menu"
-              id="mobileMenu"
-              aria-label="Toggle menu"
-            >
-              <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- Header HTML END -->
+        .hero-image {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
 
-    <main class="container">
-      <div class="main-grid">
-        <!-- Date Section Structure -->
-        <section class="date-section">
-          <div class="date-display">
-            <div>
-              <h2 class="date-primary" id="currentDate">January 20, 2025</h2>
-              <p class="date-secondary" id="currentDay">Monday</p>
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-color), transparent);
+            opacity: 0.3;
+        }
+
+        .title {
+            font-family: "Playfair Display", serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-text), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            margin-bottom: 3rem;
+        }
+
+        .progress-container {
+            background: var(--primary-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 4rem;
+        }
+
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--accent-bg);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            position: absolute;
+            height: 100%;
+            width: 75%;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold));
+            animation: progressAnimation 2s ease-out;
+        }
+
+        @keyframes progressAnimation {
+            from { width: 0; }
+            to { width: 75%; }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: var(--primary-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-text);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .countdown-item {
+            background: var(--primary-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-link {
+            color: var(--secondary-text);
+            font-size: 1.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+            }
+
+            .hero-image {
+                height: 400px;
+            }
+
+            .title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="main-container">
+        <section class="hero-section">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <h1 class="title">Creating Something Extraordinary</h1>
+                <p class="subtitle">We're crafting a unique digital experience that will revolutionize the way you interact with our brand. Stay tuned for the big reveal.</p>
             </div>
-            <div class="working-day" id="workingDayBadge">
-              <i class="fas fa-calendar-day"></i>
-              <span>Working Day 1</span>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
+                <!-- Add your hero image here -->
             </div>
-          </div>
         </section>
-        <!-- Date Section Structure End-->
 
-        <!-- Schedule Grid Start-->
-        <div class="schedule-grid" id="scheduleGrid">
-          <!-- Example of a schedule card -->
-          <div class="schedule-card">
-            <div class="schedule-time">
-              <i class="far fa-clock"></i>
-              <span>9:00 AM - 10:00 AM</span>
+        <div class="progress-container" data-aos="fade-up" data-aos-duration="1000">
+            <div class="progress-title">
+                <h3>Construction Progress</h3>
+                <span>75% Complete</span>
             </div>
-            <h3 class="schedule-subject">Subject</h3>
-            <p class="schedule-details">Electrical Engineering</p>
-            <div class="schedule-instructor">
-              <div class="instructor-avatar">
-                <i class="fas fa-user"></i>
-              </div>
-              <span>Prof. </span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
             </div>
-          </div>
-
-          <!-- Example of No Classes Display -->
-          <div class="no-classes" style="display: none">
-            <i class="fas fa-coffee"></i>
-            <h3>No Classes Today</h3>
-            <p>Enjoy your holiday!</p>
-          </div>
         </div>
-      </div>
-      <!-- Schedule Grid Start End-->
 
-      <!-- Daily Fact Start-->
-      <section class="fact-section">
-        <div class="fact-container">
-          <div class="fact-header">
-            <div class="fact-icon">
-              <i class="fas fa-lightbulb"></i>
+        <div class="countdown-grid">
+            <div class="countdown-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                <div class="countdown-number">30</div>
+                <div class="countdown-label">Days</div>
             </div>
-            <h2 class="fact-title">Daily Fact</h2>
-          </div>
-          <div class="fact-content">
-            <i class="fas fa-quote-right fact-quote"></i>
-            <p class="fact-text" id="dailyFact">
-              The first electric motor was invented by Michael Faraday in 1821.
-              This groundbreaking invention laid the foundation for modern
-              electrical engineering.
-            </p>
-          </div>
-          <div class="fact-footer">
-            <span class="fact-category">
-              <i class="fas fa-tag"></i>
-              Electrical Engineering
-            </span>
-            <button
-              class="fact-refresh"
-              id="refreshFact"
-              aria-label="Refresh fact"
-            >
-              <i class="fas fa-sync-alt"></i>
-            </button>
-          </div>
+            <div class="countdown-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="countdown-number">12</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="countdown-number">45</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <div class="countdown-number">30</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
         </div>
-      </section>
-      <!-- Daily Fact End-->
 
-      <!-- Disclaimer Section Start-->
-      <section class="disclaimer-section">
-        <div class="disclaimer-container">
-          <div class="disclaimer-header">
-            <div class="disclaimer-icon">
-              <i class="fas fa-exclamation-triangle"></i>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                <i class="fas fa-paint-brush feature-icon"></i>
+                <h3 class="feature-title">Creative Design</h3>
+                <p>Crafting an intuitive and visually stunning interface that reflects our brand's excellence.</p>
             </div>
-            <h2 class="disclaimer-title">Important Notice</h2>
-          </div>
-          <div class="disclaimer-content">
-            <ul class="disclaimer-points">
-              <li>
-                <i class="fas fa-info-circle"></i>
-                <span
-                  >This is not an official organization website. The schedule is
-                  based on working day calendar and may contain errors.</span
-                >
-              </li>
-              <li>
-                <i class="fas fa-calendar-check"></i>
-                <span
-                  >For local holidays and schedule updates, please refer to the
-                  official WhatsApp group.</span
-                >
-              </li>
-              <li>
-                <i class="fas fa-user-graduate"></i>
-                <span
-                  >Regular class attendance is recommended for accurate schedule
-                  information.</span
-                >
-              </li>
-              <li>
-                <i class="fas fa-calendar-alt"></i>
-                <span
-                  >Class schedules are displayed only for the 4th Semester
-                  Electrical Engineering Dept. 2025.</span
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="disclaimer-footer">
-            <i class="fas fa-clock"></i>
-            <span
-              >Last updated:
-              <time id="lastUpdated">January 20, 2025</time></span
-            >
-          </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <i class="fas fa-code feature-icon"></i>
+                <h3 class="feature-title">Clean Code</h3>
+                <p>Building a robust foundation with efficient and maintainable code architecture.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <i class="fas fa-mobile-alt feature-icon"></i>
+                <h3 class="feature-title">Responsive Design</h3>
+                <p>Ensuring a seamless experience across all devices and screen sizes.</p>
+            </div>
         </div>
-      </section>
-      <!-- Disclaimer Section End-->
 
-      <!-- Gallery Start -->
-      <section class="gallery-section">
-        <div class="gallery-container">
-          <div class="gallery-header">
-            <h2 class="gallery-title">Academic Moments</h2>
-            <p class="gallery-subtitle">Capturing excellence in education</p>
-          </div>
-
-          <div class="gallery-slider" id="gallerySlider">
-            <div class="gallery-track" id="galleryTrack">
-              <!-- Slides will be inserted here by JavaScript -->
-            </div>
-
-            <div class="gallery-nav">
-              <button class="gallery-button prev" aria-label="Previous slide">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button class="gallery-button next" aria-label="Next slide">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-            </div>
-
-            <div class="gallery-dots" id="galleryDots">
-              <!-- Dots will be inserted here by JavaScript -->
-            </div>
-          </div>
+        <div class="social-links" data-aos="fade-up" data-aos-duration="1000">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
         </div>
-      </section>
-    </main>
-    <!-- Gallery End -->
+    </div>
 
-    <!-- Footer Start -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <i class="fas fa-graduation-cap"></i>
-              TimeIt
-            </div>
-            <p class="footer-description">
-              Elegantly designed academic schedule management system for modern
-              educational needs.
-            </p>
-            <div class="footer-social">
-              <a
-                href="https://github.com/beingdusmamud"
-                target="_blank"
-                class="social-link"
-                aria-label="GitHub"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-              <a
-                href="https://codepen.io/Dus-Mamud"
-                target="_blank"
-                class="social-link"
-                aria-label="CodePen"
-              >
-                <i class="fab fa-codepen"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/dvmx_19/"
-                target="_blank"
-                class="social-link"
-                aria-label="Instagram"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-            </div>
-          </div>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            mirror: false
+        });
 
-          <div class="footer-links">
-            <h3 class="footer-title">Quick Links</h3>
-            <ul class="footer-nav">
-              <li>
-                <a href="page/schedule.html"
-                  ><i class="fas fa-calendar-alt"></i> Schedule</a
-                >
-              </li>
-              <li>
-                <a href="page/notes.html"><i class="fas fa-book"></i> Notes</a>
-              </li>
-              <li>
-                <a href="page/faculty.html"
-                  ><i class="fas fa-user-tie"></i> Faculty</a
-                >
-              </li>
-              <li>
-                <a href="page/notice.html"
-                  ><i class="fas fa-bell"></i> Notices</a
-                >
-              </li>
-              <li>
-                <a href="page/contact.html"
-                  ><i class="fas fa-envelope"></i> Contact</a
-                >
-              </li>
-            </ul>
-          </div>
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 10 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 20) + 's';
+                particles.appendChild(particle);
+            }
+        }
 
-          <div class="footer-version">
-            <h3 class="footer-title">Version Info</h3>
-            <div class="version-info">
-              <div class="version-number">
-                <i class="fas fa-code-branch"></i>
-                Version 2.0.1
-              </div>
-              <div class="developer-info">
-                <div class="developer-avatar">
-                  <i class="fas fa-heart"></i>
-                </div>
-                <span>Made with love by Dus Mamud</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="copyright">© 2025 TimeIt. All rights reserved.</div>
-        </div>
-      </div>
-    </footer>
-    <!-- Footer End -->
-    <script src="js/main.js"></script>
-  </body>
+        createParticles();
+    </script>
+</body>
 </html>
