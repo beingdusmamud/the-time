@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>404 - Page Not Found</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap");
+
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+
+      :root {
+        --primary-bg: #ffffff;
+        --secondary-bg: #f8f9fa;
+        --primary-text: #2c3e50;
+        --secondary-text: #495057;
+        --accent-color: #b8860b;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--primary-text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        overflow-x: hidden;
+      }
+
+      .error-container {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .error-code {
+        font-family: "Playfair Display", serif;
+        font-size: 12rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, var(--accent-color), #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1;
+        margin-bottom: 1rem;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .error-message {
+        font-size: 2rem;
+        color: var(--primary-text);
+        margin-bottom: 1.5rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .error-description {
+        font-size: 1.1rem;
+        color: var(--secondary-text);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 3rem;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background: var(--accent-color);
+        color: white;
+        border: 2px solid var(--accent-color);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary-text);
+        border: 2px solid var(--accent-color);
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-primary:hover {
+        background: #9e7609;
+        border-color: #9e7609;
+      }
+
+      .btn-secondary:hover {
+        background: var(--accent-color);
+        color: white;
+      }
+
+      .search-container {
+        max-width: 500px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border: 2px solid var(--accent-color);
+        border-radius: 50px;
+        font-size: 1rem;
+        outline: none;
+        transition: var(--transition);
+      }
+
+      .search-input:focus {
+        box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+      }
+
+      .search-btn {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .search-btn:hover {
+        background: #9e7609;
+      }
+
+      .helpful-links {
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      .links-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-text);
+      }
+
+      .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .quick-link {
+        padding: 1rem;
+        background: var(--secondary-bg);
+        border-radius: 10px;
+        text-decoration: none;
+        color: var(--primary-text);
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .quick-link:hover {
+        transform: translateY(-3px);
+        background: var(--accent-color);
+        color: white;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .error-code {
+          font-size: 8rem;
+        }
+
+        .error-message {
+          font-size: 1.5rem;
+        }
+
+        .action-buttons {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .links-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Particles Animation */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .particle {
+        position: absolute;
+        background: var(--accent-color);
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: particleFloat 20s infinite linear;
+      }
+
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <main class="error-container">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-message">Oops! Page Not Found</h2>
+      <p class="error-description">
+        The page you're looking for seems to have vanished into thin air. Don't
+        worry, even the best of us get lost sometimes.
+      </p>
+
+      <div class="action-buttons">
+        <a href="/" class="btn btn-primary">
+          <i class="fas fa-home"></i>
+          Back to Home
+        </a>
+      </div>
+    </main>
+    <script>
+      // Create floating particles
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          // Random size between 5 and 20 pixels
+          const size = Math.random() * 15 + 5;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+
+          // Random position
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+
+          // Random animation duration between 10 and 30 seconds
+          particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Initialize particles
+      createParticles();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Grade Calculator | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <link rel="stylesheet" href="../css/grade-calculator.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+
+    <main class="calculator-container">
+      <!-- Calculator Header -->
+      <div class="calculator-header">
+        <h1><i class="fas fa-chart-line"></i> Grade Calculator</h1>
+        <p>Calculate your grades and track your academic performance</p>
+      </div>
+
+      <!-- Calculator Mode Selection -->
+      <div class="calculator-mode">
+        <button class="mode-btn active" data-mode="weighted">
+          <i class="fas fa-balance-scale"></i> Weighted Grades
+        </button>
+        <button class="mode-btn" data-mode="final">
+          <i class="fas fa-graduation-cap"></i> Final Grade
+        </button>
+        <button class="mode-btn" data-mode="gpa">
+          <i class="fas fa-calculator"></i> GPA
+        </button>
+      </div>
+
+      <!-- Weighted Grade Calculator -->
+      <div class="calculator-form" id="weightedCalculator">
+        <div class="grades-list">
+          <div class="grade-header">
+            <span>Assignment</span>
+            <span>Grade (%)</span>
+            <span>Weight (%)</span>
+            <span></span>
+          </div>
+          <!-- Grade Entry Template -->
+          <div class="grade-entry">
+            <input
+              type="text"
+              class="assignment-name"
+              placeholder="Assignment Name"
+            />
+            <input
+              type="number"
+              class="grade-value"
+              placeholder="Grade"
+              min="0"
+              max="100"
+            />
+            <input
+              type="number"
+              class="weight-value"
+              placeholder="Weight"
+              min="0"
+              max="100"
+            />
+            <button class="remove-grade">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="add-grade-btn">
+          <i class="fas fa-plus"></i> Add Grade
+        </button>
+
+        <div class="total-weight">Total Weight: <span>0</span>%</div>
+
+        <button class="calculate-btn" onclick="calculateWeightedGrade()">
+          <i class="fas fa-calculator"></i> Calculate Grade
+        </button>
+
+        <div class="grade-result">
+          <div class="grade-circle">
+            <svg>
+              <circle class="bg" cx="60" cy="60" r="54"></circle>
+              <circle class="progress" cx="60" cy="60" r="54"></circle>
+            </svg>
+            <div class="grade">
+              <span class="percentage">0%</span>
+              <span class="letter">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Grade Calculator -->
+      <div class="calculator-form hidden" id="finalCalculator">
+        <div class="input-group">
+          <label>Current Grade (%)</label>
+          <input
+            type="number"
+            id="currentGrade"
+            placeholder="Enter current grade"
+            min="0"
+            max="100"
+          />
+        </div>
+
+        <div class="input-group">
+          <label>Final Weight (%)</label>
+          <input
+            type="number"
+            id="finalWeight"
+            placeholder="Enter final weight"
+            min="0"
+            max="100"
+          />
+        </div>
+
+        <div class="input-group">
+          <label>Desired Grade (%)</label>
+          <input
+            type="number"
+            id="desiredGrade"
+            placeholder="Enter desired grade"
+            min="0"
+            max="100"
+          />
+        </div>
+
+        <button class="calculate-btn" onclick="calculateFinalGrade()">
+          <i class="fas fa-calculator"></i> Calculate Required Grade
+        </button>
+
+        <div class="final-result hidden">
+          <div class="result-card">
+            <h3>Required Final Grade</h3>
+            <div class="required-grade">0%</div>
+            <p class="feasibility"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GPA Calculator -->
+      <div class="calculator-form hidden" id="gpaCalculator">
+        <div class="gpa-grid">
+          <div class="gpa-header">
+            <span>Course</span>
+            <span>Credits</span>
+            <span>Grade</span>
+            <span></span>
+          </div>
+          <!-- Course Entry Template -->
+          <div class="course-entry">
+            <input type="text" class="course-name" placeholder="Course Name" />
+            <input
+              type="number"
+              class="course-credits"
+              placeholder="Credits"
+              min="1"
+              max="6"
+            />
+            <select class="course-grade">
+              <option value="">Select Grade</option>
+              <option value="4.0">A (4.0)</option>
+              <option value="3.7">A- (3.7)</option>
+              <option value="3.3">B+ (3.3)</option>
+              <option value="3.0">B (3.0)</option>
+              <option value="2.7">B- (2.7)</option>
+              <option value="2.3">C+ (2.3)</option>
+              <option value="2.0">C (2.0)</option>
+              <option value="1.7">C- (1.7)</option>
+              <option value="1.3">D+ (1.3)</option>
+              <option value="1.0">D (1.0)</option>
+              <option value="0.0">F (0.0)</option>
+            </select>
+            <button class="remove-course">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="add-course-btn">
+          <i class="fas fa-plus"></i> Add Course
+        </button>
+
+        <button class="calculate-btn" onclick="calculateGPA()">
+          <i class="fas fa-calculator"></i> Calculate GPA
+        </button>
+
+        <div class="gpa-result hidden">
+          <div class="result-card">
+            <h3>Your GPA</h3>
+            <div class="gpa-value">0.00</div>
+            <div class="total-credits">Total Credits: 0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade Scale Reference -->
+      <div class="grade-scale">
+        <h3>Grade Scale Reference</h3>
+        <div class="scale-grid">
+          <div class="scale-item">
+            <span class="grade-letter">A</span>
+            <span class="grade-range">90-100%</span>
+            <span class="grade-points">4.0</span>
+          </div>
+          <div class="scale-item">
+            <span class="grade-letter">A-</span>
+            <span class="grade-range">87-89%</span>
+            <span class="grade-points">3.7</span>
+          </div>
+          <div class="scale-item">
+            <span class="grade-letter">B+</span>
+            <span class="grade-range">83-86%</span>
+            <span class="grade-points">3.3</span>
+          </div>
+          <!-- Add more grade scales -->
+        </div>
+      </div>
+
+      <!-- Explore Tools Section -->
+      <section class="explore-tools">
+        <h2>Explore More Tools</h2>
+        <div class="tools-grid">
+          <a href="../tools/attendance-calculator" class="tool-card">
+            <i class="fas fa-user-check"></i>
+            <h3>Attendance Calculator</h3>
+            <p>Track your attendance</p>
+          </a>
+          <a href="../tools/cgpa-calculator" class="tool-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>CGPA Calculator</h3>
+            <p>Calculate your CGPA</p>
+          </a>
+          <a href="../tools/percentage-calculator" class="tool-card">
+            <i class="fas fa-percent"></i>
+            <h3>Percentage Calculator</h3>
+            <p>Calculate percentages</p>
+          </a>
+        </div>
+      </section>
+      <section class="calculator-faqs">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-subtitle">Common questions about the Grade Calculator</p>
+
+        <div class="faq-container">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How does the weighted grade calculator work?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The weighted grade calculator works by:</p>
+              <ol>
+                <li>Multiplying each grade by its weight percentage</li>
+                <li>Adding all these weighted grades together</li>
+                <li>Dividing by the total weight</li>
+              </ol>
+              <p>For example:</p>
+              <ul>
+                <li>Quiz (80%) with 30% weight = 24 points</li>
+                <li>Project (90%) with 70% weight = 63 points</li>
+                <li>Final weighted grade = 87%</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I calculate what grade I need on my final?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To calculate your required final grade:</p>
+              <ol>
+                <li>Enter your current grade in the course</li>
+                <li>Input the weight of the final exam</li>
+                <li>Enter your desired final course grade</li>
+              </ol>
+              <p>
+                The calculator will show what grade you need on the final to
+                achieve your desired course grade.
+              </p>
+              <p class="note">
+                Note: If the required grade is over 100%, it means your desired
+                grade is not achievable.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What's the difference between GPA and letter grades?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Here's the standard conversion scale:</p>
+              <ul>
+                <li>A (93-100%) = 4.0 GPA</li>
+                <li>A- (90-92%) = 3.7 GPA</li>
+                <li>B+ (87-89%) = 3.3 GPA</li>
+                <li>B (83-86%) = 3.0 GPA</li>
+                <li>B- (80-82%) = 2.7 GPA</li>
+                <li>C+ (77-79%) = 2.3 GPA</li>
+                <li>C (73-76%) = 2.0 GPA</li>
+              </ul>
+              <p class="note">Note: This scale may vary by institution.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span
+                >How do I determine assignment weights if not provided?</span
+              >
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>When weights aren't provided, you can:</p>
+              <ol>
+                <li>Check your course syllabus for grading breakdowns</li>
+                <li>
+                  Divide 100% by the number of assignments if all are equal
+                  weight
+                </li>
+                <li>
+                  Assign weights based on the assignment's point value relative
+                  to total points
+                </li>
+              </ol>
+              <p>Example for point-based weighting:</p>
+              <pre>
+Assignment Weight = (Assignment Points ÷ Total Course Points) × 100</pre
+              >
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Why isn't my total weight adding up to 100%?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Common reasons for weight discrepancies:</p>
+              <ul>
+                <li>Missing assignments not yet entered</li>
+                <li>Rounding errors in individual weights</li>
+                <li>Incorrect weight distribution</li>
+              </ul>
+              <p class="warning">
+                All weights should total exactly 100% for accurate grade
+                calculation.
+              </p>
+              <p>
+                Use the running total displayed above the calculate button to
+                verify your weights.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How can I calculate my semester GPA?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To calculate semester GPA:</p>
+              <ol>
+                <li>Enter each course's credit hours</li>
+                <li>Select the letter grade earned</li>
+                <li>The calculator will:</li>
+                <ul>
+                  <li>Multiply each course's credits by grade points</li>
+                  <li>Add all these products together</li>
+                  <li>Divide by total credit hours</li>
+                </ul>
+              </ol>
+              <p class="tip">
+                Tip: Don't include courses taken Pass/Fail in GPA calculations.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I save my grade calculations?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>
+                While the calculator doesn't store data permanently, you can:
+              </p>
+              <ul>
+                <li>Screenshot your calculations</li>
+                <li>Print the page using browser's print function</li>
+                <li>Keep track in a separate spreadsheet</li>
+              </ul>
+              <p class="note">
+                For privacy reasons, all calculations are cleared when you
+                refresh the page.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+
+    <script src="../js/grade-calculator.js"></script>
+  </body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>PYQs | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/pyqs.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+
+    <div class="container">
+      <div class="filters-section" data-aos="fade-down">
+        <div class="filters">
+          <div class="filter-group">
+            <label class="filter-label">Select Year</label>
+            <select class="filter-select" id="yearFilter">
+              <option value="">All Years</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">Select Semester</label>
+            <select class="filter-select" id="semesterFilter">
+              <option value="">All Semesters</option>
+              <option value="1">1st Semester</option>
+              <option value="2">2nd Semester</option>
+              <option value="3">3rd Semester</option>
+              <option value="4">4th Semester</option>
+              <option value="5">5th Semester</option>
+              <option value="6">6th Semester</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">Select Subject</label>
+            <select class="filter-select" id="subjectFilter">
+              <option value="">All Subjects</option>
+              <option value="Maths">Maths</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="EED">EED</option>
+              <option value="PEE">PEE</option>
+              <option value="EME">EME</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add this after the filters-section div and before the pyq-grid -->
+      <div class="notice-section" data-aos="fade-up">
+        <i class="fas fa-info-circle"></i>
+        <p>All PYQs are for the Electrical Engineering Department</p>
+      </div>
+
+      <div class="pyq-grid" id="pyqGrid">
+        <!-- Sample PYQ Cards - Add more as needed -->
+      </div>
+    </div>
+
+    <!-- Add this after the pyq-grid div -->
+
+    <div class="faq-section" data-aos="fade-up">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How to download Previous Year Question Papers?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Simply click on the "Download PDF" button on any question paper
+              card. The PDF will either open in a new tab or start downloading
+              automatically, depending on your browser settings.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are all semester papers available?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Yes, we provide question papers for all six semesters of
+              Electrical Engineering. Use the semester filter to find papers for
+              your specific semester.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How often are new papers added?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              New papers are added within 1-2 weeks after each examination. We
+              ensure to provide both mid-term and end-term examination papers.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Why can't I find a specific year's paper?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              While we strive to provide all papers, some might be unavailable
+              due to various reasons. If you're looking for a specific paper,
+              please contact us, and we'll try to help you find it.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are solution keys available with the question papers?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Currently, we provide only question papers. Solution keys or
+              answer sheets are not available due to university policies.
+              However, you can consult with your faculty for solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What file format are the papers in?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              All papers are provided in PDF format for easy viewing and
+              printing. Make sure you have a PDF reader installed on your
+              device.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+
+    <script src="../js/pyqs.js"></script>
+  </body>
+</html>

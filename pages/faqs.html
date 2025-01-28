@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>FAQs | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <link rel="stylesheet" href="../css/faqs.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+    <main class="faq-container">
+      <!-- FAQ Header Section -->
+      <section class="faq-header">
+        <h1>Frequently Asked Questions</h1>
+        <p class="faq-description">
+          Find answers to common questions about our academic portal and
+          services.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="faq-search">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="faqSearch"
+            placeholder="Search frequently asked questions..."
+          />
+        </div>
+
+        <!-- Quick Categories -->
+        <div class="faq-categories">
+          <button class="category-btn active" data-category="all">
+            <i class="fas fa-th-large"></i>
+            <span>All</span>
+          </button>
+          <button class="category-btn" data-category="general">
+            <i class="fas fa-info-circle"></i>
+            <span>General</span>
+          </button>
+          <button class="category-btn" data-category="academic">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Academic</span>
+          </button>
+          <button class="category-btn" data-category="technical">
+            <i class="fas fa-laptop-code"></i>
+            <span>Technical</span>
+          </button>
+          <button class="category-btn" data-category="support">
+            <i class="fas fa-headset"></i>
+            <span>Support</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- FAQ Content Section -->
+      <section class="faq-content">
+        <!-- General FAQs -->
+        <!-- Inside the faq-group div -->
+        <div class="faq-group" data-category="general">
+          <h2><i class="fas fa-info-circle"></i> General Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I create an account?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To create an account:</p>
+              <ol>
+                <li>Click on the "Sign Up" button in the top right corner</li>
+                <li>Fill in your academic email address</li>
+                <li>Complete the registration form</li>
+                <li>Verify your email address</li>
+                <li>Log in to access all features</li>
+              </ol>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I reset my password?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To reset your password:</p>
+              <ol>
+                <li>Click on "Forgot Password" on the login page</li>
+                <li>Enter your registered email address</li>
+                <li>Check your email for reset instructions</li>
+                <li>Click the reset link and create a new password</li>
+              </ol>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What are the system requirements?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Minimum system requirements:</p>
+              <ul>
+                <li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+                <li>JavaScript enabled</li>
+                <li>Stable internet connection</li>
+                <li>Screen resolution: 1280x720 or higher</li>
+                <li>PDF viewer for documents</li>
+              </ul>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic FAQs -->
+        <div class="faq-group" data-category="academic">
+          <h2><i class="fas fa-graduation-cap"></i> Academic Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I access course materials?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To access course materials:</p>
+              <ol>
+                <li>Log in to your account</li>
+                <li>Navigate to "My Courses"</li>
+                <li>Select the desired course</li>
+                <li>Click on "Course Materials" tab</li>
+                <li>Download or view materials online</li>
+              </ol>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical FAQs -->
+        <div class="faq-group" data-category="technical">
+          <h2><i class="fas fa-laptop-code"></i> Technical Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Why won't my files upload?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Common upload issues and solutions:</p>
+              <ul>
+                <li>Check file size (max 50MB)</li>
+                <li>Ensure supported file format</li>
+                <li>Check internet connection</li>
+                <li>Clear browser cache</li>
+                <li>Try a different browser</li>
+              </ul>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Support FAQs -->
+        <div class="faq-group" data-category="support">
+          <h2><i class="fas fa-headset"></i> Support Questions</h2>
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I contact support?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>You can contact support through:</p>
+              <ul>
+                <li>Live Chat: Available 24/7 (Not Active Yet)</li>
+                <li>Email: dusinfinity@gmail.com</li>
+                <li>Phone: N/A</li>
+                <li>Help Desk: Contact Page</li>
+              </ul>
+              <div class="faq-helpful">
+                <p>Was this answer helpful?</p>
+                <div class="helpful-btns">
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-up"></i> Yes
+                  </button>
+                  <button class="helpful-btn">
+                    <i class="fas fa-thumbs-down"></i> No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Help Section -->
+        <aside class="quick-help">
+          <h3>Need More Help?</h3>
+          <div class="help-options">
+            <a href="https://www.instagram.com/dvmx_19/" class="help-card">
+              <i class="fas fa-comments"></i>
+              <h4>Live Chat</h4>
+              <p>Chat with our support team</p>
+            </a>
+            <a href="mailto:dusinfinity@gmail.com" class="help-card">
+              <i class="fas fa-envelope"></i>
+              <h4>Email Support</h4>
+              <p>Get help via email</p>
+            </a>
+            <a href="mailto:dusinfinity@gmail.com" class="help-card">
+              <i class="fas fa-phone"></i>
+              <h4>Phone Support</h4>
+              <p>Call our helpline</p>
+            </a>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+
+    <script src="../js/faqs.js"></script>
+  </body>
+</html>

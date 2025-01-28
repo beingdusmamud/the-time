@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes | TimeIt</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <link rel="stylesheet" href="css/notes.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+
+    <div class="container">
+      <div class="filters-container" data-aos="fade-down">
+        <h2 class="filters-title">Notes Library</h2>
+        <div class="filters">
+          <div class="filter-group">
+            <label class="filter-label">Search Notes</label>
+            <input
+              type="text"
+              class="filter-input"
+              placeholder="Type to search..."
+              id="searchInput"
+            />
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">Category</label>
+            <select class="filter-input" id="categoryFilter">
+              <option value="">All Notes</option>
+              <option value="em-l">EM-l</option>
+              <option value="enc">ENC</option>
+              <option value="eedd">EEDD</option>
+              <option value="eem">EEM</option>
+              <option value="de">DE</option>
+              <option value="eem">EEM</option>
+              <option value="Electrical Engineering">
+                Electrical Engineering
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Add this section right after the filters-container and before the notes-grid -->
+      <div class="notice-section" data-aos="fade-up">
+        <div class="notice-icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="notice-content">
+          <h3>Course Information</h3>
+          <p>
+            These notes cover electrical engineering fundamentals, polytechnic
+            coursework 4th Sem, and basic electrical concepts.
+          </p>
+        </div>
+      </div>
+      <div class="notes-grid">
+        <!-- Notes 1 -->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2Ff27f38a7-3630-4a50-b294-ab9dc105c894.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">Ohm's Law & Circuit Basics</h3>
+            <p class="note-description truncate">
+              This comprehensive guide covers the fundamental principles of
+              electrical circuits and Ohm's Law, serving as an essential
+              foundation for electrical engineering studies. Starting with the
+              basic relationship between voltage (V), current (I), and
+              resistance (R), these notes delve into both theoretical concepts
+              and practical applications. Key topics include detailed
+              explanations of series and parallel circuits, voltage dividers,
+              current dividers, and Kirchhoff's laws. The material includes
+              step-by-step problem-solving techniques for complex circuits, with
+              multiple worked examples demonstrating real-world applications.
+              Special attention is given to power calculations, including
+              apparent power, real power, and reactive power in AC circuits. The
+              notes also cover essential circuit analysis techniques such as
+              mesh analysis, nodal analysis, and Thévenin's/Norton's theorems,
+              complete with detailed derivations and practical examples.
+              Students will find comprehensive sections on measuring
+              instruments, including proper usage of multimeters, oscilloscopes,
+              and power analyzers. Advanced topics include temperature effects
+              on resistance, non-linear components, and initial condition
+              analysis in circuits with capacitors and inductors. The material
+              also addresses common misconceptions in circuit analysis and
+              provides troubleshooting guidelines for practical circuit
+              implementation. Practical laboratory exercises are included, with
+              detailed procedures for circuit construction, measurement
+              techniques, and safety protocols. Additional sections cover
+              semiconductor basics, introducing diodes and transistors in basic
+              circuits. The notes conclude with real-world applications in
+              household electrical systems, automotive electrical systems, and
+              basic electronic devices. Each topic is supplemented with practice
+              problems, solutions, and quick reference charts for common circuit
+              configurations and formulas. Special focus is given to safety
+              considerations and proper handling of electrical equipment,
+              including grounding principles and isolation techniques.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!--Notes 1A-->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2F500eeb20-4eb2-4c90-bd17-77fc0403893b.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">AC vs. DC Circuits</h3>
+            <p class="note-description truncate">
+              This comprehensive guide provides an in-depth comparison and
+              analysis of AC (Alternating Current) and DC (Direct Current)
+              circuits, covering fundamental principles through advanced
+              applications. The material begins with the basic definitions and
+              characteristics of AC and DC, including detailed explanations of
+              voltage, current, and power relationships in both systems. DC
+              circuit analysis is thoroughly covered, starting with basic
+              resistance calculations, series-parallel combinations, and network
+              theorems including Kirchhoff's Laws, Thevenin's Theorem, Norton's
+              Theorem, and Superposition Principle, all supported by practical
+              examples and problem-solving techniques. The AC circuit portion
+              extensively covers sinusoidal analysis, including peak values, RMS
+              values, average values, and phase relationships, with detailed
+              mathematical derivations and graphical representations. Complex
+              number mathematics is thoroughly explained, including rectangular
+              and polar forms, with specific applications to AC circuit
+              calculations. The notes provide comprehensive coverage of
+              essential AC circuit elements, including detailed analysis of
+              inductors and capacitors, their behavior in DC steady state versus
+              AC conditions, and transient responses. Impedance and admittance
+              concepts are extensively covered, including detailed calculations
+              for series and parallel RLC circuits, resonance phenomena, and
+              power factor correction techniques. The material includes in-depth
+              analysis of three-phase systems, including wye and delta
+              configurations, balanced and unbalanced loads, and power
+              calculations in three-phase circuits. Power analysis in both AC
+              and DC systems is thoroughly examined, including real power,
+              reactive power, apparent power, and power factor considerations,
+              with practical examples from industrial applications. Special
+              attention is given to frequency response analysis, including Bode
+              plots, filter design, and bandwidth calculations for both AC and
+              DC applications. Transformer theory is comprehensively covered,
+              including ideal and practical transformers, equivalent circuits,
+              and applications in both power systems and electronic circuits.
+              The notes include detailed sections on measuring instruments and
+              techniques specific to AC and DC measurements, including
+              multimeters, oscilloscopes, power analyzers, and safety
+              considerations. Practical applications are extensively discussed,
+              including residential electrical systems, industrial power
+              distribution, electronic power supplies, and renewable energy
+              systems. Power quality issues are addressed, including harmonics
+              analysis, total harmonic distortion (THD), and mitigation
+              techniques in both AC and DC systems. The material covers modern
+              applications like DC microgrids, high-voltage DC transmission
+              (HVDC), and hybrid AC-DC systems in renewable energy integration.
+              Special sections focus on energy efficiency, including losses in
+              AC versus DC systems, conversion efficiency, and optimization
+              techniques. Advanced topics include non-linear circuit elements,
+              their behavior in AC and DC circuits, and analysis techniques for
+              non-sinusoidal waveforms. The notes include comprehensive
+              problem-solving strategies, with numerous worked examples and
+              practice problems covering both AC and DC circuit analysis.
+              Additional sections cover emerging technologies in power
+              electronics, including AC-DC conversion techniques, inverters, and
+              smart grid applications. Safety considerations are thoroughly
+              addressed, including grounding principles, isolation requirements,
+              and protection systems for both AC and DC installations.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!--Notes 1B-->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2F9fe5950b-6aca-40de-b006-5d330e845201.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">
+              Electronic Components: From Basics to Advanced Applications
+            </h3>
+            <p class="note-description truncate">
+              This comprehensive guide provides an extensive exploration of
+              electronic components, covering their fundamental principles,
+              characteristics, and applications in modern electronic systems.
+              The material begins with passive components, providing detailed
+              analysis of resistors, including fixed resistors, variable
+              resistors, thermistors, and photoresistors, with focus on
+              temperature coefficients, power ratings, and tolerance
+              specifications. Capacitor types are thoroughly examined, including
+              ceramic, electrolytic, tantalum, film, and supercapacitors, with
+              detailed discussions on dielectric materials, voltage ratings,
+              equivalent series resistance (ESR), and lifetime considerations.
+              The inductors section covers various types including air-core,
+              iron-core, and ferrite-core inductors, with comprehensive analysis
+              of inductance calculations, quality factor, and core loss
+              mechanisms. Semiconductor components are extensively covered,
+              starting with diode theory and including detailed analysis of
+              rectifier diodes, Zener diodes, light-emitting diodes (LEDs),
+              photodiodes, and Schottky diodes, with practical applications in
+              power supplies and signal processing circuits. Transistor coverage
+              includes both bipolar junction transistors (BJTs) and field-effect
+              transistors (FETs), with comprehensive analysis of their operating
+              principles, biasing techniques, small-signal models, and
+              large-signal behavior. Special attention is given to power
+              semiconductor devices, including power MOSFETs, IGBTs, and
+              thyristors, with detailed discussions of switching
+              characteristics, safe operating areas, and thermal management
+              considerations. The integrated circuits section covers operational
+              amplifiers, voltage regulators, analog-to-digital converters
+              (ADCs), digital-to-analog converters (DACs), and microcontrollers,
+              including practical application circuits and design
+              considerations. Electromagnetic components are thoroughly
+              examined, including transformers, relays, solenoids, and motors,
+              with detailed analysis of core materials, winding techniques, and
+              efficiency calculations. The material includes comprehensive
+              coverage of display technologies, including LCD, LED, OLED
+              displays, and seven-segment displays, with interface circuits and
+              driving techniques. Sensor components are extensively covered,
+              including temperature sensors, pressure sensors, motion sensors,
+              and optical sensors, with signal conditioning circuits and
+              practical applications. Special sections focus on RF components,
+              including antennas, filters, mixers, and oscillators, with
+              applications in communication systems. The notes provide detailed
+              guidelines for component selection, including reliability
+              considerations, environmental factors, and cost-performance
+              trade-offs. Practical sections cover PCB design considerations,
+              including component placement, thermal management, EMI/EMC
+              considerations, and manufacturing constraints. Advanced topics
+              include emerging component technologies such as MEMS devices,
+              quantum devices, and photonic components. The material includes
+              detailed troubleshooting guides for common component failures,
+              including testing procedures and diagnostic techniques. Special
+              attention is given to component specifications and datasheets,
+              teaching students how to interpret and apply technical
+              documentation effectively. The notes include sections on component
+              testing and measurement techniques, including use of
+              oscilloscopes, multimeters, and specialized test equipment.
+              Additional coverage includes component packaging technologies,
+              surface mount technology (SMT), and through-hole technology, with
+              practical assembly guidelines. The material concludes with future
+              trends in electronic components, including miniaturization,
+              integration, and sustainable technologies.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes 2-->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2F54cf41e2-b9d0-49a6-82b7-1df06191a808.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">Power Electronics & Motor Control</h3>
+            <p class="note-description truncate">
+              This comprehensive guide covers advanced concepts in power
+              electronics and electric motor control systems, providing an
+              in-depth exploration of both theoretical principles and practical
+              applications. Starting with fundamental principles of power
+              semiconductor devices, these notes provide detailed analysis of
+              MOSFETs, IGBTs, and thyristors in switching applications,
+              including their characteristics, driving requirements, and
+              protection circuits. The material extensively covers DC-DC
+              converters, including buck, boost, buck-boost, Ćuk, and SEPIC
+              topologies, with detailed mathematical analysis, design
+              considerations, and control strategies. AC-DC rectifiers are
+              thoroughly examined, from simple diode rectifiers to advanced PWM
+              rectifiers with power factor correction capabilities. DC-AC
+              inverters are presented with various modulation techniques,
+              including sine PWM, space vector modulation, and selective
+              harmonic elimination. The notes delve into both single-phase and
+              three-phase power systems, covering power factor correction,
+              harmonics analysis, and electromagnetic interference (EMI)
+              considerations with practical mitigation techniques. The motor
+              control sections provide comprehensive coverage of various motor
+              types, including DC motors, AC induction motors, permanent magnet
+              synchronous motors (PMSM), and brushless DC motors, with detailed
+              mathematical models and equivalent circuits. Advanced control
+              strategies are thoroughly explained, including vector control,
+              field-oriented control (FOC), direct torque control (DTC), and
+              sensorless control techniques, complete with implementation
+              guidelines and practical considerations. Special attention is
+              given to practical implementation aspects, including sensor
+              interfaces, feedback control systems, and protection circuits,
+              with real-world examples and troubleshooting guidelines. The
+              material includes detailed design considerations for thermal
+              management, including heatsink calculations, thermal modeling, and
+              cooling system design. Snubber circuits and gate drive circuits
+              are covered with practical design examples and component selection
+              guidelines. Real-world applications are extensively discussed,
+              covering industrial automation, electric vehicles, renewable
+              energy systems, and smart grid technologies, with case studies and
+              design examples. Each topic is supplemented with practical
+              laboratory exercises and simulation examples using
+              industry-standard software like MATLAB/Simulink, PLECS, and
+              LTspice. The notes address efficiency optimization techniques,
+              including soft-switching topologies, synchronous rectification,
+              and loss analysis. Reliability considerations and safety standards
+              in power electronic systems are covered in detail, including
+              regulatory requirements and testing procedures. Advanced sections
+              provide in-depth coverage of digital control implementation using
+              microcontrollers and DSPs, including software development,
+              debugging techniques, and optimization strategies. Communication
+              protocols for motor drives are explained, including industrial
+              standards like Modbus, CANbus, and EtherCAT. The material includes
+              detailed case studies examining industrial applications, including
+              variable frequency drives, servo systems, and regenerative braking
+              systems, with performance analysis and optimization techniques.
+              Special sections cover emerging technologies in power electronics,
+              including wide-bandgap semiconductors (SiC and GaN), advanced
+              magnetic materials, and novel converter topologies. The notes
+              conclude with future trends and developments in power electronics
+              and motor control, including the impact of artificial intelligence
+              and Internet of Things (IoT) integration.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!--Notes 2A-->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2Fbf331f28-2421-4299-8c37-c018b9511ebb.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">
+              Measurement Tools & Instrumentation Techniques
+            </h3>
+            <p class="note-description truncate">
+              This comprehensive guide explores electrical measurement tools and
+              instrumentation techniques, covering both fundamental principles
+              and advanced applications in modern electrical engineering. The
+              material begins with basic measurement concepts, including
+              accuracy, precision, resolution, sensitivity, and error analysis,
+              providing a solid foundation for understanding measurement
+              uncertainties and calibration requirements. Digital multimeters
+              (DMMs) are extensively covered, including detailed explanations of
+              voltage, current, and resistance measurement techniques,
+              autoranging functionality, true RMS measurements, and advanced
+              features like frequency counting and temperature measurement. The
+              oscilloscope section provides comprehensive coverage of both
+              analog and digital oscilloscopes, including detailed discussion of
+              bandwidth, sampling rates, triggering methods, probe types, and
+              advanced measurement techniques such as FFT analysis and protocol
+              decoding. Signal generators are thoroughly examined, covering
+              function generators, arbitrary waveform generators, and RF signal
+              generators, with detailed explanations of modulation techniques,
+              sweep functions, and signal integrity considerations. Power
+              analysis tools are extensively covered, including power quality
+              analyzers, power factor meters, and energy meters, with detailed
+              discussion of harmonic analysis, transient capture, and
+              three-phase power measurements. The spectrum analyzer portion
+              includes comprehensive coverage of both swept-tuned and FFT-based
+              analyzers, including resolution bandwidth, video bandwidth,
+              tracking generators, and practical applications in EMC testing and
+              RF measurements. Network analyzers are thoroughly explored,
+              covering vector network analyzers (VNAs) and scalar network
+              analyzers (SNAs), with detailed explanation of S-parameters, Smith
+              charts, and impedance measurements. Special attention is given to
+              logic analyzers and protocol analyzers, including timing analysis,
+              state analysis, and bus protocol decoding, with applications in
+              digital system debugging and verification. The material includes
+              detailed coverage of specialized measurement tools such as LCR
+              meters, frequency counters, phase meters, and distortion
+              analyzers, with practical measurement techniques and application
+              examples. Data acquisition systems are comprehensively covered,
+              including ADC architectures, sampling theory, multiplexing
+              techniques, and data logging considerations. The notes provide
+              extensive coverage of sensor interfaces and signal conditioning
+              techniques, including amplification, filtering, isolation, and
+              noise reduction methods. Calibration procedures are thoroughly
+              explained, including traceability, uncertainty calculations, and
+              practical calibration techniques for various instruments.
+              Environmental considerations are addressed, including temperature
+              effects, EMI/RFI interference, grounding techniques, and shielding
+              methods for accurate measurements. The material includes detailed
+              sections on automated test equipment (ATE), including IEEE-488
+              (GPIB) and modern interfaces like USB and LAN-based
+              instrumentation. Special sections focus on measurements in
+              hazardous environments, including safety considerations, isolation
+              requirements, and intrinsically safe instrumentation. The notes
+              include comprehensive coverage of virtual instrumentation,
+              including LabVIEW programming, data acquisition cards, and
+              software-defined instrumentation. Advanced topics include
+              time-domain reflectometry (TDR), vector signal analysis, and
+              modern measurement techniques for high-speed digital systems. The
+              material provides detailed guidelines for measurement system
+              design, including sensor selection, signal conditioning, and data
+              acquisition architecture. Practical troubleshooting techniques are
+              covered, including common measurement errors, interference
+              identification, and problem-solving methodologies. Additional
+              sections cover emerging technologies in measurement science,
+              including quantum sensing, distributed sensor networks, and
+              IoT-based measurement systems.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes 3-->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2F8a84e89f-7b5c-4ac3-96ce-97895cf39e94.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">
+              Digital Signal Processing & Communication Systems
+            </h3>
+            <p class="note-description truncate">
+              This comprehensive guide provides an extensive exploration of
+              digital signal processing (DSP) and communication systems,
+              covering both theoretical foundations and practical
+              implementations in modern telecommunications. The material begins
+              with fundamental concepts of discrete-time signals and systems,
+              including detailed analysis of sampling theory, quantization
+              effects, and the Z-transform. Advanced topics in DSP include
+              comprehensive coverage of digital filter design, both FIR and IIR,
+              with practical implementation considerations and optimization
+              techniques. The notes extensively cover Fast Fourier Transform
+              (FFT) algorithms, including radix-2, radix-4, and split-radix
+              implementations, along with practical considerations for spectral
+              analysis and windowing techniques. Special attention is given to
+              adaptive signal processing, including detailed coverage of
+              adaptive filters, LMS and RLS algorithms, and their applications
+              in noise cancellation and system identification. The communication
+              systems portion begins with fundamental principles of analog and
+              digital modulation techniques, including comprehensive analysis of
+              AM, FM, PSK, QAM, and OFDM systems. Channel coding and error
+              correction techniques are thoroughly explored, including block
+              codes, convolutional codes, turbo codes, and LDPC codes, with
+              practical encoding and decoding implementations. The material
+              covers modern wireless communication standards, including detailed
+              analysis of 4G LTE and 5G NR systems, exploring their physical
+              layer structures, frame formats, and resource allocation
+              mechanisms. Advanced topics include MIMO systems, beamforming
+              techniques, and space-time coding, with mathematical analysis and
+              practical implementation considerations. Digital receiver design
+              is extensively covered, including synchronization techniques,
+              channel estimation, and equalization methods, with practical
+              considerations for hardware implementation. The notes include
+              detailed sections on software-defined radio (SDR) architecture and
+              implementation, covering both hardware platforms and software
+              frameworks like GNU Radio. Communication security aspects are
+              addressed, including encryption techniques, spread spectrum
+              systems, and physical layer security mechanisms. Practical
+              laboratory exercises include real-time DSP implementation using
+              modern processors, communication system simulation using
+              industry-standard tools, and actual wireless system implementation
+              using SDR platforms. The material includes extensive coverage of
+              signal processing algorithms for specific applications, including
+              audio processing, image processing, and biomedical signal
+              analysis. Advanced sections cover emerging technologies like
+              artificial intelligence in communications, cognitive radio
+              systems, and quantum communications. Network aspects of modern
+              communication systems are addressed, including protocols, quality
+              of service mechanisms, and network planning considerations.
+              Special attention is given to practical implementation challenges,
+              including fixed-point arithmetic considerations, real-time
+              processing constraints, and hardware resource optimization. The
+              notes include detailed case studies of commercial communication
+              systems, emerging standards, and future trends in wireless
+              communications. Additional sections cover RF system design,
+              including antenna systems, power amplifiers, and RF front-end
+              considerations. The material concludes with comprehensive coverage
+              of testing and measurement techniques for communication systems,
+              including spectrum analysis, bit error rate testing, and system
+              performance verification.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes 4-->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2F02393da5-5271-47e8-a49c-1ce9801707d5.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">Control Systems & Industrial Automation</h3>
+            <p class="note-description truncate">
+              This comprehensive guide presents an in-depth exploration of
+              control systems engineering and industrial automation, covering
+              both classical and modern control theory alongside practical
+              implementation strategies. The material begins with fundamental
+              concepts of feedback control systems, including detailed
+              mathematical modeling of electrical, mechanical, and
+              electromechanical systems using transfer functions and state-space
+              representations. Extensive coverage is given to system response
+              analysis, including time-domain and frequency-domain methods, with
+              detailed examination of stability criteria, root locus techniques,
+              and Bode plot analysis. The notes delve deep into PID controller
+              design and tuning methodologies, including Ziegler-Nichols
+              methods, Cohen-Coon tuning rules, and modern adaptive tuning
+              techniques, with practical considerations for implementation in
+              industrial settings. Advanced control strategies are thoroughly
+              examined, including state feedback control, optimal control
+              theory, and robust control systems, with mathematical derivations
+              and practical design examples. Special attention is given to
+              digital control system implementation, covering discrete-time
+              analysis, Z-transform applications, and digital controller design
+              techniques. The industrial automation portion includes
+              comprehensive coverage of programmable logic controllers (PLCs),
+              including ladder logic programming, structured text, function
+              blocks, and sequential function charts, with numerous practical
+              examples from various industries. SCADA systems are extensively
+              covered, including system architecture, communication protocols,
+              human-machine interface (HMI) design, and security considerations.
+              The material includes detailed sections on industrial
+              communication networks, covering fieldbus technologies, Industrial
+              Ethernet protocols, and wireless sensor networks used in modern
+              manufacturing environments. Process instrumentation is thoroughly
+              explored, including various types of sensors, actuators, and
+              signal conditioning techniques, with practical guidelines for
+              selection and implementation. Advanced topics include motion
+              control systems, covering servo motors, stepper motors, and their
+              associated control algorithms, with real-world applications in
+              robotics and automation. The notes provide comprehensive coverage
+              of industrial safety systems, including safety PLCs, emergency
+              shutdown systems, and risk assessment methodologies compliant with
+              international standards. Machine vision systems are detailed,
+              including image processing algorithms, camera types, lighting
+              techniques, and integration with control systems. Industrial IoT
+              (IIoT) concepts are extensively covered, including edge computing,
+              cloud integration, and data analytics for predictive maintenance
+              and process optimization. The material includes detailed case
+              studies from various industries, including manufacturing, process
+              control, and building automation systems. Advanced sections cover
+              emerging technologies like artificial intelligence in control
+              systems, adaptive control strategies, and fuzzy logic controllers.
+              Special attention is given to system integration challenges,
+              including hardware selection, software architecture, and project
+              management methodologies for automation projects. The notes
+              include practical guidelines for troubleshooting control systems,
+              including systematic approaches to identifying and resolving
+              common issues in industrial settings. Energy management systems
+              are covered, including demand control, power monitoring, and
+              efficiency optimization strategies for industrial facilities. The
+              material concludes with future trends in automation, including
+              concepts of Industry 4.0, digital twins, and autonomous systems.
+              Additional sections cover compliance with industrial standards,
+              including ISA-88, ISA-95, and IEC 61131 for control system
+              implementation.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes 5-->
+        <div class="note-card" data-aos="fade-up">
+          <div class="note-thumbnail-container">
+            <img
+              src="https://storage.googleapis.com/dall-e-images/AQHjTs5oQqOgWxxIs1o2NVT7AKH3%2F9b5a2074-0df2-4927-b9c2-97674d3074a5.png"
+              alt="Note thumbnail"
+              class="note-thumbnail"
+            />
+          </div>
+          <div class="note-content">
+            <span class="note-category">Electrical Engineering</span>
+            <h3 class="note-title">
+              Electromagnetic Fields & Microwave Engineering
+            </h3>
+            <p class="note-description truncate">
+              This comprehensive guide covers fundamental principles and
+              advanced concepts of electromagnetic fields and microwave
+              engineering, specifically structured for fourth-semester
+              electrical engineering students. The material begins with a
+              thorough review of vector calculus essentials, including detailed
+              discussions of gradient, divergence, curl, and Stokes' theorem
+              with practical engineering applications. Maxwell's equations are
+              extensively covered, starting from their integral forms to
+              differential forms, with detailed physical interpretations and
+              engineering significance of each equation. The notes provide
+              in-depth analysis of electromagnetic wave propagation in different
+              media, including perfect dielectrics, lossy media, and conductors,
+              with mathematical derivations and practical examples. Special
+              attention is given to boundary conditions and interface phenomena,
+              including reflection and refraction of electromagnetic waves at
+              different material interfaces. The transmission line theory
+              section covers distributed parameter analysis, including detailed
+              treatment of the telegrapher's equations, wave propagation on
+              transmission lines, impedance matching techniques, and Smith chart
+              applications with numerous solved examples. The microwave portion
+              includes comprehensive coverage of waveguides, including
+              rectangular and circular waveguides, with detailed field pattern
+              analysis, mode charts, and cutoff frequency calculations.
+              Microwave resonators are thoroughly examined, including cavity
+              resonators, dielectric resonators, and their applications in
+              filter design and oscillator circuits. The material includes
+              detailed analysis of microwave network parameters, including
+              impedance parameters, admittance parameters, and scattering
+              parameters, with practical measurement techniques and network
+              analyzer operations. Microwave components are extensively covered,
+              including detailed operation principles and design considerations
+              for directional couplers, circulators, isolators, attenuators, and
+              phase shifters. Special sections focus on microwave solid-state
+              devices, including detailed coverage of microwave transistors, PIN
+              diodes, Schottky diodes, and their applications in microwave
+              circuits. The notes include comprehensive coverage of microwave
+              measurements, including power measurements, frequency
+              measurements, and impedance measurements, with practical
+              laboratory procedures and safety considerations. Advanced topics
+              include microstrip transmission lines, including design equations,
+              impedance calculations, and practical layout considerations for
+              microwave integrated circuits. Antenna fundamentals are covered,
+              including radiation patterns, directivity, gain, and basic antenna
+              types commonly used in microwave systems. The material includes
+              detailed case studies of practical microwave systems, including
+              radar systems, satellite communication systems, and modern
+              wireless communication systems. Special attention is given to
+              electromagnetic compatibility (EMC) and interference (EMI) issues,
+              including shielding techniques and regulatory compliance
+              requirements. The notes include sections on computational
+              electromagnetics, introducing numerical methods for solving
+              electromagnetic problems, including finite difference and finite
+              element methods. Modern applications in 5G communications,
+              including millimeter-wave propagation characteristics and antenna
+              array systems, are thoroughly discussed. The material includes
+              practical design examples of microwave filters, amplifiers, and
+              oscillators, with simulation results using industry-standard
+              software tools. Additional sections cover emerging technologies in
+              electromagnetic and microwave engineering, including
+              metamaterials, photonic crystals, and quantum electromagnetics.
+              Laboratory experiments are detailed, providing hands-on experience
+              with microwave measurement equipment and system design.
+              <span class="read-more">Read More</span>
+            </p>
+            <div class="note-actions">
+              <button class="action-button preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+              <button class="action-button download-btn">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes 6-->
+        <!-- Notes 7-->
+        <!-- Notes 8-->
+        <!-- Notes 9-->
+        <!-- Notes 10-->
+        <!-- Notes 11-->
+        <!-- Notes 12-->
+        <!-- Notes 13-->
+        <!-- Notes 14-->
+        <!-- Notes 15-->
+        <!-- Notes 16-->
+
+        <!-- Add more note cards as needed -->
+      </div>
+    </div>
+
+    <!-- Add this section before closing the container div -->
+    <div class="faqs-section" data-aos="fade-up">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do I download the notes?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Simply click on the "Download" button on any note card. For
+              preview, you can click the "Preview" button or "Read More" link to
+              view the complete content before downloading.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are these notes up to date with the current syllabus?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Yes, all notes are regularly updated to match the current 4th
+              Semester electrical engineering polytechnic syllabus and include
+              the latest developments in basic electrical knowledge.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What topics are covered in these notes?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>
+              The notes cover all major topics from the 4th Semester curriculum
+              including:
+            </p>
+            <ul>
+              <li>Electrical Machines</li>
+              <li>Power Systems</li>
+              <li>Control Systems</li>
+              <li>Electrical Measurements</li>
+              <li>Basic Electrical Concepts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>In what format are the notes available?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Notes are available in PDF format for easy viewing across all
+              devices. Some notes also include supplementary materials like
+              diagrams and practice problems.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I share these notes with others?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Yes, you can share these notes with your classmates. However,
+              please credit the source and avoid any commercial distribution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="preview-modal">
+      <div class="preview-content">
+        <button class="close-preview"><i class="fas fa-times"></i></button>
+        <img class="preview-image" src="" alt="Note preview" />
+        <div class="preview-details">
+          <span class="preview-category"></span>
+          <h2 class="preview-title"></h2>
+          <div class="preview-description"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/notes.js"></script>
+  </body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Percentage Calculator | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>D</text></svg>"
+    />
+    <link rel="stylesheet" href="../css/percentage-calculator.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+    <main class="calculator-container">
+      <!-- Calculator Header -->
+      <div class="calculator-header">
+        <h1><i class="fas fa-percent"></i> Percentage Calculator</h1>
+        <p>Calculate percentages easily with multiple calculation modes</p>
+      </div>
+
+      <!-- Calculator Mode Selection -->
+      <div class="calculator-mode">
+        <button class="mode-btn active" data-mode="simple">
+          <i class="fas fa-calculator"></i> Simple
+        </button>
+        <button class="mode-btn" data-mode="marks">
+          <i class="fas fa-graduation-cap"></i> Marks
+        </button>
+        <button class="mode-btn" data-mode="change">
+          <i class="fas fa-exchange-alt"></i> Change
+        </button>
+      </div>
+
+      <!-- Simple Percentage Calculator -->
+      <div class="calculator-form" id="simpleCalculator">
+        <div class="input-group">
+          <label>What is</label>
+          <input
+            type="number"
+            id="value"
+            placeholder="Enter value"
+            step="any"
+          />
+          <label>% of</label>
+          <input
+            type="number"
+            id="total"
+            placeholder="Enter total"
+            step="any"
+          />
+        </div>
+        <button class="calculate-btn" onclick="calculateSimplePercentage()">
+          <i class="fas fa-calculator"></i> Calculate
+        </button>
+        <div class="result">
+          <span id="simpleResult">Result will appear here</span>
+        </div>
+      </div>
+
+      <!-- Marks to Percentage Calculator -->
+      <div class="calculator-form hidden" id="marksCalculator">
+        <div class="input-group">
+          <label>Marks Obtained</label>
+          <input
+            type="number"
+            id="marksObtained"
+            placeholder="Enter marks obtained"
+          />
+        </div>
+        <div class="input-group">
+          <label>Total Marks</label>
+          <input
+            type="number"
+            id="totalMarks"
+            placeholder="Enter total marks"
+          />
+        </div>
+        <button class="calculate-btn" onclick="calculateMarksPercentage()">
+          <i class="fas fa-calculator"></i> Calculate Percentage
+        </button>
+        <div class="result">
+          <span id="marksResult">Result will appear here</span>
+        </div>
+        <div class="grade-result hidden" id="gradeInfo">
+          <h3>Grade Information</h3>
+          <p id="gradeText"></p>
+          <div class="grade-bar">
+            <div class="grade-progress"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Percentage Change Calculator -->
+      <div class="calculator-form hidden" id="changeCalculator">
+        <div class="input-group">
+          <label>Original Value</label>
+          <input
+            type="number"
+            id="originalValue"
+            placeholder="Enter original value"
+            step="any"
+          />
+        </div>
+        <div class="input-group">
+          <label>New Value</label>
+          <input
+            type="number"
+            id="newValue"
+            placeholder="Enter new value"
+            step="any"
+          />
+        </div>
+        <button class="calculate-btn" onclick="calculatePercentageChange()">
+          <i class="fas fa-calculator"></i> Calculate Change
+        </button>
+        <div class="result">
+          <span id="changeResult">Result will appear here</span>
+        </div>
+        <div class="change-indicator hidden" id="changeIndicator">
+          <i class="fas"></i>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Quick Reference Card -->
+      <div class="reference-card">
+        <h3>Quick Reference</h3>
+        <div class="reference-grid">
+          <div class="reference-item">
+            <strong>Common Percentages</strong>
+            <ul>
+              <li>10% = 0.1</li>
+              <li>25% = 0.25</li>
+              <li>50% = 0.5</li>
+              <li>75% = 0.75</li>
+              <li>100% = 1</li>
+            </ul>
+          </div>
+          <div class="reference-item">
+            <strong>Grade Scale</strong>
+            <ul>
+              <li>A: 90-100%</li>
+              <li>B: 80-89%</li>
+              <li>C: 70-79%</li>
+              <li>D: 60-69%</li>
+              <li>F: Below 60%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explore Tools Section -->
+      <section class="explore-tools">
+        <h2>Explore More Tools</h2>
+        <div class="tools-grid">
+          <a href="../tools/attendance-calculator" class="tool-card">
+            <i class="fas fa-user-check"></i>
+            <h3>Attendance Calculator</h3>
+            <p>Track your attendance</p>
+          </a>
+          <a href="../tools/cgpa-calculator" class="tool-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>CGPA Calculator</h3>
+            <p>Calculate your CGPA</p>
+          </a>
+          <a href="../tools/grade-calculator" class="tool-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Grade Calculator</h3>
+            <p>Calculate your grades</p>
+          </a>
+        </div>
+      </section>
+      <section class="calculator-faqs">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-subtitle">
+          Common questions about the Percentage Calculator
+        </p>
+
+        <div class="faq-container">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What is a percentage and how is it calculated?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>
+                A percentage represents a fraction in terms of 100. The basic
+                formula is:
+              </p>
+              <pre>Percentage = (Value ÷ Total) × 100</pre>
+              <p>For example:</p>
+              <ul>
+                <li>
+                  If you got 75 marks out of 100, your percentage is (75 ÷ 100)
+                  × 100 = 75%
+                </li>
+                <li>
+                  If you want to find 15% of 200, calculate (15 × 200) ÷ 100 =
+                  30
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I use the different calculator modes?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The calculator offers three modes:</p>
+              <ol>
+                <li>
+                  <strong>Simple Mode:</strong> Calculate what percentage one
+                  number is of another
+                </li>
+                <li>
+                  <strong>Marks Mode:</strong> Convert obtained marks to
+                  percentage and view grade
+                </li>
+                <li>
+                  <strong>Change Mode:</strong> Calculate percentage increase or
+                  decrease between two values
+                </li>
+              </ol>
+              <p>
+                Select the appropriate mode button at the top of the calculator
+                for your calculation.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I calculate percentage increase or decrease?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To calculate percentage change:</p>
+              <ol>
+                <li>Select the "Change" mode</li>
+                <li>Enter the original value</li>
+                <li>Enter the new value</li>
+                <li>The calculator will show:</li>
+                <ul>
+                  <li>Percentage change value</li>
+                  <li>Whether it's an increase or decrease</li>
+                  <li>Visual indicator (↑ or ↓)</li>
+                </ul>
+              </ol>
+              <pre>
+Percentage Change = [(New Value - Original Value) ÷ Original Value] × 100</pre
+              >
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What do the grades mean in the Marks Calculator?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The grading scale used is:</p>
+              <ul>
+                <li>90-100%: A (Excellent)</li>
+                <li>80-89%: B (Very Good)</li>
+                <li>70-79%: C (Good)</li>
+                <li>60-69%: D (Pass)</li>
+                <li>Below 60%: F (Fail)</li>
+              </ul>
+              <p>
+                The progress bar provides a visual representation of your
+                performance within these ranges.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How can I convert decimals to percentages?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>To convert decimals to percentages:</p>
+              <ol>
+                <li>Multiply the decimal by 100</li>
+                <li>Add the % symbol</li>
+              </ol>
+              <p>Common conversions:</p>
+              <ul>
+                <li>0.1 = 10%</li>
+                <li>0.25 = 25%</li>
+                <li>0.5 = 50%</li>
+                <li>0.75 = 75%</li>
+                <li>1.0 = 100%</li>
+              </ul>
+              <p>The calculator handles these conversions automatically.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span
+                >Why are my percentage calculations showing decimal
+                points?</span
+              >
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The calculator shows two decimal places because:</p>
+              <ul>
+                <li>It provides more precise results</li>
+                <li>Helps in comparing close percentages</li>
+                <li>Useful for academic and financial calculations</li>
+              </ul>
+              <p>For example, 83.33% is more precise than just 83%.</p>
+              <p>
+                You can round to whole numbers if needed for your specific use
+                case.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I use negative numbers in calculations?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, the calculator can handle negative numbers:</p>
+              <ul>
+                <li>
+                  In Simple mode: for calculating percentages of negative values
+                </li>
+                <li>In Change mode: to show decreases in value</li>
+              </ul>
+              <p>Example scenarios:</p>
+              <ul>
+                <li>Temperature changes (below zero)</li>
+                <li>Financial losses</li>
+                <li>Negative growth rates</li>
+              </ul>
+              <p>
+                The calculator will show appropriate indicators for negative
+                results.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+
+    <script src="../js/percentage-calculator.js"></script>
+  </body>
+</html>

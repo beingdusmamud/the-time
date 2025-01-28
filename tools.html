@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Tools by TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/tools.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+    <section class="hero-section">
+      <div class="hero-pattern"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Explore Calculator Tools</h1>
+        <p class="hero-subtitle">
+          Elevate your calculations with our professionally crafted tools
+          designed for precision, efficiency, and ease of use.
+        </p>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card" data-aos="fade-up">
+          <div class="stat-number" id="userCount">0</div>
+          <div class="stat-label">Running Times</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-number" id="calcCount">0</div>
+          <div class="stat-label">Calculations Made</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-number" id="toolCount">0</div>
+          <div class="stat-label">Available Tools</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-number" id="ratingCount">0</div>
+          <div class="stat-label">Average Rating</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-section">
+      <h2 class="section-title" data-aos="fade-up">Our Active Tools</h2>
+      <div class="tools-grid">
+        <!-- Age Calculator -->
+        <div class="tool-card" data-aos="fade-up">
+          <span class="badge">Most Popular</span>
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-birthday-cake tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Age Calculator</h2>
+          </div>
+          <p class="tool-description">
+            Advanced age calculation tool with detailed insights and life
+            statistics.
+          </p>
+          <ul class="tool-features">
+            <li>
+              <i class="fas fa-check"></i> Precise age in years, months, and
+              days
+            </li>
+            <li><i class="fas fa-check"></i> Zodiac and birth insights</li>
+            <li><i class="fas fa-check"></i> Life milestone tracking</li>
+          </ul>
+          <a href="tools/age-calculator" class="tool-link"
+            >Calculate Age <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+
+        <!-- Attendance Calculator Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-calendar-check tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Attendance Calculator</h2>
+          </div>
+
+          <p class="tool-description">
+            Calculate attendance percentage and track presence requirements
+            easily.
+          </p>
+
+          <ul class="tool-features">
+            <li>
+              <i class="fas fa-check"></i> Calculate attendance percentage
+            </li>
+            <li><i class="fas fa-check"></i> Required classes calculator</li>
+            <li><i class="fas fa-check"></i> Minimum attendance tracker</li>
+          </ul>
+
+          <a href="tools/attendance-calculator" class="tool-link">
+            Calculate Attendance <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- CGPA Calculator Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-graduation-cap tool-icon"></i>
+            </div>
+            <h2 class="tool-title">CGPA Calculator</h2>
+          </div>
+
+          <p class="tool-description">
+            Calculate your Cumulative Grade Point Average (CGPA) and track
+            academic performance.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Calculate semester GPA</li>
+            <li><i class="fas fa-check"></i> Track cumulative GPA</li>
+            <li><i class="fas fa-check"></i> Credit hour weightage</li>
+          </ul>
+
+          <a href="tools/cgpa-calculator" class="tool-link">
+            Calculate CGPA <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Grade Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-chart-line tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Grade Calculator</h2>
+          </div>
+
+          <p class="tool-description">
+            Calculate your final grade based on assignments, exams, and weighted
+            categories.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Calculate weighted grades</li>
+            <li><i class="fas fa-check"></i> Final exam score needed</li>
+            <li><i class="fas fa-check"></i> Grade distribution analysis</li>
+          </ul>
+
+          <a href="tools/grade-calculator" class="tool-link">
+            Calculate Grades <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Percentage Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-percent tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Percentage Calculator</h2>
+          </div>
+          <p class="tool-description">
+            Comprehensive percentage calculator with multiple calculation modes.
+          </p>
+          <ul class="tool-features">
+            <li>
+              <i class="fas fa-check"></i> Basic and advanced calculations
+            </li>
+            <li><i class="fas fa-check"></i> Percentage change analysis</li>
+            <li><i class="fas fa-check"></i> Visual result representation</li>
+          </ul>
+          <a href="tools/percentage-calculator" class="tool-link"
+            >Calculate Percentage <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+
+        <!-- Assignment Planner -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-tasks tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Assignment Planner</h2>
+          </div>
+
+          <p class="tool-description">
+            Plan and track your assignments, deadlines, and study schedule
+            efficiently.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Deadline tracker</li>
+            <li><i class="fas fa-check"></i> Priority sorting</li>
+            <li><i class="fas fa-check"></i> Time management tools</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Plan Assignments <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Study Time Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-clock tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Study Time Calculator</h2>
+          </div>
+
+          <p class="tool-description">
+            Calculate optimal study hours and create balanced study schedules.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Study session planner</li>
+            <li><i class="fas fa-check"></i> Break time optimizer</li>
+            <li><i class="fas fa-check"></i> Subject time allocation</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Plan Study Time <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Target Score Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-bullseye tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Target Score Calculator</h2>
+          </div>
+
+          <p class="tool-description">
+            Calculate required scores to achieve your target grade or GPA.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Required score analysis</li>
+            <li><i class="fas fa-check"></i> Grade improvement planning</li>
+            <li><i class="fas fa-check"></i> Performance tracking</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Calculate Target Score <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Number to Word -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-language tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Number to Word</h2>
+          </div>
+          <p class="tool-description">
+            Convert numbers to words in multiple languages with formatting
+            options.
+          </p>
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Multi-language support</li>
+            <li><i class="fas fa-check"></i> Currency conversion</li>
+            <li><i class="fas fa-check"></i> Custom formatting</li>
+          </ul>
+          <a href="under-construction" class="tool-link"
+            >Convert Number <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+
+        <!-- Discount Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-tags tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Discount Calculator</h2>
+          </div>
+          <p class="tool-description">
+            Calculate discounts and compare different offers with savings
+            analysis.
+          </p>
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Multiple discount types</li>
+            <li><i class="fas fa-check"></i> Savings comparison</li>
+            <li><i class="fas fa-check"></i> Bulk calculations</li>
+          </ul>
+          <a href="under-construction" class="tool-link"
+            >Calculate Discount <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+
+        <!-- Semester Planner -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-calendar-alt tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Semester Planner</h2>
+          </div>
+
+          <p class="tool-description">
+            Plan your semester courses, track credits, and manage academic
+            schedule.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Course schedule organizer</li>
+            <li><i class="fas fa-check"></i> Credit hour tracker</li>
+            <li><i class="fas fa-check"></i> Workload balancer</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Plan Semester <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Academic Progress Tracker -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-chart-bar tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Academic Progress Tracker</h2>
+          </div>
+
+          <p class="tool-description">
+            Monitor your academic progress, set goals, and track achievements.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Progress visualization</li>
+            <li><i class="fas fa-check"></i> Goal setting tools</li>
+            <li><i class="fas fa-check"></i> Achievement milestones</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Track Progress <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Subject Credit Calculator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-book tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Subject Credit Calculator</h2>
+          </div>
+
+          <p class="tool-description">
+            Calculate and manage your subject credits and course requirements.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Credit requirement check</li>
+            <li><i class="fas fa-check"></i> Course load analysis</li>
+            <li><i class="fas fa-check"></i> Graduation requirement tracker</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Calculate Credits <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Exam Schedule Optimizer -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-alarm-clock tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Exam Schedule Optimizer</h2>
+          </div>
+
+          <p class="tool-description">
+            Optimize your exam preparation schedule and study time allocation.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Study time distribution</li>
+            <li><i class="fas fa-check"></i> Break schedule planner</li>
+            <li><i class="fas fa-check"></i> Subject priority sorting</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Optimize Schedule <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Learning Style Assessment -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-brain tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Learning Style Assessment</h2>
+          </div>
+
+          <p class="tool-description">
+            Discover your learning style and get personalized study strategies.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Learning style analysis</li>
+            <li><i class="fas fa-check"></i> Study method recommendations</li>
+            <li><i class="fas fa-check"></i> Personalized learning tips</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Assess Style <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Study Group Finder -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-users tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Study Group Finder</h2>
+          </div>
+
+          <p class="tool-description">
+            Find and organize study groups based on subjects and schedules.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Group matching system</li>
+            <li><i class="fas fa-check"></i> Schedule coordinator</li>
+            <li><i class="fas fa-check"></i> Subject-based grouping</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Find Study Group <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Project Timeline Generator -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-project-diagram tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Project Timeline Generator</h2>
+          </div>
+
+          <p class="tool-description">
+            Create detailed project timelines with milestones and deadlines.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Milestone planning</li>
+            <li><i class="fas fa-check"></i> Task distribution</li>
+            <li><i class="fas fa-check"></i> Progress tracking</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Generate Timeline <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Research Paper Planner -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-file-alt tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Research Paper Planner</h2>
+          </div>
+
+          <p class="tool-description">
+            Organize your research paper workflow and citation management.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Citation organizer</li>
+            <li><i class="fas fa-check"></i> Writing timeline</li>
+            <li><i class="fas fa-check"></i> Source management</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Plan Research <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Course Material Organizer -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-folder-open tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Course Material Organizer</h2>
+          </div>
+
+          <p class="tool-description">
+            Organize and track your course materials, readings, and resources.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Resource categorization</li>
+            <li><i class="fas fa-check"></i> Reading list tracker</li>
+            <li><i class="fas fa-check"></i> Material completion status</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Organize Materials <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Exam Stress Manager -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-hand-peace tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Exam Stress Manager</h2>
+          </div>
+
+          <p class="tool-description">
+            Tools and techniques to manage exam stress and maintain wellbeing.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Relaxation techniques</li>
+            <li><i class="fas fa-check"></i> Study-break timer</li>
+            <li><i class="fas fa-check"></i> Wellness checklist</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Manage Stress <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Academic Resource Finder -->
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-header">
+            <div class="tool-icon-wrapper">
+              <i class="fas fa-search tool-icon"></i>
+            </div>
+            <h2 class="tool-title">Academic Resource Finder</h2>
+          </div>
+
+          <p class="tool-description">
+            Find and access academic resources, libraries, and study materials.
+          </p>
+
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Resource database</li>
+            <li><i class="fas fa-check"></i> Library catalog search</li>
+            <li><i class="fas fa-check"></i> Study material finder</li>
+          </ul>
+
+          <a href="under-construction" class="tool-link">
+            Find Resources <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="coming-soon">
+      <h2 class="section-title" data-aos="fade-up">Coming Soon</h2>
+      <div class="coming-soon-grid">
+        <!-- BMI Calculator -->
+        <div class="coming-soon-card" data-aos="fade-up">
+          <i class="fas fa-weight coming-soon-icon"></i>
+          <div class="coming-soon-content">
+            <h3>BMI Calculator</h3>
+            <p>
+              Professional health assessment tool with detailed insights and
+              recommendations.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interest Calculator -->
+        <div class="coming-soon-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-coins coming-soon-icon"></i>
+          <div class="coming-soon-content">
+            <h3>Interest Calculator</h3>
+            <p>
+              Comprehensive financial calculator with investment planning
+              features.
+            </p>
+          </div>
+        </div>
+
+        <!-- Time Calculator -->
+        <div class="coming-soon-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-clock coming-soon-icon"></i>
+          <div class="coming-soon-content">
+            <h3>Time Calculator</h3>
+            <p>
+              Advanced time calculation tool with timezone support and duration
+              analysis.
+            </p>
+          </div>
+        </div>
+
+        <!-- Length Converter -->
+        <div class="coming-soon-card" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-ruler coming-soon-icon"></i>
+          <div class="coming-soon-content">
+            <h3>Length Converter</h3>
+            <p>
+              Multi-unit conversion tool with precision control and comparison
+              features.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add this section after the Coming Soon section -->
+    <section class="why-choose-section">
+      <div class="why-choose-container">
+        <h2 class="section-title" data-aos="fade-up">Why Choose Our Tools</h2>
+        <div class="features-grid">
+          <!-- Accuracy Feature -->
+          <div class="feature-card" data-aos="fade-up">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <div class="feature-content">
+              <h3>Precision & Accuracy</h3>
+              <p>
+                Our tools are engineered for maximum precision, ensuring
+                accurate results every time you calculate.
+              </p>
+            </div>
+          </div>
+
+          <!-- User Experience Feature -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <div class="feature-content">
+              <h3>User-Friendly Interface</h3>
+              <p>
+                Clean, intuitive design makes our calculators easy to use across
+                all devices and screen sizes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Speed Feature -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <div class="feature-content">
+              <h3>Lightning Fast</h3>
+              <p>
+                Get instant results with our optimized calculation engines,
+                saving you valuable time.
+              </p>
+            </div>
+          </div>
+
+          <!-- Multiple Options Feature -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-sliders-h"></i>
+            </div>
+            <div class="feature-content">
+              <h3>Customizable Options</h3>
+              <p>
+                Tailor calculations to your needs with multiple modes and
+                customization options.
+              </p>
+            </div>
+          </div>
+
+          <!-- Data Security Feature -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="feature-content">
+              <h3>Secure & Private</h3>
+              <p>
+                Your data stays private with client-side calculations and no
+                storage of personal information.
+              </p>
+            </div>
+          </div>
+
+          <!-- Support Feature -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="feature-content">
+              <h3>24/7 Support</h3>
+              <p>
+                Get help whenever you need it with our comprehensive support
+                system and documentation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial Slider -->
+        <div class="testimonials-container" data-aos="fade-up">
+          <h3 class="testimonials-title">What Our Users Say</h3>
+          <div class="testimonials-slider">
+            <div class="testimonial-card active">
+              <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>
+                  "These calculators have become an essential part of my daily
+                  work. The accuracy and speed are unmatched!"
+                </p>
+                <div class="testimonial-author">
+                  <span class="author-name">Kashak Bhaskar</span>
+                  <span class="author-title">Financial Analyst</span>
+                </div>
+              </div>
+            </div>
+            <!-- Add more testimonial cards as needed -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="js/tools.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

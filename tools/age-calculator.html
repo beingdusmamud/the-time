@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Age Calculator | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <link rel="stylesheet" href="../css/age-calculator.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+    <main class="calculator-container">
+      <!-- Calculator Header -->
+      <div class="calculator-header">
+        <h1><i class="fas fa-hourglass-half"></i> Age Calculator</h1>
+        <p>Calculate your exact age and important life milestones</p>
+      </div>
+
+      <!-- Calculator Mode Selection -->
+      <div class="calculator-mode">
+        <button class="mode-btn active" data-mode="basic">
+          <i class="fas fa-calculator"></i> Basic Age
+        </button>
+        <button class="mode-btn" data-mode="detailed">
+          <i class="fas fa-calendar-alt"></i> Detailed Age
+        </button>
+        <button class="mode-btn" data-mode="milestone">
+          <i class="fas fa-flag-checkered"></i> Milestones
+        </button>
+      </div>
+
+      <!-- Basic Age Calculator -->
+      <div class="calculator-form" id="basicCalculator">
+        <div class="date-input-group">
+          <div class="birth-date">
+            <h3>Birth Date</h3>
+            <div class="date-fields">
+              <div class="input-field">
+                <label for="birthDay">Day</label>
+                <input
+                  type="number"
+                  id="birthDay"
+                  min="1"
+                  max="31"
+                  placeholder="DD"
+                />
+              </div>
+              <div class="input-field">
+                <label for="birthMonth">Month</label>
+                <select id="birthMonth">
+                  <option value="">Month</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label for="birthYear">Year</label>
+                <input
+                  type="number"
+                  id="birthYear"
+                  min="1900"
+                  max="2024"
+                  placeholder="YYYY"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="current-date">
+            <h3>Current Date</h3>
+            <div class="date-fields">
+              <div class="input-field">
+                <label for="currentDay">Day</label>
+                <input
+                  type="number"
+                  id="currentDay"
+                  min="1"
+                  max="31"
+                  placeholder="DD"
+                />
+              </div>
+              <div class="input-field">
+                <label for="currentMonth">Month</label>
+                <select id="currentMonth">
+                  <option value="">Month</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label for="currentYear">Year</label>
+                <input
+                  type="number"
+                  id="currentYear"
+                  min="1900"
+                  max="2100"
+                  placeholder="YYYY"
+                />
+              </div>
+            </div>
+            <button class="today-btn" onclick="setToday()">
+              <i class="fas fa-clock"></i> Use Today's Date
+            </button>
+          </div>
+        </div>
+
+        <button class="calculate-btn" onclick="calculateAge()">
+          <i class="fas fa-calculator"></i> Calculate Age
+        </button>
+
+        <div class="age-result">
+          <div class="result-cards">
+            <div class="result-card years">
+              <div class="card-value">0</div>
+              <div class="card-label">Years</div>
+            </div>
+            <div class="result-card months">
+              <div class="card-value">0</div>
+              <div class="card-label">Months</div>
+            </div>
+            <div class="result-card days">
+              <div class="card-value">0</div>
+              <div class="card-label">Days</div>
+            </div>
+          </div>
+
+          <div class="age-visualization">
+            <div class="age-progress-circle">
+              <svg>
+                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                <circle class="progress" cx="60" cy="60" r="54"></circle>
+              </svg>
+              <div class="age-text">
+                <span class="exact-years">0.0</span>
+                <span class="years-text">years</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="milestone-alerts">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Age Calculator -->
+      <div class="calculator-form hidden" id="detailedCalculator">
+        <div class="detailed-results">
+          <div class="time-units">
+            <div class="unit-card">
+              <span class="unit-value">0</span>
+              <span class="unit-label">Total Years</span>
+            </div>
+            <div class="unit-card">
+              <span class="unit-value">0</span>
+              <span class="unit-label">Total Months</span>
+            </div>
+            <div class="unit-card">
+              <span class="unit-value">0</span>
+              <span class="unit-label">Total Weeks</span>
+            </div>
+            <div class="unit-card">
+              <span class="unit-value">0</span>
+              <span class="unit-label">Total Days</span>
+            </div>
+            <div class="unit-card">
+              <span class="unit-value">0</span>
+              <span class="unit-label">Total Hours</span>
+            </div>
+            <div class="unit-card">
+              <span class="unit-value">0</span>
+              <span class="unit-label">Total Minutes</span>
+            </div>
+          </div>
+
+          <div class="next-birthday">
+            <h3>Next Birthday</h3>
+            <div class="countdown">
+              <span class="days">0</span> days
+              <span class="hours">0</span> hours
+              <span class="minutes">0</span> minutes
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Milestones Calculator -->
+      <div class="calculator-form hidden" id="milestoneCalculator">
+        <div class="milestone-timeline">
+          <div class="timeline-header">
+            <h3>Life Milestones</h3>
+            <p>Track important age-based milestones</p>
+          </div>
+
+          <div class="timeline">
+            <!-- Milestone items will be dynamically populated -->
+          </div>
+
+          <div class="custom-milestone">
+            <h3>Add Custom Milestone</h3>
+            <div class="milestone-input">
+              <input type="text" placeholder="Milestone Description" />
+              <input type="number" placeholder="Age" />
+              <button class="add-milestone">
+                <i class="fas fa-plus"></i> Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Features Section -->
+      <div class="additional-features">
+        <h3>Additional Information</h3>
+        <div class="features-grid">
+          <div class="feature-card zodiac">
+            <i class="fas fa-star"></i>
+            <h4>Zodiac Sign</h4>
+            <p>Your zodiac sign is <span class="zodiac-value">-</span></p>
+          </div>
+          <div class="feature-card chinese-zodiac">
+            <i class="fas fa-dragon"></i>
+            <h4>Chinese Zodiac</h4>
+            <p>
+              Your Chinese zodiac is <span class="chinese-zodiac-value">-</span>
+            </p>
+          </div>
+          <div class="feature-card day-born">
+            <i class="fas fa-calendar-day"></i>
+            <h4>Day Born</h4>
+            <p>You were born on a <span class="day-born-value">-</span></p>
+          </div>
+          <div class="feature-card season">
+            <i class="fas fa-sun"></i>
+            <h4>Season Born</h4>
+            <p>You were born in <span class="season-value">-</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fun Facts Section -->
+      <div class="fun-facts">
+        <h3>Fun Facts About Your Age</h3>
+        <div class="facts-container">
+          <!-- Dynamically populated with fun facts -->
+        </div>
+      </div>
+
+      <!-- Share Results -->
+      <div class="share-results">
+        <h3>Share Your Results</h3>
+        <div class="share-buttons">
+          <button class="share-btn facebook">
+            <i class="fab fa-facebook"></i> Share
+          </button>
+          <button class="share-btn twitter">
+            <i class="fab fa-twitter"></i> Tweet
+          </button>
+          <button class="share-btn download">
+            <i class="fas fa-download"></i> Download
+          </button>
+          <button class="share-btn print">
+            <i class="fas fa-print"></i> Print
+          </button>
+        </div>
+      </div>
+
+      <!-- Explore Tools Section -->
+      <section class="explore-tools">
+        <h2>Explore More Tools</h2>
+        <div class="tools-grid">
+          <a href="../tools/attendance-calculator" class="tool-card">
+            <i class="fas fa-user-check"></i>
+            <h3>Attendance Calculator</h3>
+            <p>Track your attendance</p>
+          </a>
+          <a href="../tools/cgpa-calculator" class="tool-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>CGPA Calculator</h3>
+            <p>Calculate your CGPA</p>
+          </a>
+          <a href="../tools/grade-calculator" class="tool-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Grade Calculator</h3>
+            <p>Calculate your grades</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="calculator-faqs">
+        <!-- FAQ content will be similar to previous calculators -->
+      </section>
+      <section class="calculator-faqs">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-subtitle">Common questions about the Age Calculator</p>
+
+        <div class="faq-container">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How does the Age Calculator work?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The Age Calculator works by:</p>
+              <ol>
+                <li>Taking your birth date (day, month, and year)</li>
+                <li>Comparing it with the current date or a selected date</li>
+                <li>Calculating the exact difference in:</li>
+              </ol>
+              <ul>
+                <li>Years, months, and days</li>
+                <li>Total months, weeks, and days</li>
+                <li>Hours, minutes, and other units</li>
+              </ul>
+              <p>
+                It also calculates various milestones and provides additional
+                information about your birth date.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Why are there different modes in the calculator?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The calculator offers three different modes:</p>
+              <ul>
+                <li>
+                  <strong>Basic Age:</strong> Simple calculation of years,
+                  months, and days
+                </li>
+                <li>
+                  <strong>Detailed Age:</strong> Comprehensive breakdown
+                  including weeks, hours, and minutes
+                </li>
+                <li>
+                  <strong>Milestones:</strong> Tracks important age-based life
+                  events and achievements
+                </li>
+              </ul>
+              <p>
+                This allows you to choose the level of detail you need for your
+                specific purpose.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How accurate is the age calculation?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The Age Calculator is highly accurate and considers:</p>
+              <ul>
+                <li>Leap years</li>
+                <li>Different month lengths</li>
+                <li>Time zones (when using current date)</li>
+              </ul>
+              <p>
+                The calculation provides precise results down to the day, making
+                it suitable for both casual use and official purposes.
+              </p>
+              <p class="note">
+                Note: When using the current date option, the calculation
+                updates in real-time.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span
+                >What are the additional features provided with the age
+                calculation?</span
+              >
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Along with basic age calculation, you get:</p>
+              <ul>
+                <li>Zodiac sign determination</li>
+                <li>Chinese zodiac calculation</li>
+                <li>Day of the week you were born</li>
+                <li>Season of birth</li>
+                <li>Upcoming age milestones</li>
+                <li>Life statistics in various units</li>
+                <li>Customizable milestone tracking</li>
+              </ul>
+              <p class="tip">
+                Use these features to get interesting insights about your birth
+                date!
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I calculate age between two specific dates?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! The calculator allows you to:</p>
+              <ol>
+                <li>Enter any birth date</li>
+                <li>Enter any end date (not just today's date)</li>
+                <li>Calculate the exact duration between these dates</li>
+              </ol>
+              <p>This is useful for:</p>
+              <ul>
+                <li>Historical age calculations</li>
+                <li>Future age predictions</li>
+                <li>Contract or document durations</li>
+              </ul>
+              <p class="note">
+                The end date must be later than the start date.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How can I share or save my age calculation results?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>There are multiple ways to save and share your results:</p>
+              <ul>
+                <li>
+                  <strong>Download as PDF:</strong> Get a detailed report with
+                  all calculations
+                </li>
+                <li>
+                  <strong>Social Media Sharing:</strong> Share directly to
+                  Facebook or Twitter
+                </li>
+                <li>
+                  <strong>Print Option:</strong> Print a physical copy of your
+                  results
+                </li>
+                <li>
+                  <strong>Text Format:</strong> Copy results as formatted text
+                </li>
+              </ul>
+              <p class="tip">
+                The PDF download includes all statistical data and milestone
+                information!
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What are life milestones and how are they tracked?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Life milestones are significant age-based events:</p>
+              <ul>
+                <li>Legal age milestones (18, 21 years)</li>
+                <li>Decade markers (30, 40, 50 years)</li>
+                <li>Retirement age</li>
+                <li>Custom milestones you add</li>
+              </ul>
+              <p>The calculator:</p>
+              <ul>
+                <li>Shows achieved milestones</li>
+                <li>Calculates time to upcoming milestones</li>
+                <li>Allows adding personal milestones</li>
+              </ul>
+              <p class="note">
+                You can customize and track your own significant ages!
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 8 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Is my birth date information stored or shared?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>No, your privacy is important to us:</p>
+              <ul>
+                <li>All calculations are performed locally in your browser</li>
+                <li>No personal data is stored on any servers</li>
+                <li>Information is cleared when you close the calculator</li>
+                <li>Sharing is entirely optional and under your control</li>
+              </ul>
+              <p class="warning">
+                We recommend not sharing sensitive personal information
+                publicly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+  </body>
+</html>

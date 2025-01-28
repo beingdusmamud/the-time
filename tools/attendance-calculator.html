@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Attendance Calculator | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <link rel="stylesheet" href="../css/attendance-calculator.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+
+    <main class="calculator-container">
+      <!-- Calculator Header -->
+      <div class="calculator-header">
+        <h1><i class="fas fa-calculator"></i> Attendance Calculator</h1>
+        <p>Calculate your attendance percentage and required classes</p>
+      </div>
+
+      <!-- Calculator Form -->
+      <div class="calculator-form">
+        <div class="input-group">
+          <label for="totalClasses">
+            <i class="fas fa-calendar-alt"></i> Total Classes
+          </label>
+          <input
+            type="number"
+            id="totalClasses"
+            placeholder="Enter total classes"
+          />
+          <span class="error-message" id="totalError"></span>
+        </div>
+
+        <div class="input-group">
+          <label for="attendedClasses">
+            <i class="fas fa-user-check"></i> Classes Attended
+          </label>
+          <input
+            type="number"
+            id="attendedClasses"
+            placeholder="Enter attended classes"
+          />
+          <span class="error-message" id="attendedError"></span>
+        </div>
+
+        <div class="target-percentage">
+          <label>Target Percentage</label>
+          <div class="percentage-buttons">
+            <button class="percentage-btn active" data-percentage="75">
+              75%
+            </button>
+            <button class="percentage-btn" data-percentage="80">80%</button>
+            <button class="percentage-btn" data-percentage="85">85%</button>
+            <button class="percentage-btn" data-percentage="90">90%</button>
+          </div>
+        </div>
+
+        <button id="calculateBtn" class="calculate-btn">
+          <i class="fas fa-calculator"></i> Calculate
+        </button>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-section" style="display: none">
+        <div class="result-card current">
+          <h3>Current Attendance</h3>
+          <div class="percentage-circle">
+            <svg>
+              <circle class="bg" cx="60" cy="60" r="54"></circle>
+              <circle class="progress" cx="60" cy="60" r="54"></circle>
+            </svg>
+            <div class="percentage"><span id="currentPercentage">0</span>%</div>
+          </div>
+        </div>
+
+        <div class="result-details">
+          <div class="detail-card">
+            <i class="fas fa-check-circle"></i>
+            <h4>Classes Needed</h4>
+            <p id="classesNeeded">0</p>
+          </div>
+          <div class="detail-card">
+            <i class="fas fa-times-circle"></i>
+            <h4>Classes You Can Miss</h4>
+            <p id="classesMiss">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explore Tools Section -->
+      <section class="explore-tools">
+        <h2>Explore More Tools</h2>
+        <div class="tools-grid">
+          <a href="../tools/cgpa-calculator" class="tool-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>CGPA Calculator</h3>
+            <p>Calculate your CGPA easily</p>
+          </a>
+          <a href="../tools/percentage-calculator" class="tool-card">
+            <i class="fas fa-percentage"></i>
+            <h3>Percentage Calculator</h3>
+            <p>Convert marks to percentage</p>
+          </a>
+          <a href="../tools/grade-calculator" class="tool-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Grade Calculator</h3>
+            <p>Calculate your grades</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Add this after the Explore Tools Section -->
+      <section class="calculator-faqs">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-subtitle">
+          Common questions about the Attendance Calculator
+        </p>
+
+        <div class="faq-container">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How does the attendance calculator work?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The attendance calculator works in three simple steps:</p>
+              <ol>
+                <li>Enter the total number of classes conducted</li>
+                <li>Enter the number of classes you've attended</li>
+                <li>
+                  Select your target attendance percentage (75%, 80%, 85%, or
+                  90%)
+                </li>
+              </ol>
+              <p>
+                The calculator then shows your current attendance percentage and
+                tells you how many more classes you need to attend or can afford
+                to miss.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Why is 75% attendance important?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>
+                75% attendance is typically the minimum requirement in most
+                educational institutions because:
+              </p>
+              <ul>
+                <li>
+                  It's often mandated by educational boards and universities
+                </li>
+                <li>Ensures regular participation in academic activities</li>
+                <li>Required to be eligible for examinations</li>
+                <li>
+                  Helps maintain academic discipline and learning continuity
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How are the number of classes needed calculated?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The formula used to calculate required classes is:</p>
+              <pre>
+Classes Needed = [(Target% × Total Classes) - (100 × Attended Classes)] ÷ (100 - Target%)</pre
+              >
+              <p>
+                This calculation ensures you know exactly how many more classes
+                you need to attend to reach your target percentage.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What does "Classes You Can Miss" mean?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>
+                This number indicates how many upcoming classes you can afford
+                to miss while still maintaining your target attendance
+                percentage. It's calculated using:
+              </p>
+              <pre>
+Classes You Can Miss = (Attended × 100 ÷ Target%) - Total Classes</pre
+              >
+              <p>
+                A negative number means you need to attend more classes to reach
+                your target.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I calculate attendance for any target percentage?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The calculator provides preset target percentages of:</p>
+              <ul>
+                <li>75% - Minimum requirement in most institutions</li>
+                <li>80% - Higher safety margin</li>
+                <li>85% - Excellent attendance level</li>
+                <li>90% - Outstanding attendance record</li>
+              </ul>
+              <p>
+                These cover most common scenarios in educational institutions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+
+    <script src="../js/attendance-calculator.js"></script>
+  </body>
+</html>

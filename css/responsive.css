@@ -1,0 +1,181 @@
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .main-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .date-section {
+    grid-column: span 6;
+  }
+
+  .schedule-grid {
+    grid-column: span 6;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-version {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header__title {
+    font-size: 1.8rem;
+  }
+
+  .nav__list {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-bg);
+    padding: 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+  }
+
+  .header__nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    padding: 1rem 0;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 2rem;
+  }
+
+  .nav__list li {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .header__nav.active .nav__list li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .header__nav.active .nav__list li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .header__nav.active .nav__list li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .header__nav.active .nav__list li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .header__nav.active .nav__list li:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+  .header__nav.active .nav__list li:nth-child(5) {
+    transition-delay: 0.5s;
+  }
+
+  .nav__link {
+    display: block;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .header__title {
+    font-size: 1.5rem;
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .date-section,
+  .schedule-grid {
+    grid-column: span 12;
+  }
+
+  .date-primary {
+    font-size: 2rem;
+  }
+
+  .date-secondary {
+    font-size: 1.5rem;
+  }
+
+  .schedule-card {
+    margin-bottom: 1rem;
+  }
+  .fact-section,
+  .disclaimer-section {
+    grid-column: span 12;
+    margin-top: 1rem;
+  }
+
+  .fact-title {
+    font-size: 1.5rem;
+  }
+
+  .fact-text {
+    font-size: 1.1rem;
+  }
+
+  .disclaimer-container {
+    padding: 1.5rem;
+  }
+
+  .gallery-slider {
+    height: 300px;
+  }
+
+  .gallery-title {
+    font-size: 2rem;
+  }
+
+  .gallery-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-version {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header__title {
+    font-size: 1.3rem;
+  }
+
+  .header__title i {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>CGPA Calculator | TimeIt</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='gold'>S</text></svg>"
+    />
+    <link rel="stylesheet" href="../css/cgpa-calculator.css" />
+  </head>
+  <body>
+    <!-- Header start-->
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          <a href="/">
+            <i class="fas fa-graduation-cap"></i>
+            TimeIt
+          </a>
+        </h1>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle Menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__links">
+            <li>
+              <a href="/" class="nav__link"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="../notes" class="nav__link"
+                ><i class="fas fa-book"></i>Notes</a
+              >
+            </li>
+            <li>
+              <a href="../faculty" class="nav__link"
+                ><i class="fas fa-chalkboard-teacher"></i>Faculty</a
+              >
+            </li>
+            <li>
+              <a href="../notice" class="nav__link"
+                ><i class="fas fa-bell"></i>Notices</a
+              >
+            </li>
+            <li>
+              <a href="../contact" class="nav__link"
+                ><i class="fas fa-envelope"></i>Contact</a
+              >
+            </li>
+          </ul>
+
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- Header End-->
+
+    <main class="calculator-container">
+      <!-- Calculator Header -->
+      <div class="calculator-header">
+        <h1><i class="fas fa-graduation-cap"></i> CGPA Calculator</h1>
+        <p>Calculate your Cumulative Grade Point Average (CGPA) easily</p>
+      </div>
+
+      <!-- Semester Tabs -->
+      <div class="semester-controls">
+        <button id="addSemesterBtn" class="add-semester-btn">
+          <i class="fas fa-plus"></i> Add Semester
+        </button>
+        <button id="resetBtn" class="reset-btn">
+          <i class="fas fa-redo"></i> Reset All
+        </button>
+      </div>
+
+      <!-- Calculator Form -->
+      <div id="semestersContainer" class="semesters-container">
+        <!-- Semester 1 (Default) -->
+        <div class="semester-card" data-semester="1">
+          <div class="semester-header">
+            <h3>Semester 1</h3>
+            <button class="remove-semester-btn" title="Remove Semester">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <div class="courses-container">
+            <!-- Course Entry Template -->
+            <div class="course-entry">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="course-name"
+                  placeholder="Course Name"
+                />
+              </div>
+              <div class="input-group">
+                <input
+                  type="number"
+                  class="course-credits"
+                  placeholder="Credits"
+                  min="1"
+                  max="6"
+                />
+              </div>
+              <div class="input-group">
+                <select class="course-grade">
+                  <option value="">Grade</option>
+                  <option value="10">O (10)</option>
+                  <option value="9">A+ (9)</option>
+                  <option value="8">A (8)</option>
+                  <option value="7">B+ (7)</option>
+                  <option value="6">B (6)</option>
+                  <option value="5">C (5)</option>
+                  <option value="4">P (4)</option>
+                  <option value="0">F (0)</option>
+                </select>
+              </div>
+              <button class="remove-course-btn" title="Remove Course">
+                <i class="fas fa-minus-circle"></i>
+              </button>
+            </div>
+          </div>
+
+          <button class="add-course-btn">
+            <i class="fas fa-plus"></i> Add Course
+          </button>
+
+          <div class="semester-summary">
+            <p>Semester GPA: <span class="semester-gpa">0.00</span></p>
+            <p>Total Credits: <span class="semester-credits">0</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculate Button -->
+      <button id="calculateBtn" class="calculate-btn">
+        <i class="fas fa-calculator"></i> Calculate CGPA
+      </button>
+
+      <!-- Results Section -->
+      <div class="results-section" style="display: none">
+        <div class="result-card">
+          <h3>Your CGPA</h3>
+          <div class="cgpa-circle">
+            <svg>
+              <circle class="bg" cx="60" cy="60" r="54"></circle>
+              <circle class="progress" cx="60" cy="60" r="54"></circle>
+            </svg>
+            <div class="cgpa">
+              <span id="cgpaValue">0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-details">
+          <div class="detail-card">
+            <i class="fas fa-book"></i>
+            <h4>Total Credits</h4>
+            <p id="totalCredits">0</p>
+          </div>
+          <div class="detail-card">
+            <i class="fas fa-chart-line"></i>
+            <h4>Performance</h4>
+            <p id="performance">-</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade Guide -->
+      <div class="grade-guide">
+        <h3>Grade Guide</h3>
+        <div class="grade-table">
+          <div class="grade-row">
+            <span>O</span>
+            <span>10</span>
+            <span>Outstanding</span>
+          </div>
+          <div class="grade-row">
+            <span>A+</span>
+            <span>9</span>
+            <span>Excellent</span>
+          </div>
+          <div class="grade-row">
+            <span>A</span>
+            <span>8</span>
+            <span>Very Good</span>
+          </div>
+          <div class="grade-row">
+            <span>B+</span>
+            <span>7</span>
+            <span>Good</span>
+          </div>
+          <div class="grade-row">
+            <span>B</span>
+            <span>6</span>
+            <span>Above Average</span>
+          </div>
+          <div class="grade-row">
+            <span>C</span>
+            <span>5</span>
+            <span>Average</span>
+          </div>
+          <div class="grade-row">
+            <span>P</span>
+            <span>4</span>
+            <span>Pass</span>
+          </div>
+          <div class="grade-row">
+            <span>F</span>
+            <span>0</span>
+            <span>Fail</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explore Tools Section -->
+      <section class="explore-tools">
+        <h2>Explore More Tools</h2>
+        <div class="tools-grid">
+          <a href="../tools/attendance-calculator" class="tool-card">
+            <i class="fas fa-user-check"></i>
+            <h3>Attendance Calculator</h3>
+            <p>Track your attendance</p>
+          </a>
+          <a href="../tools/percentage-calculator" class="tool-card">
+            <i class="fas fa-percentage"></i>
+            <h3>Percentage Calculator</h3>
+            <p>Convert marks to percentage</p>
+          </a>
+          <a href="../tools/grade-calculator" class="tool-card">
+            <i class="fas fa-chart-bar"></i>
+            <h3>Grade Calculator</h3>
+            <p>Calculate your grades</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="calculator-faqs">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-subtitle">Common questions about the CGPA Calculator</p>
+
+        <div class="faq-container">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What is CGPA and how is it calculated?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>
+                CGPA (Cumulative Grade Point Average) is a measure of overall
+                academic performance. It's calculated using the formula:
+              </p>
+              <pre>
+CGPA = (Sum of [Credit × Grade Point]) ÷ (Total Credits)</pre
+              >
+              <p>For example:</p>
+              <ul>
+                <li>If you have a 4-credit course with grade 'A' (8 points)</li>
+                <li>And a 3-credit course with grade 'B+' (7 points)</li>
+                <li>CGPA = (4×8 + 3×7) ÷ (4+3) = 7.57</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I use the CGPA Calculator?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Using the CGPA Calculator is simple:</p>
+              <ol>
+                <li>Enter course name (optional but helpful for reference)</li>
+                <li>Input the course credits (usually 1-6)</li>
+                <li>Select the grade obtained (O, A+, A, B+, etc.)</li>
+                <li>Add more courses using the "Add Course" button</li>
+                <li>Add more semesters if needed</li>
+                <li>Click "Calculate CGPA" to see your results</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What's the difference between SGPA and CGPA?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The key differences are:</p>
+              <ul>
+                <li>
+                  <strong>SGPA (Semester GPA):</strong> Calculates grade point
+                  average for a single semester
+                </li>
+                <li>
+                  <strong>CGPA (Cumulative GPA):</strong> Calculates overall
+                  grade point average across all semesters
+                </li>
+                <li>CGPA gives a complete picture of academic performance</li>
+                <li>SGPA helps track semester-wise performance</li>
+              </ul>
+              <p>
+                This calculator can help you track both SGPA (per semester) and
+                CGPA (overall).
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What do the different grades mean?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The grading system typically follows this scale:</p>
+              <ul>
+                <li>O (Outstanding) = 10 points</li>
+                <li>A+ (Excellent) = 9 points</li>
+                <li>A (Very Good) = 8 points</li>
+                <li>B+ (Good) = 7 points</li>
+                <li>B (Above Average) = 6 points</li>
+                <li>C (Average) = 5 points</li>
+                <li>P (Pass) = 4 points</li>
+                <li>F (Fail) = 0 points</li>
+              </ul>
+              <p>
+                Different institutions might have slight variations in this
+                scale.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I calculate CGPA for multiple semesters?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, this calculator allows you to:</p>
+              <ul>
+                <li>Add multiple semesters using the "Add Semester" button</li>
+                <li>Enter courses for each semester separately</li>
+                <li>Calculate both semester-wise GPA and overall CGPA</li>
+                <li>Remove semesters if needed</li>
+                <li>Reset all data and start fresh</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How accurate is the CGPA Calculator?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>The calculator is highly accurate provided:</p>
+              <ul>
+                <li>Correct credits are entered for each course</li>
+                <li>Accurate grades are selected</li>
+                <li>All courses are included in the calculation</li>
+              </ul>
+              <p>
+                The calculator uses standard mathematical formulas and rounds
+                results to two decimal places for precision.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What's considered a good CGPA?</span>
+              <button class="toggle-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>CGPA interpretation generally follows these ranges:</p>
+              <ul>
+                <li>9.0 - 10.0: Outstanding performance</li>
+                <li>8.0 - 8.99: Excellent performance</li>
+                <li>7.0 - 7.99: Very good performance</li>
+                <li>6.0 - 6.99: Good performance</li>
+                <li>5.0 - 5.99: Average performance</li>
+                <li>Below 5.0: Needs improvement</li>
+              </ul>
+              <p>
+                Note: Requirements may vary by institution and field of study.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer Start-->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__grid">
+          <div class="footer__info">
+            <div class="footer__logo">
+              <i class="fas fa-graduation-cap footer__logo-icon"></i>
+              <span class="footer__logo-text">TimeIt</span>
+            </div>
+            <p class="footer__description">
+              Your comprehensive academic planning solution. Stay organized with
+              class schedules, important dates, and educational resources.
+            </p>
+            <div class="footer__social">
+              <a
+                href="https://github.com/dusxinfinity"
+                class="footer__social-link"
+                ><i class="fab fa-github"></i
+              ></a>
+
+              <a
+                href="https://codepen.io/Dus-Infinity"
+                class="footer__social-link"
+                ><i class="fab fa-codepen"></i
+              ></a>
+
+              <a
+                href="https://www.instagram.com/dus.infinity/"
+                class="footer__social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Quick Links</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="/" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Home</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notes" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notes</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../faculty" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Faculty</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../notice" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Notices</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../contact" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Resources</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../schedule" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Schedule</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/pyqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>PYQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../tools" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Tools</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../under-construction" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__heading">Support</h3>
+            <ul class="footer__links">
+              <li class="footer__link-item">
+                <a href="../help-center" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Help Center</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/faqs" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>FAQs</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/privacy-policy" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Privacy Policy</a
+                >
+              </li>
+              <li class="footer__link-item">
+                <a href="../pages/terms-of-use" class="footer__link"
+                  ><i class="fas fa-chevron-right"></i>Terms of Use</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2025 <a href="/">TimeIt</a>. Made with
+            <span class="footer__heart"
+              ><i class="fas fa-heart" style="color: var(--accent-color)"></i
+            ></span>
+            by <a href="https://www.instagram.com/dvmx_19/"><b>@dvmx_19</b></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End-->
+    <!-- Scroll to Top Button Start-->
+    <button id="scrollTop" class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- Scroll to Top Button End-->
+
+    <script src="../js/cgpa-calculator.js"></script>
+  </body>
+</html>
