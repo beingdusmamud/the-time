@@ -6,11 +6,56 @@ const CONFIG = {
   },
   refreshInterval: 60000, // 1 minute
   facts: [
-    "The first electric motor was invented by Michael Faraday in 1821.",
-    "Lightning strikes the Earth about 100 times every second.",
-    "Electricity travels at the speed of light, which is 186,000 miles per second.",
-    "The first power plant opened in 1882 and was built by Thomas Edison.",
-    "The average bolt of lightning contains enough energy to power a house for a month.",
+    "Ohm's Law states voltage equals current times resistance in electrical circuits.",
+    "Capacitors store electrical energy in an electrostatic field between conductors.",
+    "Tesla coils can generate high voltage electrical discharges up to several feet long.",
+    "Digital circuits use binary logic gates to process information using 1s and 0s.",
+    "Power factor correction helps improve efficiency in AC electrical distribution.",
+    "The Hall effect occurs when magnetic fields deflect current-carrying conductors.",
+    "Kirchhoff's laws describe current and voltage behavior in electrical networks.",
+    "Semiconductors form the basis of modern electronics like transistors and diodes.",
+    "Electric motors convert electrical energy to mechanical energy using magnetic fields.",
+    "Superconductors have zero electrical resistance at very low temperatures.",
+    "Maxwell's equations mathematically describe electromagnetic wave behavior.",
+    "LED lights convert electrical energy directly into light with high efficiency.",
+    "Phase angle describes the timing relationship between voltage and current waves.",
+    "Ground fault circuit interrupters protect against electrical shock hazards.",
+    "Transformers transfer electrical energy between circuits through magnetic coupling.",
+    "Inductors store electrical energy in magnetic fields created by current flow.",
+    "Solar cells convert light energy into electrical energy using photovoltaic effect.",
+    "Impedance matching maximizes power transfer in electrical transmission lines.",
+    "Electric generators convert mechanical energy to electrical using electromagnetic.",
+    "Resonant circuits amplify signals at their natural frequency of oscillation.",
+    "Thermoelectric devices convert temperature differences into electrical power.",
+    "Signal processing filters modify frequency content of electrical waveforms.",
+    "Analog circuits process continuously varying electrical signals and quantities.",
+    "Power electronics control and convert electrical power between different forms.",
+    "Operational amplifiers are versatile building blocks for analog circuits.",
+    "Piezoelectric materials generate voltage when mechanical stress is applied.",
+    "Microcontrollers are small computers on single integrated circuit chips.",
+    "Electric fields exist between conductors with different electrical potentials.",
+    "Boolean algebra forms the mathematical basis for digital logic design.",
+    "Transmission lines carry electrical power over long distances efficiently.",
+    "Electromagnetism unifies electric and magnetic phenomena in single theory.",
+    "Logic analyzers display and analyze digital signals in electronic systems.",
+    "Voltage regulators maintain constant output voltage despite input changes.",
+    "Current mirrors provide precise current copying in integrated circuits.",
+    "Switching power supplies convert voltage levels with high efficiency.",
+    "Electromagnetic interference can disrupt operation of electronic devices.",
+    "Analog-to-digital converters transform analog signals to digital format.",
+    "Electric motors use commutators to switch current direction in windings.",
+    "Dielectric materials are electrical insulators that can be polarized.",
+    "Electrical noise limits the minimum detectable signal in circuits.",
+    "Phase-locked loops synchronize oscillator frequency to reference signal.",
+    "RC circuits filter signals using resistor and capacitor combinations.",
+    "Electric charge is a fundamental property of matter in the universe.",
+    "Digital signal processors perform mathematical operations on signals.",
+    "Electrical conductivity measures material's ability to conduct current.",
+    "Power amplifiers increase signal power levels while maintaining shape.",
+    "Magnetic cores concentrate magnetic flux in transformers and inductors.",
+    "Electric potential difference drives current flow in circuits.",
+    "Signal integrity ensures reliable transmission of electrical signals.",
+    "Electrical resonance occurs when inductive and capacitive reactance match."
   ],
 };
 
@@ -3050,3 +3095,193 @@ window.addEventListener("popstate", function () {
   location.reload();
 });
 // Hide .html End
+
+class ScheduleManager {
+  constructor() {
+    this.btn = document.getElementById("tomorrowScheduleBtn");
+    this.popup = document.getElementById("schedulePopup");
+    this.closeBtn = document.getElementById("closePopup");
+    this.dateDisplay = document.getElementById("tomorrowDate");
+    this.workingDayInfo = document.getElementById("workingDayInfo");
+    this.scheduleContent = document.getElementById("scheduleContent");
+    this.blurBackground = document.getElementById("blurBackground");
+    this.isOpen = false;
+
+    this.initializeEventListeners();
+  }
+
+  initializeEventListeners() {
+    // Single touchstart/click event handler for the button
+    const clickHandler = (e) => {
+      e.preventDefault();
+      if (!this.isOpen) {
+        this.showPopup();
+      }
+    };
+
+    // Use both click and touch events with preventDefault
+    this.btn.addEventListener("touchstart", clickHandler, { passive: false });
+    this.btn.addEventListener("click", clickHandler);
+
+    // Close button handler
+    this.closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.hidePopup();
+    });
+
+    // Background click handler
+    this.blurBackground.addEventListener("click", () => {
+      this.hidePopup();
+    });
+
+    // Prevent popup content clicks from closing the popup
+    this.popup.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    // Handle escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.isOpen) {
+        this.hidePopup();
+      }
+    });
+  }
+
+  showPopup() {
+    if (this.isOpen) return;
+
+    this.isOpen = true;
+    document.body.style.overflow = "hidden";
+
+    // Set display properties first
+    this.blurBackground.style.display = "block";
+    this.popup.style.display = "flex";
+
+    // Force reflow
+    this.popup.offsetHeight;
+
+    // Add active classes and display content
+    requestAnimationFrame(() => {
+      this.blurBackground.classList.add("active");
+      this.popup.classList.add("active");
+      this.displaySchedule();
+    });
+  }
+
+  hidePopup() {
+    if (!this.isOpen) return;
+
+    this.isOpen = false;
+    this.blurBackground.classList.remove("active");
+    this.popup.classList.remove("active");
+
+    setTimeout(() => {
+      document.body.style.overflow = "";
+      this.blurBackground.style.display = "none";
+      this.popup.style.display = "none";
+    }, 300); // Match the CSS transition duration
+  }
+
+  displaySchedule() {
+    const tomorrow = this.getTomorrowDate();
+    const workingDayData = this.findWorkingDay(tomorrow);
+
+    this.dateDisplay.textContent = this.formatDate(tomorrow);
+
+    // Clear previous content first
+    this.scheduleContent.innerHTML = "";
+
+    if (!workingDayData) {
+      this.workingDayInfo.textContent = "No Calendar Data Available";
+      this.scheduleContent.innerHTML = `
+              <div class="holiday-notice">
+                  <div class="holiday-icon">
+                      <i class="fas fa-calendar-times"></i>
+                  </div>
+                  <div class="holiday-text">No Schedule Available</div>
+                  <div class="holiday-remarks">Calendar data is not available for this date</div>
+              </div>`;
+      return;
+    }
+
+    this.workingDayInfo.textContent =
+      workingDayData.status === "Working"
+        ? `Working Day ${workingDayData.workingDay}`
+        : workingDayData.status;
+
+    if (workingDayData.status === "Holiday") {
+      this.scheduleContent.innerHTML = `
+              <div class="holiday-notice slide-in">
+                  <div class="holiday-icon">
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="holiday-text">Holiday</div>
+                  <div class="holiday-remarks">${workingDayData.remarks}</div>
+              </div>`;
+      return;
+    }
+
+    const schedule = this.getScheduleForDay(workingDayData.workingDay);
+
+    if (!schedule || !schedule.length) {
+      this.scheduleContent.innerHTML = `
+              <div class="holiday-notice">
+                  <div class="holiday-icon">
+                      <i class="fas fa-calendar-day"></i>
+                  </div>
+                  <div class="holiday-text">No Classes Scheduled</div>
+                  <div class="holiday-remarks">No classes are scheduled for this working day</div>
+              </div>`;
+      return;
+    }
+
+    // Add schedule items with staggered animation
+    schedule.forEach((item, index) => {
+      const scheduleItem = document.createElement("div");
+      scheduleItem.className = "schedule-item slide-in";
+      scheduleItem.style.animationDelay = `${index * 0.1}s`;
+      scheduleItem.innerHTML = `
+              <div class="schedule-time">
+                  <i class="far fa-clock"></i>
+                  ${item.time}
+              </div>
+              <div class="schedule-subject">${item.subject}</div>
+              <div class="schedule-details">
+                  <span><i class="fas fa-user"></i> ${item.instructor}</span>
+                  <span><i class="fas fa-door-open"></i> ${item.room}</span>
+              </div>
+          `;
+      this.scheduleContent.appendChild(scheduleItem);
+    });
+  }
+
+  getTomorrowDate() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
+  }
+
+  formatDate(date) {
+    return date.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
+  findWorkingDay(date) {
+    const dateStr = date.toISOString().split("T")[0];
+    return CALENDAR_DATA.find((item) => item.date === dateStr);
+  }
+
+  getScheduleForDay(workingDay) {
+    return CLASS_SCHEDULES[workingDay] || [];
+  }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  new ScheduleManager();
+});
