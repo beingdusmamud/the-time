@@ -484,6 +484,28 @@
       </div>
     </footer>
     <!-- Footer End -->
+
+    <button id="tomorrowScheduleBtn" class="schedule-floating-btn">
+      <i class="fas fa-calendar-alt"></i>
+    </button>
+
+    <div class="blur-background" id="blurBackground"></div>
+
+    <div id="schedulePopup" class="schedule-popup">
+      <div class="schedule-popup-content">
+        <div class="popup-header">
+          <div class="date-display">
+            <h3 id="tomorrowDate" class="date-title"></h3>
+            <div id="workingDayInfo" class="working-day-info"></div>
+          </div>
+          <div class="close-popup" id="closePopup">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <div id="scheduleContent" class="schedule-content"></div>
+      </div>
+    </div>
+    
     <script src="js/main.js"></script>
   </body>
 </html>
