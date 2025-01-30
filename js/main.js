@@ -3096,7 +3096,8 @@ window.addEventListener("popstate", function () {
 });
 // Hide .html End
 
-document.addEventListener("DOMContentLoaded", function () {
+
+  document.addEventListener("DOMContentLoaded", function () {
   const popupBtn = document.getElementById("next_schedule_button");
   const modal = document.getElementById("next_schedule_container");
   const closeBtn = document.querySelector(".schedule_close_button");
@@ -3104,26 +3105,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const scheduleContent = document.getElementById("next_schedule_content");
   const workingDayBadge = document.getElementById("next_working_number");
 
-  function findNextWorkingDay(currentDate) {
-    const today = new Date(currentDate);
-    let nextDay = new Date(today);
-    nextDay.setDate(nextDay.getDate() + 1);
-
-    // Format date for comparison
-    const formattedNextDay = nextDay.toISOString().split("T")[0];
-
-    // Find the next working day in calendar data
-    const nextDayData = CALENDAR_DATA.find(
-      (item) => item.date === formattedNextDay
-    );
-
-    return {
-      date: nextDay,
-      scheduleData: nextDayData
-    };
+  // Function to get tomorrow's date
+  function getTomorrowDate() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Add 1 day to current date
+    return tomorrow;
   }
 
-  function formatDate(date) {
+  // Function to format dates as YYYY-MM-DD
+  function formatDateForComparison(date) {
+    return date.toISOString().split("T")[0];
+  }
+
+  // Format date for display (e.g., long format like "Friday, January 31, 2025")
+  function formatDateForDisplay(date) {
     const options = {
       weekday: "long",
       year: "numeric",
@@ -3133,94 +3129,115 @@ document.addEventListener("DOMContentLoaded", function () {
     return date.toLocaleDateString("en-US", options);
   }
 
+  // Function to find tomorrow's schedule in CALENDAR_DATA
+  function getTomorrowSchedule() {
+    const tomorrow = getTomorrowDate(); // Get tomorrow's date
+    const formattedTomorrow = formatDateForComparison(tomorrow); // Convert to YYYY-MM-DD format
+    // Find schedule for tomorrow
+    return CALENDAR_DATA.find((item) => item.date === formattedTomorrow);
+  }
+
+  // Function to display the schedule or holiday information
   function displaySchedule() {
-    // Get current date and find tomorrow's data
-    const today = new Date();
-    const nextDay = findNextWorkingDay(today);
-    const formattedDate = formatDate(nextDay.date);
+    const tomorrow = getTomorrowDate(); // Get tomorrow's date
+    const scheduleData = getTomorrowSchedule(); // Get tomorrow's schedule data
+    const formattedDate = formatDateForDisplay(tomorrow); // Format date for display
 
-    dateTitle.textContent = formattedDate;
+    dateTitle.textContent = formattedDate; // Update popup title with tomorrow's date
 
-    if (!nextDay.scheduleData) {
+    // If no data for tomorrow exists
+    if (!scheduleData) {
       scheduleContent.innerHTML = `
-              <div class="schedule_holiday_message">
-                  Schedule information not available
-              </div>`;
-      workingDayBadge.style.display = "none";
+        <div class="schedule_holiday_message">
+          Schedule information not available
+        </div>`;
+      workingDayBadge.style.display = "none"; // Hide the working day badge
       return;
     }
 
-    if (nextDay.scheduleData.status === "Holiday") {
+    // If it's a holiday
+    if (scheduleData.status === "Holiday") {
       scheduleContent.innerHTML = `
-              <div class="schedule_holiday_message">
-                  Holiday: $
-{nextDay.scheduleData.remarks}
-              </div>`;
-      workingDayBadge.style.display = "none";
-    } else {
-      workingDayBadge.style.display = "inline-block";
-      workingDayBadge.textContent = `Working Day
-${nextDay.scheduleData.workingDay}`;
-
-      const daySchedule = CLASS_SCHEDULES[nextDay.scheduleData.workingDay] || [];
-      const scheduleHTML = daySchedule
-        .map(
-          (classItem) => `
-              <div class="schedule_class_card">
-                  <div class="class_time_display">$
-{classItem.time}</div>
-                  <div class="class_subject_display">
-${classItem.subject}</div>
-                  <div class="class_details_display">
-                      <div>Instructor: $
-{classItem.instructor}</div>
-                      <div>Room:
-${classItem.room}</div>
-                  </div>
-              </div>
-          `
-        )
-        .join("");
-
-      scheduleContent.innerHTML =
-        scheduleHTML ||
-        `
-              <div class="schedule_holiday_message">
-                  No classes scheduled
-              </div>`;
+        <div class="schedule_holiday_message">
+          Holiday: $
+{scheduleData.remarks || "No remarks available"}
+        </div>`;
+      workingDayBadge.style.display = "none"; // Hide the working day badge
+      return;
     }
+
+    // If it's a working day
+    const workingDayNum = scheduleData.workingDay;
+    workingDayBadge.style.display = "inline-block"; // Show the working day badge
+    workingDayBadge.textContent = `Working Day
+${workingDayNum}`;
+
+    // Find the class schedule for the working day
+    const daySchedule = CLASS_SCHEDULES[workingDayNum] || [];
+
+    // If no classes are scheduled
+    if (daySchedule.length === 0) {
+      scheduleContent.innerHTML = `
+        <div class="schedule_holiday_message">
+          No classes scheduled for this working day
+        </div>`;
+      return;
+    }
+
+    // Build class schedule HTML
+    const scheduleHTML = daySchedule
+      .map(
+        (classItem) => `
+          <div class="schedule_class_card">
+            <div class="class_time_display">$
+{classItem.time}</div>
+            <div class="class_subject_display">
+${classItem.subject}</div>
+            <div class="class_details_display">
+              <div>Instructor: $
+{classItem.instructor}</div>
+              <div>Room:
+${classItem.room}</div>
+            </div>
+          </div>
+        `
+      )
+      .join(""); // Create HTML for all class items
+
+    scheduleContent.innerHTML = scheduleHTML;
   }
 
-  // Function to schedule next update at midnight
-  function scheduleNextUpdate() {
+  // Function to schedule updates at midnight
+  function scheduleNextMidnightUpdate() {
     const now = new Date();
     const tomorrow = new Date(now);
     tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
-    
-    const timeUntilMidnight = tomorrow - now;
+    tomorrow.setHours(0, 0, 0, 0); // Set time to midnight
+
+    const timeUntilMidnight = tomorrow - now; // Calculate time until midnight
     setTimeout(() => {
-      displaySchedule();
-      scheduleNextUpdate(); // Schedule next update
+      displaySchedule(); // Refresh the schedule
+      scheduleNextMidnightUpdate(); // Schedule the next update
     }, timeUntilMidnight);
   }
 
   // Event Listeners
   popupBtn.addEventListener("click", function () {
-    modal.style.display = "block";
-    displaySchedule();
+    modal.style.display = "block"; // Show the modal
+    displaySchedule(); // Populate the modal with tomorrow's schedule
   });
 
   closeBtn.addEventListener("click", function () {
-    modal.style.display = "none";
+    modal.style.display = "none"; // Hide the modal
   });
 
   window.addEventListener("click", function (event) {
     if (event.target === modal) {
-      modal.style.display = "none";
+      modal.style.display = "none"; // Hide modal when clicking outside the content
     }
   });
 
-  // Initialize automatic updates
-  scheduleNextUpdate();
+  // Display the next schedule at midnight
+  scheduleNextMidnightUpdate();
 });
+      
