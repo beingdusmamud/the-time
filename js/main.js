@@ -92,7 +92,7 @@ const CLASS_SCHEDULES = {
       time: "9:00 AM — 12:00 Noon",
       subject: "EMMI-1 LAB (Gr1)(CM,LK) <br> LIB (Gr 2)",
       instructor: "Staff",
-      room: "-",
+      room: "Lab",
     },
     {
       time: "12:45 PM — 1:45 PM",
@@ -118,7 +118,7 @@ const CLASS_SCHEDULES = {
       time: "9:00 AM — 12:00 Noon",
       subject: "EEDD",
       instructor: "Chinmayee Ma'am",
-      room: "Room 301",
+      room: "Room 202",
     },
     {
       time: "12:45 PM — 1:45 PM",
@@ -128,7 +128,7 @@ const CLASS_SCHEDULES = {
     },
     {
       time: "1:45 PM — 4:45 PM",
-      subject: "LECN LAB(Gr 2) (PC,LK) <br> EM-I LAB (Gr 1) (AKD,SI)",
+      subject: "ECN LAB(Gr 2) (PC,LK) <br> EM-I LAB (Gr 1) (AKD,SI)",
       instructor: "Staff",
       room: "-",
     },
@@ -138,7 +138,7 @@ const CLASS_SCHEDULES = {
       time: "9:00 AM — 12:00 Noon",
       subject: "EMMI-1 LAB (Gr 2) (AKD,LK) <br> LIB (Gr 1)",
       instructor: "Staff",
-      room: "Lab 101",
+      room: "Lab",
     },
     {
       time: "12:45 PM — 1:45 PM",
