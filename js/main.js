@@ -3096,8 +3096,7 @@ window.addEventListener("popstate", function () {
 });
 // Hide .html End
 
-
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const popupBtn = document.getElementById("next_schedule_button");
   const modal = document.getElementById("next_schedule_container");
   const closeBtn = document.querySelector(".schedule_close_button");
@@ -3105,7 +3104,7 @@ window.addEventListener("popstate", function () {
   const scheduleContent = document.getElementById("next_schedule_content");
   const workingDayBadge = document.getElementById("next_working_number");
 
-  // Function to get tomorrow's date
+  // Get tomorrow's date
   function getTomorrowDate() {
     const today = new Date();
     const tomorrow = new Date(today);
@@ -3118,7 +3117,7 @@ window.addEventListener("popstate", function () {
     return date.toISOString().split("T")[0];
   }
 
-  // Format date for display (e.g., long format like "Friday, January 31, 2025")
+  // Format date for display (e.g., "Friday, January 31, 2025")
   function formatDateForDisplay(date) {
     const options = {
       weekday: "long",
@@ -3129,33 +3128,33 @@ window.addEventListener("popstate", function () {
     return date.toLocaleDateString("en-US", options);
   }
 
-  // Function to find tomorrow's schedule in CALENDAR_DATA
+  // Get schedule data for tomorrow's date from CALENDAR_DATA
   function getTomorrowSchedule() {
     const tomorrow = getTomorrowDate(); // Get tomorrow's date
     const formattedTomorrow = formatDateForComparison(tomorrow); // Convert to YYYY-MM-DD format
-    // Find schedule for tomorrow
+    // Find the schedule data for tomorrow from CALENDAR_DATA
     return CALENDAR_DATA.find((item) => item.date === formattedTomorrow);
   }
 
-  // Function to display the schedule or holiday information
+  // Display tomorrow's schedule or holiday
   function displaySchedule() {
     const tomorrow = getTomorrowDate(); // Get tomorrow's date
     const scheduleData = getTomorrowSchedule(); // Get tomorrow's schedule data
     const formattedDate = formatDateForDisplay(tomorrow); // Format date for display
 
-    dateTitle.textContent = formattedDate; // Update popup title with tomorrow's date
+    dateTitle.textContent = formattedDate; // Set modal title to tomorrow's date display
 
-    // If no data for tomorrow exists
+    // If no data exists for tomorrow
     if (!scheduleData) {
       scheduleContent.innerHTML = `
         <div class="schedule_holiday_message">
           Schedule information not available
         </div>`;
-      workingDayBadge.style.display = "none"; // Hide the working day badge
+      workingDayBadge.style.display = "none";
       return;
     }
 
-    // If it's a holiday
+    // If tomorrow is a holiday
     if (scheduleData.status === "Holiday") {
       scheduleContent.innerHTML = `
         <div class="schedule_holiday_message">
@@ -3166,16 +3165,16 @@ window.addEventListener("popstate", function () {
       return;
     }
 
-    // If it's a working day
+    // If tomorrow is a working day
     const workingDayNum = scheduleData.workingDay;
-    workingDayBadge.style.display = "inline-block"; // Show the working day badge
+    workingDayBadge.style.display = "inline-block"; // Show working day badge
     workingDayBadge.textContent = `Working Day
 ${workingDayNum}`;
 
-    // Find the class schedule for the working day
+    // Get the class schedule for the working day
     const daySchedule = CLASS_SCHEDULES[workingDayNum] || [];
 
-    // If no classes are scheduled
+    // If no classes are scheduled for the working day
     if (daySchedule.length === 0) {
       scheduleContent.innerHTML = `
         <div class="schedule_holiday_message">
@@ -3202,9 +3201,9 @@ ${classItem.room}</div>
           </div>
         `
       )
-      .join(""); // Create HTML for all class items
+      .join("");
 
-    scheduleContent.innerHTML = scheduleHTML;
+    scheduleContent.innerHTML = scheduleHTML; // Populate modal with class schedule
   }
 
   // Function to schedule updates at midnight
@@ -3237,7 +3236,7 @@ ${classItem.room}</div>
     }
   });
 
-  // Display the next schedule at midnight
+  // Initialize automatic updates at midnight
   scheduleNextMidnightUpdate();
 });
-      
+    
