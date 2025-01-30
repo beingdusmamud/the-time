@@ -130,7 +130,7 @@ const CLASS_SCHEDULES = {
       time: "1:45 PM — 4:45 PM",
       subject: "ECN LAB(Gr 2) (PC,LK) <br> EM-I LAB (Gr 1) (AKD,SI)",
       instructor: "Staff",
-      room: "-",
+      room: "Lab",
     },
   ],
   3: [
@@ -170,13 +170,13 @@ const CLASS_SCHEDULES = {
       time: "2:45 PM — 3:45 PM",
       subject: "PP-II",
       instructor: "Staff",
-      room: "Room 202",
+      room: "-",
     },
     {
       time: "3:45 PM — 4:45 PM",
       subject: "Remedial Class",
       instructor: "Staff",
-      room: "Room 202",
+      room: "-",
     },
   ],
   5: [
@@ -208,7 +208,7 @@ const CLASS_SCHEDULES = {
       time: "3:45 PM — 4:45 PM",
       subject: "Remedial Class",
       instructor: "Staff",
-      room: "Room 202",
+      room: "-",
     },
   ],
   6: [
@@ -216,7 +216,7 @@ const CLASS_SCHEDULES = {
       time: "9:00 AM — 10:00 AM",
       subject: "EM-I",
       instructor: "Panchita Ma'am",
-      room: "Room 201",
+      room: "Room 202",
     },
     {
       time: "10:00 AM — 12:00 Noon",
