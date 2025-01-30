@@ -3096,7 +3096,6 @@ window.addEventListener("popstate", function () {
 });
 // Hide .html End
 
-
 document.addEventListener("DOMContentLoaded", function () {
   const popupBtn = document.getElementById("next_schedule_button");
   const modal = document.getElementById("next_schedule_container");
@@ -3105,17 +3104,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const scheduleContent = document.getElementById("next_schedule_content");
   const workingDayBadge = document.getElementById("next_working_number");
 
-  function findNextWorkingDay(currentDate, currentWorkingDay) {
+  function findNextWorkingDay(currentDate) {
     const today = new Date(currentDate);
     let nextDay = new Date(today);
     nextDay.setDate(nextDay.getDate() + 1);
-
-    // Convert working day to number
-    const currentWorkingDayNum = parseInt(currentWorkingDay) || 0;
-
-    // Calculate next working day number (1-6)
-    let nextWorkingDayNum = currentWorkingDayNum + 1;
-    if (nextWorkingDayNum > 6) nextWorkingDayNum = 1;
 
     // Format date for comparison
     const formattedNextDay = nextDay.toISOString().split("T")[0];
@@ -3127,8 +3119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return {
       date: nextDay,
-      scheduleData: nextDayData,
-      nextWorkingDay: nextWorkingDayNum,
+      scheduleData: nextDayData
     };
   }
 
@@ -3143,15 +3134,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function displaySchedule() {
-    // Get current date and find today's working day
+    // Get current date and find tomorrow's data
     const today = new Date();
-    const todayFormatted = today.toISOString().split("T")[0];
-    const todayData = CALENDAR_DATA.find(
-      (item) => item.date === todayFormatted
-    );
-
-    // Find next working day
-    const nextDay = findNextWorkingDay(today, todayData?.workingDay);
+    const nextDay = findNextWorkingDay(today);
     const formattedDate = formatDate(nextDay.date);
 
     dateTitle.textContent = formattedDate;
@@ -3168,24 +3153,29 @@ document.addEventListener("DOMContentLoaded", function () {
     if (nextDay.scheduleData.status === "Holiday") {
       scheduleContent.innerHTML = `
               <div class="schedule_holiday_message">
-                  Holiday: ${nextDay.scheduleData.remarks}
+                  Holiday: $
+{nextDay.scheduleData.remarks}
               </div>`;
       workingDayBadge.style.display = "none";
     } else {
       workingDayBadge.style.display = "inline-block";
-      workingDayBadge.textContent = `Working Day ${nextDay.scheduleData.workingDay}`;
+      workingDayBadge.textContent = `Working Day
+${nextDay.scheduleData.workingDay}`;
 
-      const daySchedule =
-        CLASS_SCHEDULES[nextDay.scheduleData.workingDay] || [];
+      const daySchedule = CLASS_SCHEDULES[nextDay.scheduleData.workingDay] || [];
       const scheduleHTML = daySchedule
         .map(
           (classItem) => `
               <div class="schedule_class_card">
-                  <div class="class_time_display">${classItem.time}</div>
-                  <div class="class_subject_display">${classItem.subject}</div>
+                  <div class="class_time_display">$
+{classItem.time}</div>
+                  <div class="class_subject_display">
+${classItem.subject}</div>
                   <div class="class_details_display">
-                      <div>Instructor: ${classItem.instructor}</div>
-                      <div>Room: ${classItem.room}</div>
+                      <div>Instructor: $
+{classItem.instructor}</div>
+                      <div>Room:
+${classItem.room}</div>
                   </div>
               </div>
           `
@@ -3201,6 +3191,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Function to schedule next update at midnight
+  function scheduleNextUpdate() {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    
+    const timeUntilMidnight = tomorrow - now;
+    setTimeout(() => {
+      displaySchedule();
+      scheduleNextUpdate(); // Schedule next update
+    }, timeUntilMidnight);
+  }
+
+  // Event Listeners
   popupBtn.addEventListener("click", function () {
     modal.style.display = "block";
     displaySchedule();
@@ -3215,4 +3220,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.display = "none";
     }
   });
+
+  // Initialize automatic updates
+  scheduleNextUpdate();
 });
