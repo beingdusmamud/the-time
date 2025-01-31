@@ -55,7 +55,7 @@ const CONFIG = {
     "Magnetic cores concentrate magnetic flux in transformers and inductors.",
     "Electric potential difference drives current flow in circuits.",
     "Signal integrity ensures reliable transmission of electrical signals.",
-    "Electrical resonance occurs when inductive and capacitive reactance match."
+    "Electrical resonance occurs when inductive and capacitive reactance match.",
   ],
 };
 
@@ -85,31 +85,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Class Schedule Data
-// Class Schedule Data
 const CLASS_SCHEDULES = {
   1: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EMMI-1 LAB (Gr1)(CM,LK) <br> LIB (Gr 2)",
+      subject: "EMMI-1 LAB (Gr 1) (CM, LK) <br> LIBRARY (Gr 2)",
       instructor: "Staff",
-      room: "Lab",
+      type: "lab",
+      room: "Practical",
     },
     {
       time: "12:45 PM — 1:45 PM",
-      subject: "EM-I",
+      subject: "EM-I (",
       instructor: "Panchita Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "1:45 PM — 3:45 PM",
       subject: "ENC",
       instructor: "Amit Sir",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "3:45 PM — 4:45 PM",
       subject: "LIBRARY",
       instructor: "Staff",
+      type: "other",
       room: "-",
     },
   ],
@@ -118,64 +121,74 @@ const CLASS_SCHEDULES = {
       time: "9:00 AM — 12:00 Noon",
       subject: "EEDD",
       instructor: "Chinmayee Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "12:45 PM — 1:45 PM",
       subject: "EEM",
       instructor: "Amit Sir",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "1:45 PM — 4:45 PM",
-      subject: "ECN LAB(Gr 2) (PC,LK) <br> EM-I LAB (Gr 1) (AKD,SI)",
+      subject: "ECN LAB (Gr 2) (AKD, LK) <br> EM-I LAB (Gr 1) (PS, SI)",
       instructor: "Staff",
-      room: "Lab",
+      type: "lab",
+      room: "Practical",
     },
   ],
   3: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EMMI-1 LAB (Gr 2) (AKD,LK) <br> LIBRARY (Gr 1)",
-      instructor: "Staff",
-      room: "Lab",
+      subject: "EEDD",
+      instructor: "Chinmayee Ma'am",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "12:45 PM — 1:45 PM",
       subject: "DE",
       instructor: "Pritismita Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "1:45 PM — 3:45 PM",
       subject: "EM-I",
       instructor: "Panchita Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
   ],
   4: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EEDD",
-      instructor: "Chinmayee Ma'am",
-      room: "Room 202",
+      subject: "EMMI-1 LAB (Gr 2) (AKD,LK) <br> LIB (Gr 1)",
+      instructor: "Staff",
+      type: "lab",
+      room: "Practical",
     },
     {
       time: "12:45 PM — 2:45 PM",
       subject: "EMMI-I",
       instructor: "Chinmayee Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "2:45 PM — 3:45 PM",
       subject: "PP-II",
       instructor: "Staff",
+      type: "other",
       room: "-",
     },
     {
       time: "3:45 PM — 4:45 PM",
       subject: "Remedial Class",
       instructor: "Staff",
+      type: "other",
       room: "-",
     },
   ],
@@ -184,30 +197,35 @@ const CLASS_SCHEDULES = {
       time: "9:00 AM — 10:00 AM",
       subject: "ENC",
       instructor: "Amit Sir",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "10:00 AM — 11:00 AM",
       subject: "DE",
       instructor: "Pritismista Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "11:00 AM — 12:00 Noon",
       subject: "EEM",
       instructor: "Amit Sir",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "12:45 PM — 3:45 PM",
-      subject: "ECN LAB (Gr1) (PC,LK) <br> EM-I LAB (Gr2) (AKD,SI)",
+      subject: "ECN LAB (Gr 1) (AKD, LK) <br> EM-I LAB (Gr 2) (PS,SI)",
       instructor: "Staff",
-      room: "Lab",
+      type: "lab",
+      room: "Practical",
     },
     {
       time: "3:45 PM — 4:45 PM",
       subject: "Remedial Class",
       instructor: "Staff",
+      type: "other",
       room: "-",
     },
   ],
@@ -216,30 +234,35 @@ const CLASS_SCHEDULES = {
       time: "9:00 AM — 10:00 AM",
       subject: "EM-I",
       instructor: "Panchita Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Theory",
     },
     {
       time: "10:00 AM — 12:00 Noon",
       subject: "EMMI-I",
       instructor: "Chinmayee Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture & Theory",
     },
     {
       time: "12:45 PM — 1:45 PM",
       subject: "EEM",
       instructor: "Amit Sir",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "1:45 PM — 2:45 PM",
       subject: "DE",
       instructor: "Pritismita Ma'am",
-      room: "Room 202",
+      type: "theory",
+      room: "Lecture",
     },
     {
       time: "2:45 PM — 4:45 PM",
       subject: "PP-II",
       instructor: "Staff",
+      type: "other",
       room: "-",
     },
   ],
@@ -3104,21 +3127,34 @@ document.addEventListener("DOMContentLoaded", function () {
   const scheduleContent = document.getElementById("next_schedule_content");
   const workingDayBadge = document.getElementById("next_working_number");
 
-  // Get tomorrow's date
-  function getTomorrowDate() {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1); // Add 1 day to current date
-    return tomorrow;
+  function findNextWorkingDay(currentDate, currentWorkingDay) {
+    const today = new Date(currentDate);
+    let nextDay = new Date(today);
+    nextDay.setDate(nextDay.getDate() + 1);
+
+    // Convert working day to number
+    const currentWorkingDayNum = parseInt(currentWorkingDay) || 0;
+
+    // Calculate next working day number (1-6)
+    let nextWorkingDayNum = currentWorkingDayNum + 1;
+    if (nextWorkingDayNum > 6) nextWorkingDayNum = 1;
+
+    // Format date for comparison
+    const formattedNextDay = nextDay.toISOString().split("T")[0];
+
+    // Find the next working day in calendar data
+    const nextDayData = CALENDAR_DATA.find(
+      (item) => item.date === formattedNextDay
+    );
+
+    return {
+      date: nextDay,
+      scheduleData: nextDayData,
+      nextWorkingDay: nextWorkingDayNum,
+    };
   }
 
-  // Function to format dates as YYYY-MM-DD
-  function formatDateForComparison(date) {
-    return date.toISOString().split("T")[0];
-  }
-
-  // Format date for display (e.g., "Friday, January 31, 2025")
-  function formatDateForDisplay(date) {
+  function formatDate(date) {
     const options = {
       weekday: "long",
       year: "numeric",
@@ -3128,115 +3164,77 @@ document.addEventListener("DOMContentLoaded", function () {
     return date.toLocaleDateString("en-US", options);
   }
 
-  // Get schedule data for tomorrow's date from CALENDAR_DATA
-  function getTomorrowSchedule() {
-    const tomorrow = getTomorrowDate(); // Get tomorrow's date
-    const formattedTomorrow = formatDateForComparison(tomorrow); // Convert to YYYY-MM-DD format
-    // Find the schedule data for tomorrow from CALENDAR_DATA
-    return CALENDAR_DATA.find((item) => item.date === formattedTomorrow);
-  }
-
-  // Display tomorrow's schedule or holiday
   function displaySchedule() {
-    const tomorrow = getTomorrowDate(); // Get tomorrow's date
-    const scheduleData = getTomorrowSchedule(); // Get tomorrow's schedule data
-    const formattedDate = formatDateForDisplay(tomorrow); // Format date for display
+    // Get current date and find today's working day
+    const today = new Date();
+    const todayFormatted = today.toISOString().split("T")[0];
+    const todayData = CALENDAR_DATA.find(
+      (item) => item.date === todayFormatted
+    );
 
-    dateTitle.textContent = formattedDate; // Set modal title to tomorrow's date display
+    // Find next working day
+    const nextDay = findNextWorkingDay(today, todayData?.workingDay);
+    const formattedDate = formatDate(nextDay.date);
 
-    // If no data exists for tomorrow
-    if (!scheduleData) {
+    dateTitle.textContent = formattedDate;
+
+    if (!nextDay.scheduleData) {
       scheduleContent.innerHTML = `
-        <div class="schedule_holiday_message">
-          Schedule information not available
-        </div>`;
+              <div class="schedule_holiday_message">
+                  Schedule information not available
+              </div>`;
       workingDayBadge.style.display = "none";
       return;
     }
 
-    // If tomorrow is a holiday
-    if (scheduleData.status === "Holiday") {
+    if (nextDay.scheduleData.status === "Holiday") {
       scheduleContent.innerHTML = `
-        <div class="schedule_holiday_message">
-          Holiday: $
-{scheduleData.remarks || "No remarks available"}
-        </div>`;
-      workingDayBadge.style.display = "none"; // Hide the working day badge
-      return;
-    }
+              <div class="schedule_holiday_message">
+                  Holiday: ${nextDay.scheduleData.remarks}
+              </div>`;
+      workingDayBadge.style.display = "none";
+    } else {
+      workingDayBadge.style.display = "inline-block";
+      workingDayBadge.textContent = `Working Day ${nextDay.scheduleData.workingDay}`;
 
-    // If tomorrow is a working day
-    const workingDayNum = scheduleData.workingDay;
-    workingDayBadge.style.display = "inline-block"; // Show working day badge
-    workingDayBadge.textContent = `Working Day
-${workingDayNum}`;
+      const daySchedule =
+        CLASS_SCHEDULES[nextDay.scheduleData.workingDay] || [];
+      const scheduleHTML = daySchedule
+        .map(
+          (classItem) => `
+              <div class="schedule_class_card">
+                  <div class="class_time_display">${classItem.time}</div>
+                  <div class="class_subject_display">${classItem.subject}</div>
+                  <div class="class_details_display">
+                      <div>Instructor: ${classItem.instructor}</div>
+                      <div>Type: ${classItem.room}</div>
+                  </div>
+              </div>
+          `
+        )
+        .join("");
 
-    // Get the class schedule for the working day
-    const daySchedule = CLASS_SCHEDULES[workingDayNum] || [];
-
-    // If no classes are scheduled for the working day
-    if (daySchedule.length === 0) {
-      scheduleContent.innerHTML = `
-        <div class="schedule_holiday_message">
-          No classes scheduled for this working day
-        </div>`;
-      return;
-    }
-
-    // Build class schedule HTML
-    const scheduleHTML = daySchedule
-      .map(
-        (classItem) => `
-          <div class="schedule_class_card">
-            <div class="class_time_display">$
-{classItem.time}</div>
-            <div class="class_subject_display">
-${classItem.subject}</div>
-            <div class="class_details_display">
-              <div>Instructor: $
-{classItem.instructor}</div>
-              <div>Room:
-${classItem.room}</div>
-            </div>
-          </div>
+      scheduleContent.innerHTML =
+        scheduleHTML ||
         `
-      )
-      .join("");
-
-    scheduleContent.innerHTML = scheduleHTML; // Populate modal with class schedule
+              <div class="schedule_holiday_message">
+                  No classes scheduled
+              </div>`;
+    }
   }
 
-  // Function to schedule updates at midnight
-  function scheduleNextMidnightUpdate() {
-    const now = new Date();
-    const tomorrow = new Date(now);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0); // Set time to midnight
-
-    const timeUntilMidnight = tomorrow - now; // Calculate time until midnight
-    setTimeout(() => {
-      displaySchedule(); // Refresh the schedule
-      scheduleNextMidnightUpdate(); // Schedule the next update
-    }, timeUntilMidnight);
-  }
-
-  // Event Listeners
   popupBtn.addEventListener("click", function () {
-    modal.style.display = "block"; // Show the modal
-    displaySchedule(); // Populate the modal with tomorrow's schedule
+    modal.style.display = "block";
+    displaySchedule();
   });
 
   closeBtn.addEventListener("click", function () {
-    modal.style.display = "none"; // Hide the modal
+    modal.style.display = "none";
   });
 
   window.addEventListener("click", function (event) {
     if (event.target === modal) {
-      modal.style.display = "none"; // Hide modal when clicking outside the content
+      modal.style.display = "none";
     }
   });
-
-  // Initialize automatic updates at midnight
-  scheduleNextMidnightUpdate();
 });
-    
