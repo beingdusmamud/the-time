@@ -1374,7 +1374,6 @@ input:checked + .slider:before {
   }
 }
 
-
 .floating_schedule_button {
   position: fixed;
   bottom: 30px;
