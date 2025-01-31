@@ -930,7 +930,7 @@ const FOURTH_SEM_CLASSES = {
     },
     {
       time: "3:45 PM — 4:45 PM",
-      subject: "LIB",
+      subject: "LIBRARY",
       instructor: "Staff",
       room: "4th Sem",
     },
@@ -950,16 +950,16 @@ const FOURTH_SEM_CLASSES = {
     },
     {
       time: "1:45 PM — 4:45 PM",
-      subject: "LECN LAB(Gr 2) (PC,LK) <br> EM-I LAB (Gr 1) (AKD,SI)",
-      instructor: "Pritismita Mam and Lutfor Sir and Amit Sir and Shohidur Sir",
+      subject: "LECN LAB (Gr 2) (AKD,LK) <br> EM-I LAB (Gr 1) (PS,SI)",
+      instructor: "Amit Sir and Lutfor Sir and Panchita Mam and Shohidur Sir",
       room: "4th Sem",
     },
   ],
   3: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EMMI-1 LAB (Gr 2) (AKD,LK) <br> LIB (Gr 1)",
-      instructor: "Amit Sir and Lutfor Sir",
+      subject: "EEDD",
+      instructor: "Chinmayee Mam",
       room: "4th Sem",
     },
     {
@@ -978,8 +978,8 @@ const FOURTH_SEM_CLASSES = {
   4: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EEDD",
-      instructor: "Chinmayee Mam",
+      subject: "EMMI-1 LAB (Gr 2) (CM,LK) <br> LIBRARY (Gr 1)",
+      instructor: "Chinmayee Mam and Lutfor Sir",
       room: "4th Sem",
     },
     {
@@ -1022,8 +1022,8 @@ const FOURTH_SEM_CLASSES = {
     },
     {
       time: "12:45 PM — 3:45 PM",
-      subject: "ECN LAB (Gr1) (PC,LK) <br> EM-I LAB (Gr2) (AKD,SI)",
-      instructor: "Pritismita Mam and Lutfor Sir and Amit Sir and Shohidur Sir",
+      subject: "ECN LAB (Gr1) (AKD,LK) <br> EM-I LAB (Gr2) (AKD,SI)",
+      instructor: "Amit Sir and Lutfor Sir and Panchita Mam and Shohidur Sir",
       room: "4th Sem",
     },
     {
@@ -1068,10 +1068,10 @@ const FOURTH_SEM_CLASSES = {
 };
 
 const SIXTH_SEM_CLASSES = {
- 1: [
+  1: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EECC Lab Grp1(PC,SI) <br> Grp 2 lib",
+      subject: "EECC Lab Grp 1 (PC,SI) <br> Grp 2 lib",
       instructor: "Pritismita Mam and Shohidur Sir",
       room: "6th Sem",
     },
@@ -1199,14 +1199,14 @@ const SIXTH_SEM_CLASSES = {
     },
     {
       time: "12:45 PM — 1:45 PM",
-      subject: "IME",
-      instructor: "Malay Das",
+      subject: "GEN VIVA",
+      instructor: "Staff",
       room: "6th Sem",
     },
     {
       time: "1:45 PM — 2:45 PM",
-      subject: "GEN VIVA",
-      instructor: "Staff",
+      subject: "IME",
+      instructor: "Malay Das",
       room: "6th Sem",
     },
     {
