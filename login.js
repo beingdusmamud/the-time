@@ -142,7 +142,4 @@ window.addEventListener("popstate", function () {
 });
 // Hide .html End
 
-// Check if user is coming from direct URL
-if (document.referrer === "") {
-  window.location.href = "/"; // Redirect to home page
-}
+
