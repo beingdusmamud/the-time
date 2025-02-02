@@ -703,3 +703,11 @@ window.onload = function () {
   let newURL = "/control-pannel";
   window.history.pushState({}, "", newURL);
 };
+
+
+// Check if the user has already visited another page
+if (sessionStorage.getItem("visited")) {
+    window.location.href = "404"; // Redirect to 404 page
+} else {
+    sessionStorage.setItem("visited", "true"); // Mark current session
+}
