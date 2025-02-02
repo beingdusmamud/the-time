@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Event Calendar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Add this in your <head> section -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="AdminDashboard.css" />
+  </head>
+  <body>
+    <!-- Header HTML -->
+    <header class="header">
+      <div class="header-container">
+        <div class="logo">
+          <h1>TimeIt</h1>
+        </div>
+        <div class="nav-buttons">
+          <button onclick="handleLogout()" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="greeting-card">
+          <div class="profile-section">
+            <div class="profile-wrapper">
+              <div class="profile-image">
+                <img src="assets/dus.jpg" alt="User Profile" id="userProfile" />
+              </div>
+              <div class="online-status">
+                <i class="fa-solid fa-circle"></i>
+              </div>
+            </div>
+            <div class="profile-info">
+              <div class="greeting-header">
+                <div class="greeting-icon-wrapper">
+                  <i id="greetingIcon" class="fa-solid fa-star"></i>
+                </div>
+
+                <div class="greeting-text-wrapper">
+                  <span class="greeting-label" id="greetingTime"
+                    >Good Morning</span
+                  >
+                  <h1 class="user-name">Dus Mamud</h1>
+                  <span class="user-role">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Lead Developer
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="time-section">
+            <div class="time-widget">
+              <div class="time-display">
+                <i class="fa-solid fa-clock"></i>
+                <span id="currentTime">Loading...</span>
+              </div>
+              <div class="date-display">
+                <i class="fa-solid fa-calendar-alt"></i>
+                <span id="currentDate">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Error Alert Section -->
+    <div class="error-alert" id="errorAlert">
+      <div class="error-content">
+        <div class="error-icon">
+          <i class="fa-solid fa-server"></i>
+        </div>
+        <div class="error-message">
+          <h3>Server Status Update</h3>
+          <p>
+            Due to server maintenance, some features are temporarily limited :)
+          </p>
+          <ul>
+            <li>
+              <i class="fa-solid fa-circle-check"></i> Event Calendar Manager is
+              available
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-check"></i> Class Schedule Manager is
+              available
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-xmark"></i> Live updates are
+              temporarily unavailable
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-xmark"></i> Some additional features
+              may be restricted
+            </li>
+          </ul>
+        </div>
+        <button class="close-btn" onclick="closeError()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="app-container">
+      <div class="app-header">
+        <h1 class="app-title">Event Calendar Manager</h1>
+      </div>
+
+      <div class="form-section">
+        <div class="input-group">
+          <label class="input-label">Start Date</label>
+          <input type="date" id="startDate" class="input-field" />
+        </div>
+        <div class="input-group">
+          <label class="input-label">End Date</label>
+          <input type="date" id="endDate" class="input-field" />
+        </div>
+        <div class="input-group">
+          <label class="input-label">Event Date</label>
+          <input type="date" id="eventDate" class="input-field" />
+        </div>
+        <div class="input-group">
+          <label class="input-label">Event Title</label>
+          <input
+            type="text"
+            id="eventTitle"
+            class="input-field"
+            placeholder="Enter event title (e.g., Company Meeting)"
+          />
+        </div>
+        <div class="input-group">
+          <label class="input-label">Status</label>
+          <select id="eventStatus" class="input-field">
+            <option value="Holiday">Holiday</option>
+            <option value="Working">Working</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button onclick="addEvent()" class="btn btn-primary">Add Event</button>
+        <button onclick="generatePreview()" class="btn btn-primary">
+          Generate Preview
+        </button>
+        <button onclick="clearEvents()" class="btn btn-secondary">
+          Clear Events
+        </button>
+      </div>
+
+      <div
+        class="file-upload"
+        onclick="document.getElementById('excelFile').click()"
+      >
+        <input
+          type="file"
+          id="excelFile"
+          accept=".xlsx, .xls"
+          style="display: none"
+          onchange="handleFileUpload(event)"
+        />
+        <div class="file-upload-text">
+          Drop Excel file here or click to upload
+          <br />
+          <small>Supported formats: .xlsx, .xls</small>
+        </div>
+      </div>
+
+      <div class="preview-container">
+        <div class="preview-header">
+          <button class="view-toggle active" onclick="showTable()">
+            Table View
+          </button>
+          <button class="view-toggle" onclick="showCode()">Code View</button>
+        </div>
+        <div class="preview-content">
+          <div id="tableView" class="table-container"></div>
+          <div id="codeView" class="code-preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast">
+      <span id="toastMessage"></span>
+    </div>
+
+    <div class="btn-group">
+      <button onclick="exportToExcel()" class="btn btn-secondary">
+        Export to Excel
+      </button>
+      <button onclick="downloadGeneratedCode()" class="btn btn-secondary">
+        Download Code
+      </button>
+      <button onclick="copyGeneratedCode()" class="btn btn-secondary">
+        Copy Code
+      </button>
+    </div>
+
+    <!-- Add this section below Event Calendar Manager in your HTML -->
+    <div class="app-container">
+      <div class="section-header">
+        <h2 class="section-title">Class Schedule Manager</h2>
+      </div>
+
+      <div class="form-section">
+        <div class="input-group">
+          <label class="input-label">Select Semester</label>
+          <select id="semesterSelect" class="input-field">
+            <option value="">Select Semester</option>
+            <option value="FOURTH">4th Semester</option>
+            <option value="SIXTH">6th Semester</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Working Day</label>
+          <select id="workingDay" class="input-field">
+            <option value="">Select Day</option>
+            <option value="1">Day 1</option>
+            <option value="2">Day 2</option>
+            <option value="3">Day 3</option>
+            <option value="4">Day 4</option>
+            <option value="5">Day 5</option>
+            <option value="6">Day 6</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Subject</label>
+          <input
+            type="text"
+            id="subject"
+            class="input-field"
+            placeholder="Enter subject name"
+          />
+        </div>
+
+        <div class="time-group">
+          <div class="input-group">
+            <label class="input-label">Time From</label>
+            <input type="time" id="timeFrom" class="input-field" />
+          </div>
+          <div class="input-group">
+            <label class="input-label">Time To</label>
+            <input type="time" id="timeTo" class="input-field" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Instructor Name</label>
+          <input
+            type="text"
+            id="instructor"
+            class="input-field"
+            placeholder="Enter instructor name (optional)"
+          />
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button onclick="addClassSchedule()" class="btn btn-primary">
+          Add Schedule
+        </button>
+        <button onclick="generateSchedulePreview()" class="btn btn-primary">
+          Generate Preview
+        </button>
+        <button onclick="exportScheduleToExcel()" class="btn btn-secondary">
+          Export to Excel
+        </button>
+        <button onclick="copyScheduleCode()" class="btn btn-secondary">
+          Copy Code
+        </button>
+        <button onclick="clearSchedule()" class="btn btn-secondary">
+          Clear Schedule
+        </button>
+      </div>
+
+      <div class="preview-container">
+        <div class="preview-header">
+          <button class="view-toggle active" onclick="showScheduleTable()">
+            Table View
+          </button>
+          <button class="view-toggle" onclick="showScheduleCode()">
+            Code View
+          </button>
+        </div>
+        <div class="preview-content">
+          <div id="scheduleTableView" class="table-container"></div>
+          <div id="scheduleCodeView" class="code-preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h2>TimeIt</h2>
+            <p>© 2025 TimeIt. All rights reserved.</p>
+          </div>
+          <div class="footer-links">
+            <div class="social-links">
+              <a
+                href="https://github.com/dusxinfinity"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="disclaimer.html" class="social-link">
+                <i class="fa-solid fa-file-lines"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="AdminDashboard.js"></script>
+  </body>
+</html>
