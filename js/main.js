@@ -2708,7 +2708,7 @@ const birthdayData = [
   { name: "Gautam", dob: "2005-05-29" },
   { name: "Syed Bhai", dob: "2004-05-25" },
   { name: "Masuma", dob: "2005-04-24" },
-  { name: "Sobikul", dob: "2005-02-06" },
+  { name: "Sobikul", dob: "2005-04-23" },
   { name: "Moon Bhai", dob: "2005-04-21" },
   { name: "Anup", dob: "2005-03-18" },
   { name: "Muskan", dob: "2005-03-30" },
