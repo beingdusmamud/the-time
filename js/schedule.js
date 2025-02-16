@@ -1,4 +1,5 @@
 // Constants and Configurations 4th sem ee
+// Class Schedule Data
 const CLASS_SCHEDULES = {
   1: [
     {
@@ -10,8 +11,8 @@ const CLASS_SCHEDULES = {
     },
     {
       time: "12:45 PM — 1:45 PM",
-      subject: "EM-I (",
-      instructor: "Panchita Ma'am",
+      subject: "EM-I",
+      instructor: "Amit Sir",
       type: "theory",
       room: "Lecture",
     },
@@ -27,7 +28,7 @@ const CLASS_SCHEDULES = {
       subject: "LIBRARY",
       instructor: "Staff",
       type: "other",
-      room: "-",
+      room: "Library",
     },
   ],
   2: [
@@ -47,7 +48,7 @@ const CLASS_SCHEDULES = {
     },
     {
       time: "1:45 PM — 4:45 PM",
-      subject: "LECN LAB (Gr 2) (PC, LK) <br> EM-I LABRARY (Gr 1) (AKD, SI)",
+      subject: "ECN LAB (Gr 2) (AKD, LK) <br> EM-I LAB (Gr 1) (AKD, SI)",
       instructor: "Staff",
       type: "lab",
       room: "Practical",
@@ -64,14 +65,14 @@ const CLASS_SCHEDULES = {
     {
       time: "12:45 PM — 1:45 PM",
       subject: "DE",
-      instructor: "Pritismita Ma'am",
+      instructor: "Chinmayee Ma'am",
       type: "theory",
       room: "Lecture",
     },
     {
       time: "1:45 PM — 3:45 PM",
       subject: "EM-I",
-      instructor: "Panchita Ma'am",
+      instructor: "Amit Sir",
       type: "theory",
       room: "Lecture",
     },
@@ -79,7 +80,7 @@ const CLASS_SCHEDULES = {
   4: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EMMI-1 LAB (Gr 2) (AKD,LK) <br> LIB (Gr 1)",
+      subject: "EMMI-1 LAB (Gr 2) (CM,LK) <br> LIBRARY (Gr 1)",
       instructor: "Staff",
       type: "lab",
       room: "Practical",
@@ -108,32 +109,32 @@ const CLASS_SCHEDULES = {
   ],
   5: [
     {
-      time: "9:00 AM — 10:00 AM",
-      subject: "ENC",
-      instructor: "Amit Sir",
-      type: "theory",
-      room: "Lecture",
-    },
-    {
-      time: "10:00 AM — 11:00 AM",
-      subject: "DE",
-      instructor: "Pritismista Ma'am",
-      type: "theory",
-      room: "Lecture",
-    },
-    {
-      time: "11:00 AM — 12:00 Noon",
-      subject: "EEM",
-      instructor: "Amit Sir",
-      type: "theory",
-      room: "Lecture",
-    },
-    {
-      time: "12:45 PM — 3:45 PM",
-      subject: "ECN LAB (Gr 1) (AKD, LK) <br> EM-I LAB (Gr 2) (PS,SI)",
+      time: "9:00 AM — 12:00 Noon",
+      subject: "ECN LAB (Gr 1) (AKD, LK) <br> EM-I LAB (Gr 2) (AKD,SI)",
       instructor: "Staff",
       type: "lab",
       room: "Practical",
+    },
+    {
+      time: "12:45 PM — 01:45 AM",
+      subject: "ECN",
+      instructor: "Amit Sir",
+      type: "theory",
+      room: "Lecture",
+    },
+    {
+      time: "01:45 PM — 02:45 PM",
+      subject: "DE",
+      instructor: "Chinmayee Ma'am",
+      type: "theory",
+      room: "Lecture",
+    },
+    {
+      time: "02:45 PM — 3:45 PM",
+      subject: "EEM",
+      instructor: "Amit Sir",
+      type: "theory",
+      room: "lacture",
     },
     {
       time: "3:45 PM — 4:45 PM",
@@ -147,7 +148,7 @@ const CLASS_SCHEDULES = {
     {
       time: "9:00 AM — 10:00 AM",
       subject: "EM-I",
-      instructor: "Panchita Ma'am",
+      instructor: "Amit Sir",
       type: "theory",
       room: "Theory",
     },
@@ -168,7 +169,7 @@ const CLASS_SCHEDULES = {
     {
       time: "1:45 PM — 2:45 PM",
       subject: "DE",
-      instructor: "Pritismita Ma'am",
+      instructor: "Chinmayee Ma'am",
       type: "theory",
       room: "Lecture",
     },
