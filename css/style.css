@@ -121,6 +121,16 @@ body {
   font-size: 2rem;
 }
 
+.header__title a {
+  text-decoration: none; /* Underline remove */
+  color: inherit; /* Parent ka color use karega */
+}
+
+.header__title a:hover {
+  color: inherit; /* Hover pe bhi color change na ho */
+}
+
+
 .header__status {
   width: 12px;
   height: 12px;
