@@ -1136,7 +1136,7 @@ const SIXTH_SEM_CLASSES = {
     {
       time: "9:00 AM — 12:00 Noon",
       subject: "EECC Lab Grp 2 (AKD,SI) <br> Grp 1 lib",
-      instructor: "Pritismita Mam and Shohidur Sir",
+      instructor: "Amit Sir and Shohidur Sir",
       room: "6th Sem",
     },
     {
