@@ -912,14 +912,14 @@ const FOURTH_SEM_CLASSES = {
   1: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EMMI-1 LAB (Gr1)(CM,LK) <br> LIB (Gr 2)",
+      subject: "EMMI-1 LAB (Gr1)(CM,LK) <br> LIBRARY (Gr 2)",
       instructor: "Chinmayee Mam and Lutfor Sir",
       room: "4th Sem",
     },
     {
       time: "12:45 PM — 1:45 PM",
       subject: "EM-I",
-      instructor: "Panchita Mam",
+      instructor: "Amit Sir",
       room: "4th Sem",
     },
     {
@@ -950,8 +950,8 @@ const FOURTH_SEM_CLASSES = {
     },
     {
       time: "1:45 PM — 4:45 PM",
-      subject: "LECN LAB (Gr 2) (AKD,LK) <br> EM-I LAB (Gr 1) (PS,SI)",
-      instructor: "Amit Sir and Lutfor Sir and Panchita Mam and Shohidur Sir",
+      subject: "LECN LAB (Gr 2) (AKD,LK) <br> EM-I LAB (Gr 1) (AKD,SI)",
+      instructor: "Amit Sir and Lutfor Sir and Shohidur Sir",
       room: "4th Sem",
     },
   ],
@@ -965,13 +965,13 @@ const FOURTH_SEM_CLASSES = {
     {
       time: "12:45 PM — 1:45 PM",
       subject: "DE",
-      instructor: "Pritismita Mam",
+      instructor: "Chinmayee Mam",
       room: "4th Sem",
     },
     {
       time: "1:45 PM — 3:45 PM",
       subject: "EM-I",
-      instructor: "Panchita Mam",
+      instructor: "Amit Sir",
       room: "4th Sem",
     },
   ],
@@ -1003,27 +1003,27 @@ const FOURTH_SEM_CLASSES = {
   ],
   5: [
     {
-      time: "9:00 AM — 10:00 AM",
-      subject: "ENC",
+      time: "9:00 AM — 12:00 Noon",
+      subject: "ECN LAB (Gr1) (AKD,LK) <br> EM-I LAB (Gr2) (AKD,SI)",
+      instructor: "Amit Sir and Lutfor Sir and Shohidur Sir",
+      room: "4th Sem",
+    },
+    {
+      time: "12:45 PM — 01:45 PM",
+      subject: "ECN",
       instructor: "Amit Sir",
       room: "4th Sem",
     },
     {
-      time: "10:00 AM — 11:00 AM",
+      time: "1:45 PM — 2:45 PM",
       subject: "DE",
-      instructor: "Pritismita Mam",
+      instructor: "Chinmayee Mam",
       room: "4th Sem",
     },
     {
-      time: "11:00 AM — 12:00 Noon",
+      time: "2:45 PM — 3:45 PM",
       subject: "EEM",
       instructor: "Amit Sir",
-      room: "4th Sem",
-    },
-    {
-      time: "12:45 PM — 3:45 PM",
-      subject: "ECN LAB (Gr1) (AKD,LK) <br> EM-I LAB (Gr2) (AKD,SI)",
-      instructor: "Amit Sir and Lutfor Sir and Panchita Mam and Shohidur Sir",
       room: "4th Sem",
     },
     {
@@ -1037,7 +1037,7 @@ const FOURTH_SEM_CLASSES = {
     {
       time: "9:00 AM — 10:00 AM",
       subject: "EM-I",
-      instructor: "Panchita Mam",
+      instructor: "Amit Sir",
       room: "4th Sem",
     },
     {
@@ -1055,7 +1055,7 @@ const FOURTH_SEM_CLASSES = {
     {
       time: "1:45 PM — 2:45 PM",
       subject: "DE",
-      instructor: "Pritismita Mam",
+      instructor: "Chinmayee Mam",
       room: "4th Sem",
     },
     {
@@ -1071,20 +1071,20 @@ const SIXTH_SEM_CLASSES = {
   1: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EECC Lab Grp 1 (PC,SI) <br> Grp 2 lib",
-      instructor: "Pritismita Mam and Shohidur Sir",
+      subject: "EECC Lab Grp 1 (AKD,SI) <br> Grp 2 lib",
+      instructor: "Amit Sir and Shohidur Sir",
       room: "6th Sem",
     },
     {
       time: "12:45 PM — 1:45 PM",
-      subject: "EECC",
-      instructor: "Pritismita Mam",
+      subject: "IME",
+      instructor: "X",
       room: "6th Sem",
     },
     {
       time: "1:45 PM — 2:45 PM",
       subject: "IM",
-      instructor: "Panchita Mam",
+      instructor: "Chinmayee Mam",
       room: "6th Sem",
     },
     {
@@ -1116,7 +1116,7 @@ const SIXTH_SEM_CLASSES = {
     {
       time: "1:45 PM — 2:45 PM",
       subject: "IM",
-      instructor: "Panchita Mam",
+      instructor: "Chinmayee Mam",
       room: "6th Sem",
     },
     {
@@ -1135,20 +1135,20 @@ const SIXTH_SEM_CLASSES = {
   3: [
     {
       time: "9:00 AM — 12:00 Noon",
-      subject: "EECC Lab Grp2 (PC,SI) <br> Grp 1 lib",
+      subject: "EECC Lab Grp 2 (AKD,SI) <br> Grp 1 lib",
       instructor: "Pritismita Mam and Shohidur Sir",
       room: "6th Sem",
     },
     {
       time: "12:45 PM — 1:45 PM",
-      subject: "SGP",
-      instructor: "Chinmayee Mam",
+      subject: "EECC",
+      instructor: "Amit Sir",
       room: "6th Sem",
     },
     {
       time: "1:45 PM — 2:45 PM",
-      subject: "IME",
-      instructor: "Malay Das",
+      subject: "SGP",
+      instructor: "Chinmayee Mam",
       room: "6th Sem",
     },
     {
@@ -1160,21 +1160,21 @@ const SIXTH_SEM_CLASSES = {
   ],
   4: [
     {
-      time: "9:00 AM — 11:00 AM",
+      time: "9:00 AM — 10:00 AM",
+      subject: "IME",
+      instructor: "X",
+      room: "6th Sem",
+    },
+    {
+      time: "10:00 AM — 12:00 Noon",
       subject: "ACDU",
       instructor: "Amit Sir",
       room: "6th Sem",
     },
     {
-      time: "11:00 AM — 12:00 Noon",
-      subject: "IME",
-      instructor: "Malay Das",
-      room: "6th Sem",
-    },
-    {
       time: "12:45 PM — 1:45 PM",
       subject: "EECC",
-      instructor: "Pritismita Mam",
+      instructor: "Amit Sir",
       room: "6th Sem",
     },
     {
@@ -1188,25 +1188,25 @@ const SIXTH_SEM_CLASSES = {
     {
       time: "9:00 AM — 11:00 AM",
       subject: "IM",
-      instructor: "Panchita Mam",
+      instructor: "Chinmayee Mam",
       room: "6th Sem",
     },
     {
       time: "11:00 AM — 12:00 Noon",
+      subject: "IME",
+      instructor: "X",
+      room: "6th Sem",
+    },
+    {
+      time: "12:45 PM — 1:45 PM",
       subject: "SGP",
       instructor: "Chinmayee Mam",
       room: "6th Sem",
     },
     {
-      time: "12:45 PM — 1:45 PM",
+      time: "1:45 PM — 2:45 PM",
       subject: "GEN VIVA",
       instructor: "Staff",
-      room: "6th Sem",
-    },
-    {
-      time: "1:45 PM — 2:45 PM",
-      subject: "IME",
-      instructor: "Malay Das",
       room: "6th Sem",
     },
     {
@@ -1219,14 +1219,14 @@ const SIXTH_SEM_CLASSES = {
   6: [
     {
       time: "9:00 AM — 10:00 AM",
-      subject: "PP-IV",
-      instructor: "Staff",
+      subject: "IME",
+      instructor: "X",
       room: "6th Sem",
     },
     {
       time: "10:00 AM — 12:00 Noon",
       subject: "EECC",
-      instructor: "Pritismita Mam",
+      instructor: "Amit Sir",
       room: "6th Sem",
     },
     {
@@ -1237,8 +1237,8 @@ const SIXTH_SEM_CLASSES = {
     },
     {
       time: "1:45 PM — 2:45 PM",
-      subject: "IME",
-      instructor: "Malay Das",
+      subject: "PP-IV",
+      instructor: "Staff",
       room: "6th Sem",
     },
     {
