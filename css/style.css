@@ -122,13 +122,17 @@ body {
 }
 
 .header__title a {
-  text-decoration: none; /* Underline remove */
-  color: inherit; /* Parent ka color use karega */
+  text-decoration: none !important; /* Underline remove */
+  color: inherit !important; /* Parent ka color use karega */
 }
 
-.header__title a:hover {
-  color: inherit; /* Hover pe bhi color change na ho */
+.header__title a:hover, 
+.header__title a:focus, 
+.header__title a:active {
+  color: inherit !important; /* Hover aur focus par bhi color na badle */
+  text-decoration: none !important; /* Har state mein underline hataye */
 }
+
 
 
 .header__status {
